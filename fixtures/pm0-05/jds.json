@@ -1,0 +1,82 @@
+[
+  {
+    "id": "jd-a",
+    "version": "v1",
+    "family_id": "agent-jd-a",
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "合成JD-A：AI应用/Agent开发实习。",
+      "要求理解工具调用、RAG、评测和Python异步，能解释故障与恢复。"
+    ],
+    "requirements": [
+      {
+        "id": "req-a-agent",
+        "line": 2,
+        "topic_ids": [
+          "tool-use",
+          "rag",
+          "eval",
+          "python-async"
+        ],
+        "coverage": "supported"
+      }
+    ]
+  },
+  {
+    "id": "jd-b",
+    "version": "v1",
+    "family_id": "backend-jd-b",
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "合成JD-B：Agent业务后端实习。",
+      "重点为HTTP、SQL事务、索引、Redis和Linux诊断。"
+    ],
+    "requirements": [
+      {
+        "id": "req-b-backend",
+        "line": 2,
+        "topic_ids": [
+          "http",
+          "sql",
+          "index",
+          "redis",
+          "linux"
+        ],
+        "coverage": "supported"
+      }
+    ]
+  },
+  {
+    "id": "jd-c",
+    "version": "v1",
+    "family_id": "systems-jd-c",
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "合成JD-C：偏底层AI系统实习。",
+      "要求C++、嵌入式部署和GPU kernel优化，另需基础HTTP。"
+    ],
+    "requirements": [
+      {
+        "id": "req-c-systems",
+        "line": 2,
+        "topic_ids": [
+          "cpp-systems",
+          "embedded",
+          "gpu-kernels"
+        ],
+        "coverage": "unsupported"
+      },
+      {
+        "id": "req-c-http",
+        "line": 2,
+        "topic_ids": [
+          "http"
+        ],
+        "coverage": "supported"
+      }
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+# Migration checksums must survive Windows checkouts; leave TS reference bytes unchanged.
+backend/migrations/*.sql text eol=lf
+# Benchmark checksums bind raw bytes, including authored line endings.
+benchmarks/**/*.json* -text whitespace=cr-at-eol
+# Preserve third-party notice bytes and their recorded hashes.
+docs/third-party/python-notices/licenses/** -text -whitespace

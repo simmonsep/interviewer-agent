@@ -1,0 +1,11 @@
+{
+  "name": "@pi-interview/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Internal server-bound interview contracts and synthetic fixture schemas.",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "typebox": "1.3.27"
+  }
+}

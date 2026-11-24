@@ -1,0 +1,89 @@
+[
+  {
+    "id": "resume-a",
+    "version": "v1",
+    "candidate_id": "candidate-a",
+    "family_id": "coursework-a",
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "合成候选人A：研二，无企业实习经历。",
+      "课程项目：做过本地资料检索问答，负责切块与简单检索接口。",
+      "尚未提供上线用户量、准确率或付费模型费用记录。"
+    ],
+    "claims": [
+      {
+        "id": "claim-a-project",
+        "start_line": 2,
+        "end_line": 2,
+        "status": "self_reported",
+        "clarification_needed": false
+      }
+    ],
+    "experience_prompts": [
+      {
+        "id": "experience-a",
+        "claim_id": "claim-a-project",
+        "text": "请讲清切块策略由你完成的部分，以及怎样验证检索结果。"
+      }
+    ]
+  },
+  {
+    "id": "resume-b",
+    "version": "v1",
+    "candidate_id": "candidate-b",
+    "family_id": "internship-b",
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "合成候选人B：有一段后端实习。",
+      "在合成团队的任务服务中负责幂等提交接口与错误日志定位。",
+      "团队其他成员负责认证和前端，候选人未声明负责整个平台。"
+    ],
+    "claims": [
+      {
+        "id": "claim-b-intern",
+        "start_line": 2,
+        "end_line": 3,
+        "status": "self_reported",
+        "clarification_needed": false
+      }
+    ],
+    "experience_prompts": [
+      {
+        "id": "experience-b",
+        "claim_id": "claim-b-intern",
+        "text": "重试时重复提交怎样复现？你的改动与团队其他部分的边界是什么？"
+      }
+    ]
+  },
+  {
+    "id": "resume-c",
+    "version": "v1",
+    "candidate_id": "candidate-c",
+    "family_id": "ambiguous-c",
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "合成候选人C：简历写“主导Agent平台，性能提升80%”。",
+      "尚未说明个人负责模块、指标口径、样本数和比较基线。",
+      "需要先澄清；不得直接确认该提升或推断其实现了全部系统。"
+    ],
+    "claims": [
+      {
+        "id": "claim-c-ambiguous",
+        "start_line": 1,
+        "end_line": 2,
+        "status": "self_reported",
+        "clarification_needed": true
+      }
+    ],
+    "experience_prompts": [
+      {
+        "id": "experience-c",
+        "claim_id": "claim-c-ambiguous",
+        "text": "平台中你实际实现了什么？80%的指标、基线和测量条件分别是什么？"
+      }
+    ]
+  }
+]

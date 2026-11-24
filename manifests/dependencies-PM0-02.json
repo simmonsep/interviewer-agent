@@ -1,0 +1,1478 @@
+{
+  "checkedAt": "2026-10-21",
+  "scope": "lock identity, declared license identifiers and installed package manifest hashes; no vulnerability or legal audit",
+  "lockSha256": "c7422de2ce00b571ffd74bdecab95d174e619cfad03252c64d37a98c1a6064fe",
+  "packages": [
+    {
+      "path": "node_modules/@anthropic-ai/sdk",
+      "name": "@anthropic-ai/sdk",
+      "version": "0.129.0",
+      "integrity": "sha512-MH7LB20kNpGLUpPTe2OG5XvL/KhX8HUO9XyBaFjgFk6TLS4Xjt0VPIuMKywe7POKKPslX+QxSlVok9e+8kG5Nw==",
+      "resolved": "https://registry.npmjs.org/@anthropic-ai/sdk/-/sdk-0.129.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "3da3840a09a3bfeac32aed68cfd7fa9ac952f41a00cabe335f806caa2966f3f1"
+    },
+    {
+      "path": "node_modules/@aws-sdk/client-bedrock-runtime",
+      "name": "@aws-sdk/client-bedrock-runtime",
+      "version": "3.1127.0",
+      "integrity": "sha512-IDl/lrPb90aH+pZFHGNDmgH9nAUQj5PlZH1sJ3w7RikctyjHSnY3oNjZhrLoaBoQn/rNK0zsP6OHEqEhj2tdLA==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/client-bedrock-runtime/-/client-bedrock-runtime-3.1127.0.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "d38839f240b6f89020c1abf351691d9749f7d35e6680abd6a6fc4415823c10e0"
+    },
+    {
+      "path": "node_modules/@aws-sdk/core",
+      "name": "@aws-sdk/core",
+      "version": "3.978.4",
+      "integrity": "sha512-JvGp6y9sPX8FSs2K/EmFMZcUfdkHxqGE45+oxwGC75OIh50j2e4cbx7zcR3BwNs2DSGqJdBja5h6Vy89iIDmRQ==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/core/-/core-3.978.4.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "18cb7d02f7cd1d66aa213672475efa6e948d35e9d2d8a0fde20898cb9db6314c"
+    },
+    {
+      "path": "node_modules/@aws-sdk/credential-provider-env",
+      "name": "@aws-sdk/credential-provider-env",
+      "version": "3.972.75",
+      "integrity": "sha512-nc8Epg98PcYoKNx0VFlwtmZSCP+tuJ1FLWqpslET/gp4h/WYuULSJqtxppM6ywKKDdzNJPvLD7ceRfmxm3Qdxw==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-env/-/credential-provider-env-3.972.75.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "5cb37f750114d9dd939a57d26865b06872f1425f403a29536fe0c69a513a886e"
+    },
+    {
+      "path": "node_modules/@aws-sdk/credential-provider-http",
+      "name": "@aws-sdk/credential-provider-http",
+      "version": "3.972.77",
+      "integrity": "sha512-KkYFdIQwuw9IOHfEzK78slxmVWuhcm1w6YgE3V3WVxAeRRj9q5J9jlwzpY/oszWxd4SD96FTFkDdRGBdMFF2Mw==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-http/-/credential-provider-http-3.972.77.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "cf05cb644449b4edb703913fefa152a7ab9c65eb1715d2ac9b7e7db342b3d388"
+    },
+    {
+      "path": "node_modules/@aws-sdk/credential-provider-ini",
+      "name": "@aws-sdk/credential-provider-ini",
+      "version": "3.973.20",
+      "integrity": "sha512-OSl2R/0zLkoeKEIy6oP2tu/bsSdY+DGgro2eOffMD2CcP8POv7rS14FY5Jzc5bjnqB1G9wv/aM1akHC2mdlhZw==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-ini/-/credential-provider-ini-3.973.20.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "49c17427e547a4cb741f54d7d0a296d5bf64ac4adea244138ecde4e5c43d3911"
+    },
+    {
+      "path": "node_modules/@aws-sdk/credential-provider-login",
+      "name": "@aws-sdk/credential-provider-login",
+      "version": "3.972.82",
+      "integrity": "sha512-8jyDPtf1WPxeQ/5xlNpyxAD6P7YKwkYeNk8B2vFEDwkPWDvb7c3tQJG5/jbNWbF2yTMIH9tDTueBkdfovYIAPw==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-login/-/credential-provider-login-3.972.82.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "403ac987663edaec95b199851b9d1010e8bb461657234b169acb2728a9b26fc5"
+    },
+    {
+      "path": "node_modules/@aws-sdk/credential-provider-node",
+      "name": "@aws-sdk/credential-provider-node",
+      "version": "3.972.87",
+      "integrity": "sha512-TKj2C0x4IMPSSOAlmeryX8fCPvvPS2pFJz2ikV9IGqyh6Ehsg4leMalCTVfV2rvMTrlGAe7X7nK0HZ3P0KZR9g==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-node/-/credential-provider-node-3.972.87.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "65c2ca47a776bedf81da8c2f43d5cfdeb6319f6af359836dd2668f9b5e6f51f4"
+    },
+    {
+      "path": "node_modules/@aws-sdk/credential-provider-process",
+      "name": "@aws-sdk/credential-provider-process",
+      "version": "3.972.75",
+      "integrity": "sha512-ZNm8T/HJNhpS8MikDVAsym8QyUSUuOUGiCkmI3TTya7G6xhOgfRLd2iK91HhQQyvRM36eo6Xm845hHVyfToA2w==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-process/-/credential-provider-process-3.972.75.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "6ac79506e13316318dba0989100bafdd385df207f45c9a0b98ef5956f86cf179"
+    },
+    {
+      "path": "node_modules/@aws-sdk/credential-provider-sso",
+      "name": "@aws-sdk/credential-provider-sso",
+      "version": "3.973.19",
+      "integrity": "sha512-qHGDAGesyWtRw3BapyFkYSUzVNrC1CWPS6+S2lf/MLMEkWB2gR3Bl6imVHy1nhImXKS+gcuUDzbu39BnsHJc1Q==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-sso/-/credential-provider-sso-3.973.19.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "d657ab0fc4ba4902f46122fcf371e8b30b055ce9f4ea6161c18bf97e4fd3cebe"
+    },
+    {
+      "path": "node_modules/@aws-sdk/credential-provider-sso/node_modules/@aws-sdk/token-providers",
+      "name": "@aws-sdk/token-providers",
+      "version": "3.1153.0",
+      "integrity": "sha512-6bKJ2OfLboxhzeJ3hBDeB8L6emCYf9DfdrjBAharLrY42J1RV/6jA6G8jvfNghzID8Yb40BdSY7jQMtWx9Ot0Q==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/token-providers/-/token-providers-3.1153.0.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "594cbec742764ba816485891069860bdf1cc8835db4c35eec8b44f3d1e9e1e37"
+    },
+    {
+      "path": "node_modules/@aws-sdk/credential-provider-web-identity",
+      "name": "@aws-sdk/credential-provider-web-identity",
+      "version": "3.972.81",
+      "integrity": "sha512-nHkgkMIC6NHgqfI6UAQq5cCS4bUkNxkT+r9fXCq/X4IKfX/DHGZ8UM3T4b78OXpWK5OlzEzN4kxwyax0W/MUCA==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-web-identity/-/credential-provider-web-identity-3.972.81.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "5bcd92001b3f1d65ecab6ee0c35c57faf288ef4246a3294d13d8da79c45e8ca6"
+    },
+    {
+      "path": "node_modules/@aws-sdk/eventstream-handler-node",
+      "name": "@aws-sdk/eventstream-handler-node",
+      "version": "3.972.37",
+      "integrity": "sha512-vU0v4d6anhLqBCpPq7Q7hD2Av3/5qOR5O30Ze8ALLysgB3iMQTPHQ/P2aTgfrY2ZjnVJUCi7NiTSNqa1mDF+5w==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/eventstream-handler-node/-/eventstream-handler-node-3.972.37.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "52595a031db72599d2e38f00de464ea051483d80a326abe9e42d54ca6a00d882"
+    },
+    {
+      "path": "node_modules/@aws-sdk/middleware-eventstream",
+      "name": "@aws-sdk/middleware-eventstream",
+      "version": "3.972.32",
+      "integrity": "sha512-D3ayeW/K2lTQI8+SyzDvAKfM3N4SFJjfgqeHbS3DOZmmQebZyve6WUyJiqOKqeOxmIcFxTzpSdsijnRF035J3g==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/middleware-eventstream/-/middleware-eventstream-3.972.32.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "0f4af42eb8218230eb977a69022be5cd8b6443d2c2aa32f87f0e51a8f36b5417"
+    },
+    {
+      "path": "node_modules/@aws-sdk/middleware-websocket",
+      "name": "@aws-sdk/middleware-websocket",
+      "version": "3.972.57",
+      "integrity": "sha512-mPNUOedufUwZXISOEySSP7l7owyY0Ypp1ajsd1GsB4E5Vpaf8NtfmmNygyPPeGPsRZ1sOcS90aAhQ03yPy/pFg==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/middleware-websocket/-/middleware-websocket-3.972.57.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "9ceaedd404a1840d74b36c898b723fa67c3171d17073d2c50577190baed28e05"
+    },
+    {
+      "path": "node_modules/@aws-sdk/nested-clients",
+      "name": "@aws-sdk/nested-clients",
+      "version": "3.997.49",
+      "integrity": "sha512-zjqIqzTYLRKhT7TPJDUreK9vG9PjhmnfLCaTaqArkRT7j+Ogl0tuXB7MpSd8rlRfRT+xTOeyNFWaOfyNcf51hg==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/nested-clients/-/nested-clients-3.997.49.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "093e9f50c3c94a54fcfbcc4b4a11c00ed2627e08118ceb4d12e34edbd2fd1269"
+    },
+    {
+      "path": "node_modules/@aws-sdk/signature-v4-multi-region",
+      "name": "@aws-sdk/signature-v4-multi-region",
+      "version": "3.996.48",
+      "integrity": "sha512-cFDXfEbXaGwbnpvR/DyqfxfjxpjXVRVthQLgkwvcfDS5u3+8G9WSj1X1Ag/pTRg/QOeOno1Tq3ycEdrKsCUcOA==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/signature-v4-multi-region/-/signature-v4-multi-region-3.996.48.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "dd7f4b46cf8d3aa4971ec13ecc70ff6bebd79d87e8c3c21c8eeecce1fd939287"
+    },
+    {
+      "path": "node_modules/@aws-sdk/token-providers",
+      "name": "@aws-sdk/token-providers",
+      "version": "3.1127.0",
+      "integrity": "sha512-Dv2TMWBshJ+tF6ahs2Sy5bh4Iabsd4GAQqVvE9XZmYmnoaVbpS2QKIKE/HRacc7bTtbjEEvP+laGzHvHlf1CiQ==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/token-providers/-/token-providers-3.1127.0.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "fcb7e0ea77d0466b548fe3fc04efa0c13ced2dfbed14c62e7dc0995e1153dcd8"
+    },
+    {
+      "path": "node_modules/@aws-sdk/types",
+      "name": "@aws-sdk/types",
+      "version": "3.974.6",
+      "integrity": "sha512-v/clNZzZnDxGyvpHMOGpJKVXFAExJzUNAAjaWGdcx8QAcXLGwTaOkw33p5SHAi0YAioK32xB3hWwOekRVfmfKg==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/types/-/types-3.974.6.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "bdd916bfcfac454fb2ba9ff2dd2e581d10f946654515ca860bf4b8f4e4b82561"
+    },
+    {
+      "path": "node_modules/@aws-sdk/xml-builder",
+      "name": "@aws-sdk/xml-builder",
+      "version": "3.972.41",
+      "integrity": "sha512-ctjVSyCMegrWfXlx6VqzSBFI6UqmQ5ZlnfMhdLIiWmhoH8UAQxSCP5N3OpG7X3k4LnS7ou74C4mt20+bfTW2aQ==",
+      "resolved": "https://registry.npmjs.org/@aws-sdk/xml-builder/-/xml-builder-3.972.41.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "103e94854d3f01cdb7eda3d170d3a8775e4fb107da472a1347418abb76116e08"
+    },
+    {
+      "path": "node_modules/@aws/lambda-invoke-store",
+      "name": "@aws/lambda-invoke-store",
+      "version": "0.3.0",
+      "integrity": "sha512-sl4Bm6yiMNYrZKkqqDFWN0UfnWhlS8ivKxrYl+6t0gCLrqr8y3B2IqZZbFRkfaVVp7C/baApyh71P+LeE1A2sQ==",
+      "resolved": "https://registry.npmjs.org/@aws/lambda-invoke-store/-/lambda-invoke-store-0.3.0.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "67dd0cc15cb17df9e12654a78486e710e13a2e96623cb28c683056378fa973dc"
+    },
+    {
+      "path": "node_modules/@babel/runtime",
+      "name": "@babel/runtime",
+      "version": "7.29.10",
+      "integrity": "sha512-NpugTzbKgGrNe45Ui32cN8vCFFMxVtP/9rtfwv0nP5FRDAjvYBxJcLVpYA9mr1jxP6cnIT7x9LUzuDTbWYYNRA==",
+      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.29.10.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "c770ba825368b8421666fe5ffe841d55dc0ebc703415422c31ba7f048a32d14a"
+    },
+    {
+      "path": "node_modules/@earendil-works/pi-agent-core",
+      "name": "@earendil-works/pi-agent-core",
+      "version": "1.3.0",
+      "integrity": "sha512-2jvpxZs47PFD5mSQb/yK0pGHJ5yO7Nu22u9mFjHbSLRgu62vZ9rupimDSIp4arnqOadyv0AWvYHtCSpFoJV7ag==",
+      "resolved": "https://registry.npmjs.org/@earendil-works/pi-agent-core/-/pi-agent-core-1.3.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "67728d06e96459b7fe96c490b563865fb78f7eafcecb708e7ae43e6dd857a324"
+    },
+    {
+      "path": "node_modules/@earendil-works/pi-ai",
+      "name": "@earendil-works/pi-ai",
+      "version": "1.3.0",
+      "integrity": "sha512-KaBI8x7q7sPoFUXICNGD9efHzDG+oRNwVvkA9jdIsSQWH1RjFssOlEGsbLtewUPPgCrvmz0l2KTgSLXTyj3acw==",
+      "resolved": "https://registry.npmjs.org/@earendil-works/pi-ai/-/pi-ai-1.3.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "4e9ed07b06a91d844485874c251f312b610d015a4a4fd32c78cde58a7862a3f1"
+    },
+    {
+      "path": "node_modules/@earendil-works/pi-telemetry",
+      "name": "@earendil-works/pi-telemetry",
+      "version": "1.3.0",
+      "integrity": "sha512-ERGZr+aXjNJzoUbB7ZzHVH3g5otzMHjHLs2Fyizm12By5X+gBEhod9cJXFOk13S7M8a29Am+Mq21zm73mRJFLg==",
+      "resolved": "https://registry.npmjs.org/@earendil-works/pi-telemetry/-/pi-telemetry-1.3.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "386479e7767a2aff572fea6339558405b1b23e9e7951504731515fc71b7db6ae"
+    },
+    {
+      "path": "node_modules/@google/genai",
+      "name": "@google/genai",
+      "version": "2.21.0",
+      "integrity": "sha512-+PDtco2/Z0ONdzCGekCoCT+O1VJS9xJQNN4XzQpXG/t3El/SWWMkCWlFRO1KmivOHPa4Q0VjUYu1HBKCZ/v33Q==",
+      "resolved": "https://registry.npmjs.org/@google/genai/-/genai-2.21.0.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "64e3cd991d6b4749cd4b3afe46c8a0ad2f5d983f33df94081343797693fdbc81"
+    },
+    {
+      "path": "node_modules/@protobufjs/aspromise",
+      "name": "@protobufjs/aspromise",
+      "version": "1.1.2",
+      "integrity": "sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==",
+      "resolved": "https://registry.npmjs.org/@protobufjs/aspromise/-/aspromise-1.1.2.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "4a39ee1c94f6ee038d2944196aa6167785d3429a91727f828a1274262919e2d8"
+    },
+    {
+      "path": "node_modules/@protobufjs/base64",
+      "name": "@protobufjs/base64",
+      "version": "1.1.2",
+      "integrity": "sha512-AZkcAA5vnN/v4PDqKyMR5lx7hZttPDgClv83E//FMNhR2TMcLUhfRUBHCmSl0oi9zMgDDqRUJkSxO3wm85+XLg==",
+      "resolved": "https://registry.npmjs.org/@protobufjs/base64/-/base64-1.1.2.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "7ff6a89f566b95c0f21a5a9cb12df5718f0b06ef96d4186a92d650c0849fa2c5"
+    },
+    {
+      "path": "node_modules/@protobufjs/codegen",
+      "name": "@protobufjs/codegen",
+      "version": "2.0.5",
+      "integrity": "sha512-zgXFLzW3Ap33e6d0Wlj4MGIm6Ce8O89n/apUaGNB/jx+hw+ruWEp7EwGUshdLKVRCxZW12fp9r40E1mQrf/34g==",
+      "resolved": "https://registry.npmjs.org/@protobufjs/codegen/-/codegen-2.0.5.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "818bf10387c19ab09b3814004ec672ab8d975302cdaf2dd65466bdb604764d65"
+    },
+    {
+      "path": "node_modules/@protobufjs/eventemitter",
+      "name": "@protobufjs/eventemitter",
+      "version": "1.1.1",
+      "integrity": "sha512-vW1GmwMZNnL+gMRaovlh9yZX74kc+TTU3FObkkurpMaRtBfLP3ldjS9KQWlwZgraRE0+dheEEoAxdzcJQ8eXZg==",
+      "resolved": "https://registry.npmjs.org/@protobufjs/eventemitter/-/eventemitter-1.1.1.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "d157d364fe4aee21cfd517abff35bca312ff51e6e6e90abdbec16225057e5914"
+    },
+    {
+      "path": "node_modules/@protobufjs/fetch",
+      "name": "@protobufjs/fetch",
+      "version": "1.1.1",
+      "integrity": "sha512-GpptLrs57adMSuHi3VNj0mAF8dwh36LMaYF6XyJ6JMWlVsc+t42tm1HSEDmOs3A8fC9yyeisgLhsTVQokOZ0zw==",
+      "resolved": "https://registry.npmjs.org/@protobufjs/fetch/-/fetch-1.1.1.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "52f997898a745acce5d68751883aad6296bcc2f152468ced0ed30e3c3c5a1c72"
+    },
+    {
+      "path": "node_modules/@protobufjs/float",
+      "name": "@protobufjs/float",
+      "version": "1.0.2",
+      "integrity": "sha512-Ddb+kVXlXst9d+R9PfTIxh1EdNkgoRe5tOX6t01f1lYWOvJnSPDBlG241QLzcyPdoNTsblLUdujGSE4RzrTZGQ==",
+      "resolved": "https://registry.npmjs.org/@protobufjs/float/-/float-1.0.2.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "1cae4ded1bc97375a67fe4608f87ee59990734ea738fabb98e9061ab23669cdf"
+    },
+    {
+      "path": "node_modules/@protobufjs/path",
+      "name": "@protobufjs/path",
+      "version": "1.1.2",
+      "integrity": "sha512-6JOcJ5Tm08dOHAbdR3GrvP+yUUfkjG5ePsHYczMFLq3ZmMkAD98cDgcT2iA1lJ9NVwFd4tH/iSSoe44YWkltEA==",
+      "resolved": "https://registry.npmjs.org/@protobufjs/path/-/path-1.1.2.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "b19802dd696ceb8a4aa4839f35ab1c8312e97693d93485ff3c3e4f19cca183c4"
+    },
+    {
+      "path": "node_modules/@protobufjs/pool",
+      "name": "@protobufjs/pool",
+      "version": "1.1.0",
+      "integrity": "sha512-0kELaGSIDBKvcgS4zkjz1PeddatrjYcmMWOlAuAPwAeccUrPHdUqo/J6LiymHHEiJT5NrF1UVwxY14f+fy4WQw==",
+      "resolved": "https://registry.npmjs.org/@protobufjs/pool/-/pool-1.1.0.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "7a33b609e770020fe1e09690cfebc23bbdd6e1306e3f0dd98ba5048966cb7fec"
+    },
+    {
+      "path": "node_modules/@protobufjs/utf8",
+      "name": "@protobufjs/utf8",
+      "version": "1.1.2",
+      "integrity": "sha512-b1UQwcEZ4yCnMCD8DAL1VlbvBJE9/IX4FTIp7BG1xYpf29SLazLSrqUkj4w7Y5y7cCVP6E5tcqqcI0xemPkHug==",
+      "resolved": "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.2.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "80fdb6b9f633023846b6cdf352ea795523abcf27affd4d54afd4b50a90a87411"
+    },
+    {
+      "path": "node_modules/@smithy/core",
+      "name": "@smithy/core",
+      "version": "3.36.1",
+      "integrity": "sha512-WC5W1Jrsfxu1y6LeqXMie7N14qmcdafij/Haye4feVlyMMXLGpYxBeOX6Ee1iRJbDzGG5LVman8U1rrt9MYFHA==",
+      "resolved": "https://registry.npmjs.org/@smithy/core/-/core-3.36.1.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "cb18b595361f562b99bcf9613edeedacfe1dc03d3f9454bf4ba37e916988b912"
+    },
+    {
+      "path": "node_modules/@smithy/credential-provider-imds",
+      "name": "@smithy/credential-provider-imds",
+      "version": "4.5.2",
+      "integrity": "sha512-A9uSdn72ozbRUSit0eib0TW7nXuNPlaeM0zcGkJ+nE6tFcSDbnmtwoxbTCFBukVQcszDAyvsd7+rTduPTXpygg==",
+      "resolved": "https://registry.npmjs.org/@smithy/credential-provider-imds/-/credential-provider-imds-4.5.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "1e3b437bfaf7800cbcd770cc744084ab9e3b6c445196b707fde90e2f66e0403c"
+    },
+    {
+      "path": "node_modules/@smithy/fetch-http-handler",
+      "name": "@smithy/fetch-http-handler",
+      "version": "5.8.0",
+      "integrity": "sha512-ycSJu3tFAQ4v04CBB0agqFMVsSQ1iG3yw+SpgxRqKfaURpQD4CZ8Wn0zPMmSnOuTpTh65Vz+EA0rMrw089wvkA==",
+      "resolved": "https://registry.npmjs.org/@smithy/fetch-http-handler/-/fetch-http-handler-5.8.0.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "3319f9f00b71ae85d49473c1f5d5a0151c89547d7724753abe8d189471decffe"
+    },
+    {
+      "path": "node_modules/@smithy/node-http-handler",
+      "name": "@smithy/node-http-handler",
+      "version": "4.12.1",
+      "integrity": "sha512-ThMkboGeONWXAelq9FvGsuJC4rOi+qyC4/zhUF58xYpxUg5sQKx2VXZYJmtNjr4dSuBJ1HeJXETQILCz3wOHvw==",
+      "resolved": "https://registry.npmjs.org/@smithy/node-http-handler/-/node-http-handler-4.12.1.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "e685e00a1e28371390ffab5711e5300b81743b7a7d5f5bf1a994e40197467221"
+    },
+    {
+      "path": "node_modules/@smithy/signature-v4",
+      "name": "@smithy/signature-v4",
+      "version": "5.7.4",
+      "integrity": "sha512-tHy0K0VtqNd5Y7Y41h0a0Lhh0L1GzC08dTWg0F7vRJWFtTENg7IZikf3wQkanYIRdb7ngoIPMTmqgUi401fEeQ==",
+      "resolved": "https://registry.npmjs.org/@smithy/signature-v4/-/signature-v4-5.7.4.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "d4794533b211f0100c0be02a8d35b677db84d84a7061ad7c0c6bb0bc5394cf11"
+    },
+    {
+      "path": "node_modules/@smithy/types",
+      "name": "@smithy/types",
+      "version": "4.19.0",
+      "integrity": "sha512-r7jh49VJxGerfAcTQA6gXcKc+98zOp/tqRwzYjgOE+iSQsP6cEU1hq2QzbuipmP68QtYdY9wKEhiCQZIzHgZ4Q==",
+      "resolved": "https://registry.npmjs.org/@smithy/types/-/types-4.19.0.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "3de7840fd63a03c33bb687fbdc4794884598402600b2ee02c68856e78e41bd52"
+    },
+    {
+      "path": "node_modules/@stablelib/base64",
+      "name": "@stablelib/base64",
+      "version": "1.0.1",
+      "integrity": "sha512-1bnPQqSxSuc3Ii6MhBysoWCg58j97aUjuCSZrGSmDxNqtytIi0k8utUenAwTZN4V5mXXYGsVUI9zeBqy+jBOSQ==",
+      "resolved": "https://registry.npmjs.org/@stablelib/base64/-/base64-1.0.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "7821116cc9ab0fb2542c1407ac5e34ff78bcc70b2d1295b753a9ea16134b3df7"
+    },
+    {
+      "path": "node_modules/@types/node",
+      "name": "@types/node",
+      "version": "24.19.2",
+      "integrity": "sha512-93d49wCWJkCyN87MxLpNN6KXPCwFw7bVUg79mGUV1OS40JGWwVCr8n61DXCSqz7CV6/VfPkb7xec7uP2M+QHWQ==",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-24.19.2.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "13aa15b08ff549f7b79033f33940aae287f1d47098991ddc6b92d9800f55a695"
+    },
+    {
+      "path": "node_modules/@types/retry",
+      "name": "@types/retry",
+      "version": "0.12.0",
+      "integrity": "sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==",
+      "resolved": "https://registry.npmjs.org/@types/retry/-/retry-0.12.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "5d07cffb225eba4439977949ad9e8729620e51d1acc04f60fc8bad712183e063"
+    },
+    {
+      "path": "node_modules/@typescript/typescript-aix-ppc64",
+      "name": "@typescript/typescript-aix-ppc64",
+      "version": "7.0.2",
+      "integrity": "sha512-MTKKkWB7p/0E9xi1d1tHtZ5PiLkGEMIq88pK2CubZjOsLtYTLqhgIgi6zepFa+9GHZ6h05NMCkQxGKiPXMxXtQ==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-aix-ppc64/-/typescript-aix-ppc64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "aix"
+      ],
+      "cpu": [
+        "ppc64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-darwin-arm64",
+      "name": "@typescript/typescript-darwin-arm64",
+      "version": "7.0.2",
+      "integrity": "sha512-gowzar9MwS/aRWp6f3a4KUqzRjAZjOsmGNCM6LcTgXum+dBfgsBVMN+AgvOCCbguXyick6LJhpBszxMebJ8syA==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-darwin-arm64/-/typescript-darwin-arm64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "cpu": [
+        "arm64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-darwin-x64",
+      "name": "@typescript/typescript-darwin-x64",
+      "version": "7.0.2",
+      "integrity": "sha512-SZ9xZInqApNlNGc9s0W1VSsktYSOe9cFqNOIqmN1Gs8SmkjKZYFt017G4VwPxASInODuAdbTW7sXiFUf893RgA==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-darwin-x64/-/typescript-darwin-x64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "darwin"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-freebsd-arm64",
+      "name": "@typescript/typescript-freebsd-arm64",
+      "version": "7.0.2",
+      "integrity": "sha512-W5NH4y/J0plIIS5b2xvTEkU7JFxyqdMAOgf+Ilhl0vHQXKO5dZoxd+C/jEtq56c4F3wk71RB4BMRQ2XdI+bwYQ==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-freebsd-arm64/-/typescript-freebsd-arm64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "freebsd"
+      ],
+      "cpu": [
+        "arm64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-freebsd-x64",
+      "name": "@typescript/typescript-freebsd-x64",
+      "version": "7.0.2",
+      "integrity": "sha512-UMGDx5sTpzNw3WiPebH7l90IWfJggEd+egHt/q6p7/Cm3zqoV7VxkGXt+3DxPIw8CcmvAB0j3sVVfbhX+M4Tpw==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-freebsd-x64/-/typescript-freebsd-x64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "freebsd"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-linux-arm",
+      "name": "@typescript/typescript-linux-arm",
+      "version": "7.0.2",
+      "integrity": "sha512-gffT3xPz9sR7j/YJExkyPntrI0P2EP9XbOyWzth2/Gs0RstK+90RBcO0ncXoXy/beYll1SXw846Nf2zdnEz0QQ==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-linux-arm/-/typescript-linux-arm-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "arm"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-linux-arm64",
+      "name": "@typescript/typescript-linux-arm64",
+      "version": "7.0.2",
+      "integrity": "sha512-Qh4eU4/y3yDjnfjjyPYihMj5/ODIlmt+Bzu17OI+fiSRDW57QmU5SiN63exPRNJPKUzcc1INa1NXdrJ+MqHjUQ==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-linux-arm64/-/typescript-linux-arm64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "arm64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-linux-loong64",
+      "name": "@typescript/typescript-linux-loong64",
+      "version": "7.0.2",
+      "integrity": "sha512-uEHck9i8hoAzXPiYRib1O7miOnz23SxIeVl6F4LXox+qov1K35jHcEW6VHKvZI+pyvl7fZEP4MCU5LYvIq1GuQ==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-linux-loong64/-/typescript-linux-loong64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "loong64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-linux-mips64el",
+      "name": "@typescript/typescript-linux-mips64el",
+      "version": "7.0.2",
+      "integrity": "sha512-R4KvAMnE43W5Qeqb0Ly56O3mWMWIAgsMyz36DCaycd5nbg/9kzm0liw3JocfRqyJY0KPmzFjbswozXyW0DnIYA==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-linux-mips64el/-/typescript-linux-mips64el-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "mips64el"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-linux-ppc64",
+      "name": "@typescript/typescript-linux-ppc64",
+      "version": "7.0.2",
+      "integrity": "sha512-DORx5b3sd/4S7eayxm4FQv+A7CrkUIGRaHiwI8oiHTAI1fAPWhF4J0vAlkC8biAlHSVVwxMQ3tjZ2/DVbnQiiA==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-linux-ppc64/-/typescript-linux-ppc64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "ppc64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-linux-riscv64",
+      "name": "@typescript/typescript-linux-riscv64",
+      "version": "7.0.2",
+      "integrity": "sha512-wf0jqEDOjrPRnKwYRyyJDRo11KMbvMFrU+q4zqKyChODBzvlkbhNQfKvLxQCcwTpdDaXSHZTVuh0JoCrKCUMHQ==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-linux-riscv64/-/typescript-linux-riscv64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "riscv64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-linux-s390x",
+      "name": "@typescript/typescript-linux-s390x",
+      "version": "7.0.2",
+      "integrity": "sha512-IkwJc3L7yhytWd/ewjyxNDfOmswCm9GWMJT/ue/dU4aZNbwZeYAetq42VyLmsmSjvoX7z74X6ZaYCtzAr0EuGw==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-linux-s390x/-/typescript-linux-s390x-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "s390x"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-linux-x64",
+      "name": "@typescript/typescript-linux-x64",
+      "version": "7.0.2",
+      "integrity": "sha512-EYdf2cNg7rgCWJnxCdJ+F3V39O8ihb37eHAu1LK8oAFizgTQbPOK7zHHXbPt8rX24COqODXeI3sIf0fCXG7H/A==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-linux-x64/-/typescript-linux-x64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-netbsd-arm64",
+      "name": "@typescript/typescript-netbsd-arm64",
+      "version": "7.0.2",
+      "integrity": "sha512-+polYF4MF04aPpO5FTkHran9yUQDSXqy5GiSDKpsll5jy3l3+g9QLhpf39T+ePtefhXLOGrLl0QIjkQP6VnelA==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-netbsd-arm64/-/typescript-netbsd-arm64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "netbsd"
+      ],
+      "cpu": [
+        "arm64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-netbsd-x64",
+      "name": "@typescript/typescript-netbsd-x64",
+      "version": "7.0.2",
+      "integrity": "sha512-8YIT0EHM/3dq10ZOVF/A7pc/YSMtbcecct4rWtexrnSCHOPcpC2KTLXfTCR6vDpnSiY12heNb1GiN/wu+T/FyA==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-netbsd-x64/-/typescript-netbsd-x64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "netbsd"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-openbsd-arm64",
+      "name": "@typescript/typescript-openbsd-arm64",
+      "version": "7.0.2",
+      "integrity": "sha512-APT8+ClYnuYm1u9+kgGXoMj2VzWzcymwh2gNSQVySHfkRDGOTVkoWLjCmOQSaO+PoqQ57B0flRp9SA+7GnnkzQ==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-openbsd-arm64/-/typescript-openbsd-arm64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "openbsd"
+      ],
+      "cpu": [
+        "arm64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-openbsd-x64",
+      "name": "@typescript/typescript-openbsd-x64",
+      "version": "7.0.2",
+      "integrity": "sha512-yX7s+Q0Dln0Dt9tEzZsAjXXR/+ytBM7AlglaqyeMPxQszJ1JhlJdZ6jLA+IzldHtflX81em7lDao1xXu+aRRkg==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-openbsd-x64/-/typescript-openbsd-x64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "openbsd"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-sunos-x64",
+      "name": "@typescript/typescript-sunos-x64",
+      "version": "7.0.2",
+      "integrity": "sha512-dLJDGaLZ1D4HPQn62u1n8mBDkJREwMsAkCdkwd4Ieqw+x3TUyTsqY0YiBCtE6H6OzzgGk3iuZ3vFWRS+E8/d1g==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-sunos-x64/-/typescript-sunos-x64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "sunos"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-win32-arm64",
+      "name": "@typescript/typescript-win32-arm64",
+      "version": "7.0.2",
+      "integrity": "sha512-Gyl1Vy6OsWesLzmq+EP0Fb7b4Nid5232AvcA2SFcdYreldpNtYFFofPjnt62y9hQy7VTaZp65ICJjuAQRaVcIQ==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-win32-arm64/-/typescript-win32-arm64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": false,
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "arm64"
+      ],
+      "packageJsonSha256": null
+    },
+    {
+      "path": "node_modules/@typescript/typescript-win32-x64",
+      "name": "@typescript/typescript-win32-x64",
+      "version": "7.0.2",
+      "integrity": "sha512-0BQ3HkAHHlKLSp1qRvf3SUhGpGsDuhB/jgFw75guyqbxJqEaS0Cw/VFO8i2nHglJUzQCRtMMR/IBAKE3ETMC4g==",
+      "resolved": "https://registry.npmjs.org/@typescript/typescript-win32-x64/-/typescript-win32-x64-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": true,
+      "os": [
+        "win32"
+      ],
+      "cpu": [
+        "x64"
+      ],
+      "packageJsonSha256": "6d8ec7623880a902bb225c53571112e2bbf0273412b2c534070b1193d2be0f6b"
+    },
+    {
+      "path": "node_modules/agent-base",
+      "name": "agent-base",
+      "version": "9.0.0",
+      "integrity": "sha512-TQf59BsZnytt8GdJKLPfUZ54g/iaUL2OWDSFCCvMOhsHduDQxO8xC4PNeyIkVcA5KwL2phPSv0douC0fgWzmnA==",
+      "resolved": "https://registry.npmjs.org/agent-base/-/agent-base-9.0.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "13df46dd018fcf2e4231a0f47a1a007dd7d5441d9f8efb108f50f9fb64a17138"
+    },
+    {
+      "path": "node_modules/base64-js",
+      "name": "base64-js",
+      "version": "1.5.1",
+      "integrity": "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==",
+      "resolved": "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "9758f3ab8c45e07bb9a368e32f9a8b3729623bbf47cbbb205b32d674ab2a91f0"
+    },
+    {
+      "path": "node_modules/bignumber.js",
+      "name": "bignumber.js",
+      "version": "9.3.1",
+      "integrity": "sha512-Ko0uX15oIUS7wJ3Rb30Fs6SkVbLmPBAKdlm7q9+ak9bbIeFf0MwuBsQV6z7+X768/cHsfg+WlysDWJcmthjsjQ==",
+      "resolved": "https://registry.npmjs.org/bignumber.js/-/bignumber.js-9.3.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "192208575108629a3272453526258511a5911a8127ab955371fb1f25ac79e99d"
+    },
+    {
+      "path": "node_modules/bowser",
+      "name": "bowser",
+      "version": "2.14.1",
+      "integrity": "sha512-tzPjzCxygAKWFOJP011oxFHs57HzIhOEracIgAePE4pqB3LikALKnSzUyU4MGs9/iCEUuHlAJTjTc5M+u7YEGg==",
+      "resolved": "https://registry.npmjs.org/bowser/-/bowser-2.14.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "b12b643998a1a7febff9933b5a05e53045c722ff4de13fab751391b2d346a974"
+    },
+    {
+      "path": "node_modules/buffer-equal-constant-time",
+      "name": "buffer-equal-constant-time",
+      "version": "1.0.1",
+      "integrity": "sha512-zRpUiDwd/xk6ADqPMATG8vc9VPrkck7T07OIx0gnjmJAnHnTVXNQG3vfvWNuiZIkwu9KrKdA1iJKfsfTVxE6NA==",
+      "resolved": "https://registry.npmjs.org/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "2d3df7ecb57811cf6fc43be180d9801c7c70928e5388391a6f258d889449ef4e"
+    },
+    {
+      "path": "node_modules/data-uri-to-buffer",
+      "name": "data-uri-to-buffer",
+      "version": "4.0.1",
+      "integrity": "sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==",
+      "resolved": "https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "ad4f90a737ab5d8af4dad265e9218456e3779ca5beb70df38dd5feecf80121dd"
+    },
+    {
+      "path": "node_modules/debug",
+      "name": "debug",
+      "version": "4.4.3",
+      "integrity": "sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==",
+      "resolved": "https://registry.npmjs.org/debug/-/debug-4.4.3.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "ea8e33d63fe5f3a4c36609b6c3df8e2ef1f8b8ba2fc3a2e1e53cb27291f384af"
+    },
+    {
+      "path": "node_modules/ecdsa-sig-formatter",
+      "name": "ecdsa-sig-formatter",
+      "version": "1.0.11",
+      "integrity": "sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==",
+      "resolved": "https://registry.npmjs.org/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "f8c0805a13487310192db6ae04452c4315f5538ae87d7bc20de2904902c34027"
+    },
+    {
+      "path": "node_modules/extend",
+      "name": "extend",
+      "version": "3.0.2",
+      "integrity": "sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==",
+      "resolved": "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "8d891b3f00bead114c4741d8a594e7aaa59114f53782ec9a9319a619709dc14f"
+    },
+    {
+      "path": "node_modules/fast-sha256",
+      "name": "fast-sha256",
+      "version": "1.3.0",
+      "integrity": "sha512-n11RGP/lrWEFI/bWdygLxhI+pVeo1ZYIVwvvPkW7azl/rOy+F3HYRZ2K5zeE9mmkhQppyv9sQFx0JM9UabnpPQ==",
+      "resolved": "https://registry.npmjs.org/fast-sha256/-/fast-sha256-1.3.0.tgz",
+      "license": "Unlicense",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "d312f1993364bfb4f217f820ff7f9e0a6b1d87930bfc2605138ab660e8d29806"
+    },
+    {
+      "path": "node_modules/fetch-blob",
+      "name": "fetch-blob",
+      "version": "3.2.0",
+      "integrity": "sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ==",
+      "resolved": "https://registry.npmjs.org/fetch-blob/-/fetch-blob-3.2.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "ee47bb73168049962586a09317017c44b1b10b2a90fc74e5c4561efdb361411b"
+    },
+    {
+      "path": "node_modules/formdata-polyfill",
+      "name": "formdata-polyfill",
+      "version": "4.0.10",
+      "integrity": "sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==",
+      "resolved": "https://registry.npmjs.org/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "09767e86a596171ef17e8ec4977eb11f530654740fa3105dbbd7cd545753421e"
+    },
+    {
+      "path": "node_modules/gaxios",
+      "name": "gaxios",
+      "version": "7.3.1",
+      "integrity": "sha512-kB3rzJV7d9juLZh8/56QTXCwQfxyhdOMdyYk1HdQKFtF8TJTDTZQJtixWIwXdE9Jji91mC41DUNpjleo4L4eAQ==",
+      "resolved": "https://registry.npmjs.org/gaxios/-/gaxios-7.3.1.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "6d8ac1fadd9a3e890a0407f04f49dd8b919e418e46d10e65df9cba295ce319ad"
+    },
+    {
+      "path": "node_modules/gaxios/node_modules/agent-base",
+      "name": "agent-base",
+      "version": "7.1.4",
+      "integrity": "sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==",
+      "resolved": "https://registry.npmjs.org/agent-base/-/agent-base-7.1.4.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "7a08cb2fe1d2b788e0a7bf6a9b7597dbeeeae804698c2fbd15de786d284d327c"
+    },
+    {
+      "path": "node_modules/gaxios/node_modules/https-proxy-agent",
+      "name": "https-proxy-agent",
+      "version": "7.0.6",
+      "integrity": "sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw==",
+      "resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "b08c1977d38f14f4be7fb5be33aab545e3e5a6e2e12100733a6ad97dec995206"
+    },
+    {
+      "path": "node_modules/gcp-metadata",
+      "name": "gcp-metadata",
+      "version": "8.1.2",
+      "integrity": "sha512-zV/5HKTfCeKWnxG0Dmrw51hEWFGfcF2xiXqcA3+J90WDuP0SvoiSO5ORvcBsifmx/FoIjgQN3oNOGaQ5PhLFkg==",
+      "resolved": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-8.1.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "1d50f7d982a12c539356257f1b26631ec06f569b804a596dc926ec8773224fa4"
+    },
+    {
+      "path": "node_modules/google-auth-library",
+      "name": "google-auth-library",
+      "version": "10.9.1",
+      "integrity": "sha512-i1ydyHrqcIxXkWh/uBmVkzCvIuq5yiK2ATndIe5XxKholrG/MTYP9xGYka4sQhrbIAgGjL2B6NOE7rFaiF3fXw==",
+      "resolved": "https://registry.npmjs.org/google-auth-library/-/google-auth-library-10.9.1.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "d502e0b8f9b83f97f5f78aaee9ba5e7cd7067a81d2f8f0215c47b2877814a9c9"
+    },
+    {
+      "path": "node_modules/google-logging-utils",
+      "name": "google-logging-utils",
+      "version": "1.1.3",
+      "integrity": "sha512-eAmLkjDjAFCVXg7A1unxHsLf961m6y17QFqXqAXGj/gVkKFrEICfStRfwUlGNfeCEjNRa32JEWOUTlYXPyyKvA==",
+      "resolved": "https://registry.npmjs.org/google-logging-utils/-/google-logging-utils-1.1.3.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "74980e1fd2db59c71a20ddf6accf42704c67da3b905fc5d2134ee39807dad42f"
+    },
+    {
+      "path": "node_modules/http-proxy-agent",
+      "name": "http-proxy-agent",
+      "version": "9.1.0",
+      "integrity": "sha512-2NxoveTT58mjYT4n3RPTEfCZGLMbidoO8XEieXfpSYxu+PQJ1qpx4ypwH6N+uF9twBPIvRRgvkvW5HUTYWENig==",
+      "resolved": "https://registry.npmjs.org/http-proxy-agent/-/http-proxy-agent-9.1.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "03703c6c566b00d8fd85ba57cd6460b14d0b762f694e26f0efbfe4e5384e3081"
+    },
+    {
+      "path": "node_modules/https-proxy-agent",
+      "name": "https-proxy-agent",
+      "version": "9.1.0",
+      "integrity": "sha512-ag87y7cJJ9/3+GxFr8Oy4O5faDsGRGnBGsJj/YjOSsSx/5eadKLYTMPlzuR6obgoCDDm0abAAZitXXQkMOPSpA==",
+      "resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-9.1.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "50d17385a8c63c0ed0e138069617d4d9236ce92bddbe6f52cfec0e3a834c97a0"
+    },
+    {
+      "path": "node_modules/json-bigint",
+      "name": "json-bigint",
+      "version": "1.0.0",
+      "integrity": "sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==",
+      "resolved": "https://registry.npmjs.org/json-bigint/-/json-bigint-1.0.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "1c3b07ce46552112606922f0782b316383529b3da935d637c0606cb38a8caa5a"
+    },
+    {
+      "path": "node_modules/json-schema-to-ts",
+      "name": "json-schema-to-ts",
+      "version": "3.1.1",
+      "integrity": "sha512-+DWg8jCJG2TEnpy7kOm/7/AxaYoaRbjVB4LFZLySZlWn8exGs3A4OLJR966cVvU26N7X9TWxl+Jsw7dzAqKT6g==",
+      "resolved": "https://registry.npmjs.org/json-schema-to-ts/-/json-schema-to-ts-3.1.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "9439fa620a0f7a930950239ec4445d902c7d29590cddf0985a83bea531b2e81e"
+    },
+    {
+      "path": "node_modules/jwa",
+      "name": "jwa",
+      "version": "2.0.1",
+      "integrity": "sha512-hRF04fqJIP8Abbkq5NKGN0Bbr3JxlQ+qhZufXVr0DvujKy93ZCbXZMHDL4EOtodSbCWxOqR8MS1tXA5hwqCXDg==",
+      "resolved": "https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "53610fa0143c2cdef9d280e0c029ededf688930648358d4f3e35a081d75219d8"
+    },
+    {
+      "path": "node_modules/jws",
+      "name": "jws",
+      "version": "4.0.1",
+      "integrity": "sha512-EKI/M/yqPncGUUh44xz0PxSidXFr/+r0pA70+gIYhjv+et7yxM+s29Y+VGDkovRofQem0fs7Uvf4+YmAdyRduA==",
+      "resolved": "https://registry.npmjs.org/jws/-/jws-4.0.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "a934389f53e2ac8909d5399410c1ede3e35397be9e9f521bde25b61e1fee0b2f"
+    },
+    {
+      "path": "node_modules/long",
+      "name": "long",
+      "version": "5.3.2",
+      "integrity": "sha512-mNAgZ1GmyNhD7AuqnTG3/VQ26o760+ZYBPKjPvugO8+nLbYfX6TVpJPseBvopbdY+qpZ/lKUnmEc1LeZYS3QAA==",
+      "resolved": "https://registry.npmjs.org/long/-/long-5.3.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "982e554a35d140981c7962fbba77855563e5890de200f8dc0a249135e4d9acb8"
+    },
+    {
+      "path": "node_modules/ms",
+      "name": "ms",
+      "version": "2.1.3",
+      "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "1a6b4d9739790c0b94ab96c8cc0507e281c164c311ff4fbf5e57fb8d26290b40"
+    },
+    {
+      "path": "node_modules/node-domexception",
+      "name": "node-domexception",
+      "version": "1.0.0",
+      "integrity": "sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==",
+      "resolved": "https://registry.npmjs.org/node-domexception/-/node-domexception-1.0.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "1ff59c11ab7aef2b2f7fa393e8b871362e21b8a2defbd4922a8f8a5082fbfa06"
+    },
+    {
+      "path": "node_modules/node-fetch",
+      "name": "node-fetch",
+      "version": "3.3.2",
+      "integrity": "sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==",
+      "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-3.3.2.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "058acbc2474901ffa0b95c3f9d0903111426b118b55f928300e448d7252fc27d"
+    },
+    {
+      "path": "node_modules/openai",
+      "name": "openai",
+      "version": "7.19.0",
+      "integrity": "sha512-MX2s3u2L5racTO0CC/SWpCOasJQBCJrqLKXK+l82cAhdeF8mPMBEe/gxMm0ZFa2xpKpOFLRjxv5afYEZbBXmbQ==",
+      "resolved": "https://registry.npmjs.org/openai/-/openai-7.19.0.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "8a855f81669a434ce894e2d1ae2f18e9050e93c57d14091f155cd543056bdc30"
+    },
+    {
+      "path": "node_modules/p-retry",
+      "name": "p-retry",
+      "version": "4.6.2",
+      "integrity": "sha512-312Id396EbJdvRONlngUx0NydfrIQ5lsYu0znKVUzVvArzEIt08V1qhtyESbGVd1FGX7UKtiFp5uwKZdM8wIuQ==",
+      "resolved": "https://registry.npmjs.org/p-retry/-/p-retry-4.6.2.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "ee4376966f4f8db899019ec955b3dc25fd972e12587a0da10d8313dc7b617b3f"
+    },
+    {
+      "path": "node_modules/partial-json",
+      "name": "partial-json",
+      "version": "0.1.7",
+      "integrity": "sha512-Njv/59hHaokb/hRUjce3Hdv12wd60MtM9Z5Olmn+nehe0QDAsRtRbJPvJ0Z91TusF0SuZRIvnM+S4l6EIP8leA==",
+      "resolved": "https://registry.npmjs.org/partial-json/-/partial-json-0.1.7.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "42b3ae6c99ec959249f8eb4d3da7fdb44ec1f96ec627fa7f9ca5487a4e80963f"
+    },
+    {
+      "path": "node_modules/protobufjs",
+      "name": "protobufjs",
+      "version": "7.6.6",
+      "integrity": "sha512-dYDWdjSl5RNb7SgPxGQcRU+GtvP7s2fpkrY0r432PcOIaZ0/rBcxEZnQN67iJhFuQiVw754JDoPruPCNdGsbjg==",
+      "resolved": "https://registry.npmjs.org/protobufjs/-/protobufjs-7.6.6.tgz",
+      "license": "BSD-3-Clause",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "0e56b70de03bffc143e74311b42ae22b557370a4a1f4b5066568fbc77857639a"
+    },
+    {
+      "path": "node_modules/proxy-agent-negotiate",
+      "name": "proxy-agent-negotiate",
+      "version": "1.1.0",
+      "integrity": "sha512-N8IBcM3UgCVzz2L2Lqv8DVntDnnC8/hiV4nEDUPkqq72TPUgYWjQc+bdZlBPZK9LzPAvOY//gAt0S0DApoOXWQ==",
+      "resolved": "https://registry.npmjs.org/proxy-agent-negotiate/-/proxy-agent-negotiate-1.1.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "7b7c2579ea138d20d4f7699ca78ef16c526f35168dbf694f1d47cc861b0954d4"
+    },
+    {
+      "path": "node_modules/retry",
+      "name": "retry",
+      "version": "0.13.1",
+      "integrity": "sha512-XQBQ3I8W1Cge0Seh+6gjj03LbmRFWuoszgK9ooCpwYIrhhoO80pfq4cUkU5DkknwfOfFteRwlZ56PYOGYyFWdg==",
+      "resolved": "https://registry.npmjs.org/retry/-/retry-0.13.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "7ae366b6b8133485abf27abe657c0ffa2d32600611ecf2c4fe5246165bed73d5"
+    },
+    {
+      "path": "node_modules/safe-buffer",
+      "name": "safe-buffer",
+      "version": "5.2.1",
+      "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==",
+      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.2.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "e4018fdbfe625433371f48274fee26f520bbe865e0d8c85bf3aa07424134b90c"
+    },
+    {
+      "path": "node_modules/standardwebhooks",
+      "name": "standardwebhooks",
+      "version": "1.1.1",
+      "integrity": "sha512-bCbX9ZEyFkWPsRz7Bl3NuQUJohmwGSev/yhr7vhaGPlc4AfIrspIRa6cPTBuI1ItmrTDJ4d/S2hCsfe4+vQGnQ==",
+      "resolved": "https://registry.npmjs.org/standardwebhooks/-/standardwebhooks-1.1.1.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "686397f0f0202e0b693cfd3f6241d7a8da3df326f9642867a484fbbd295690b6"
+    },
+    {
+      "path": "node_modules/ts-algebra",
+      "name": "ts-algebra",
+      "version": "2.0.0",
+      "integrity": "sha512-FPAhNPFMrkwz76P7cdjdmiShwMynZYN6SgOujD1urY4oNm80Ou9oMdmbR45LotcKOXoy7wSmHkRFE6Mxbrhefw==",
+      "resolved": "https://registry.npmjs.org/ts-algebra/-/ts-algebra-2.0.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "6c6f692e1a3ad9943c77b5fa4eb04b0f63cb708353c67dcc5d86b35b2f7e5c30"
+    },
+    {
+      "path": "node_modules/tslib",
+      "name": "tslib",
+      "version": "2.8.1",
+      "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==",
+      "resolved": "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz",
+      "license": "0BSD",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "f02b4851df316f29bdfcd404aa1eb41e4e216b5859015f81fcd3e91caf8be931"
+    },
+    {
+      "path": "node_modules/typebox",
+      "name": "typebox",
+      "version": "1.3.27",
+      "integrity": "sha512-zu+jc1pcy4UiNThxikUr36f0Rybk9PEeCg/NE6adeWr/SKsdNO4EzZHYRDlv2YCVAfj3Odq3dESSo/jNyoBXzA==",
+      "resolved": "https://registry.npmjs.org/typebox/-/typebox-1.3.27.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "c59ddfd977ce941f1e8ee8b0a0b14396c332fa27cc5fa6fa165227ffd5a3992f"
+    },
+    {
+      "path": "node_modules/typescript",
+      "name": "typescript",
+      "version": "7.0.2",
+      "integrity": "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==",
+      "resolved": "https://registry.npmjs.org/typescript/-/typescript-7.0.2.tgz",
+      "license": "Apache-2.0",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "3722b30210616a13a3213ded11575ba6b2dbab10c32a5ef67afca8513e27017e"
+    },
+    {
+      "path": "node_modules/undici-types",
+      "name": "undici-types",
+      "version": "7.24.6",
+      "integrity": "sha512-WRNW+sJgj5OBN4/0JpHFqtqzhpbnV0GuB+OozA9gCL7a993SmU+1JBZCzLNxYsbMfIeDL+lTsphD5jN5N+n0zg==",
+      "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-7.24.6.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "541adf5ec10733ecbf9278ec706914c76b1e5b25cccebdadb7ade8f3066ae052"
+    },
+    {
+      "path": "node_modules/web-streams-polyfill",
+      "name": "web-streams-polyfill",
+      "version": "3.3.3",
+      "integrity": "sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==",
+      "resolved": "https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "13e22b076747f7673afc2afad4b932843844b1ffb2e5bd613442937eacdaf7d7"
+    },
+    {
+      "path": "node_modules/ws",
+      "name": "ws",
+      "version": "8.22.0",
+      "integrity": "sha512-Ydggc987+RO0AnWtZ/7Wq9FtNvcrL1b/RO0ud9mWjUPgDrsAAwQSF51sm2hm1XofbU/4jkpGEsLFsZZxU+1DOg==",
+      "resolved": "https://registry.npmjs.org/ws/-/ws-8.22.0.tgz",
+      "license": "MIT",
+      "installedOnThisHost": true,
+      "optional": false,
+      "os": null,
+      "cpu": null,
+      "packageJsonSha256": "c1ef91ca04eb4754c011c5f0e7638b5078ff71104fada400c44ac761cf93e0b1"
+    }
+  ]
+}

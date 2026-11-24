@@ -1,0 +1,11 @@
+{
+  "version": "wiki-replay-v0.1",
+  "cases": 12,
+  "split": "development",
+  "provenance": "project_authored_synthetic",
+  "semantic_review": "pending",
+  "sha256": {
+    "cases.jsonl": "a58682dcb2bae9644810e5f0fc78266a6ba61ffc8c85dc6c04bf91ee468a6fb5",
+    "oracles.jsonl": "840fdadd62f053d3a9ddb672ab98404e065193edb0237262007f249053d69a67"
+  }
+}

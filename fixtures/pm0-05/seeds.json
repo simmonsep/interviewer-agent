@@ -1,0 +1,86 @@
+[
+  {
+    "id": "seed-role-only",
+    "candidate_id": "candidate-a",
+    "role_id": "agent-intern",
+    "resume_id": null,
+    "jd_id": null,
+    "context_mode": "role_only",
+    "split": "development",
+    "origin": "synthetic",
+    "modes": [
+      "mock",
+      "practice"
+    ]
+  },
+  {
+    "id": "seed-jd-only",
+    "candidate_id": "candidate-a",
+    "role_id": "agent-intern",
+    "resume_id": null,
+    "jd_id": "jd-a",
+    "context_mode": "role_jd",
+    "split": "development",
+    "origin": "synthetic",
+    "modes": [
+      "mock",
+      "practice"
+    ]
+  },
+  {
+    "id": "seed-resume-only",
+    "candidate_id": "candidate-a",
+    "role_id": "agent-intern",
+    "resume_id": "resume-a",
+    "jd_id": null,
+    "context_mode": "role_resume",
+    "split": "development",
+    "origin": "synthetic",
+    "modes": [
+      "mock",
+      "practice"
+    ]
+  },
+  {
+    "id": "seed-a-a",
+    "candidate_id": "candidate-a",
+    "role_id": "agent-intern",
+    "resume_id": "resume-a",
+    "jd_id": "jd-a",
+    "context_mode": "role_resume_jd",
+    "split": "development",
+    "origin": "synthetic",
+    "modes": [
+      "mock",
+      "practice"
+    ]
+  },
+  {
+    "id": "seed-a-b",
+    "candidate_id": "candidate-a",
+    "role_id": "agent-intern",
+    "resume_id": "resume-a",
+    "jd_id": "jd-b",
+    "context_mode": "role_resume_jd",
+    "split": "development",
+    "origin": "synthetic",
+    "modes": [
+      "mock",
+      "practice"
+    ]
+  },
+  {
+    "id": "seed-b-a",
+    "candidate_id": "candidate-b",
+    "role_id": "agent-intern",
+    "resume_id": "resume-b",
+    "jd_id": "jd-a",
+    "context_mode": "role_resume_jd",
+    "split": "development",
+    "origin": "synthetic",
+    "modes": [
+      "mock",
+      "practice"
+    ]
+  }
+]

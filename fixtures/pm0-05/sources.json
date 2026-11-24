@@ -1,0 +1,264 @@
+[
+  {
+    "id": "json-schema",
+    "title": "JSON Schema object reference",
+    "url": "https://json-schema.org/understanding-json-schema/reference/object",
+    "version": "snapshot-20261022",
+    "locator": "properties / required / additionalProperties",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "对象Schema可约束属性、必填字段和额外属性；这些约束不代表资源访问授权。"
+    ]
+  },
+  {
+    "id": "authorization",
+    "title": "OWASP Authorization Cheat Sheet",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+    "version": "snapshot-20261022",
+    "locator": "Validate permissions on every request",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "资源权限须在实际请求中检查，默认拒绝，不能因客户端传了合法ID就视为有权访问。"
+    ]
+  },
+  {
+    "id": "react",
+    "title": "ReAct",
+    "url": "https://arxiv.org/abs/2210.03629v3",
+    "version": "arxiv-v3",
+    "locator": "abstract / reasoning and acting",
+    "checked_at": "2026-10-22",
+    "kind": "author_paper",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "ReAct交替使用推理与行动，并利用环境观察调整后续行动；它不是某一套框架的专有名词。"
+    ]
+  },
+  {
+    "id": "workflow",
+    "title": "Building effective agents",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents",
+    "version": "article-20241219",
+    "locator": "workflows versus agents",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "固定路径的流程与由模型动态决定步骤的Agent应区分；复杂度应服务实际任务。"
+    ]
+  },
+  {
+    "id": "context",
+    "title": "Effective context engineering",
+    "url": "https://www.anthropic.com/research/effective-context-engineering-for-ai-agents",
+    "version": "article-20250929",
+    "locator": "compaction / context selection",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "上下文应选择相关信息；压缩有丢失关键细节的风险，不能只把历史越塞越多。"
+    ]
+  },
+  {
+    "id": "injection",
+    "title": "OWASP LLM Prompt Injection Prevention",
+    "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+    "version": "snapshot-20261022",
+    "locator": "indirect injection / clear separation",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "外部文档可能包含间接注入，应区分指令与数据并限制实际工具权限，不能把单一提示当作完整防护。"
+    ]
+  },
+  {
+    "id": "memory",
+    "title": "LangChain Memory overview",
+    "url": "https://docs.langchain.com/oss/python/concepts/memory",
+    "version": "snapshot-20261022",
+    "locator": "short-term / long-term / namespaces",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "短期记忆受会话范围约束；长期记忆跨会话保存，须按用户或应用命名空间组织。"
+    ]
+  },
+  {
+    "id": "rag",
+    "title": "Retrieval-Augmented Generation",
+    "url": "https://arxiv.org/abs/2005.11401v4",
+    "version": "arxiv-v4",
+    "locator": "abstract / retrieval and generation",
+    "checked_at": "2026-10-22",
+    "kind": "author_paper",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "RAG结合检索获得的外部信息与生成模型；检索和生成是可以分别检查的环节。"
+    ]
+  },
+  {
+    "id": "evals",
+    "title": "Demystifying evals for AI agents",
+    "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+    "version": "article-20260109",
+    "locator": "tasks / trials / graders",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "任务、运行尝试与评分器是不同概念；代码、模型和人工评分适合检查不同性质的结果。"
+    ]
+  },
+  {
+    "id": "jobs",
+    "title": "BullMQ Idempotent jobs",
+    "url": "https://docs.bullmq.io/patterns/idempotent-jobs",
+    "version": "snapshot-20261022",
+    "locator": "idempotent job design",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "任务重试后的最终效果应与首次成功一致；重试能力不能代替幂等业务设计。"
+    ]
+  },
+  {
+    "id": "asyncio",
+    "title": "Python asyncio tasks",
+    "url": "https://docs.python.org/3.14/library/asyncio-task.html",
+    "version": "python-3-14",
+    "locator": "Task cancellation / Task groups / Timeouts",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "取消是协作式请求，协程应在finally清理资源，捕获取消后通常应继续传播。",
+      "TaskGroup中非取消异常会触发兄弟任务取消并等待结束；timeout使用取消机制实现。"
+    ]
+  },
+  {
+    "id": "http",
+    "title": "RFC 9110 HTTP Semantics",
+    "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+    "version": "rfc-9110",
+    "locator": "9.2.2 / 13.1.1",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "幂等描述重复请求的预期服务端效果，不能把客户端超时当作服务端没有执行。",
+      "If-Match用于条件请求；前置条件不成立时可拒绝写入，相关失败响应为412。"
+    ]
+  },
+  {
+    "id": "isolation",
+    "title": "PostgreSQL transaction isolation",
+    "url": "https://www.postgresql.org/docs/18/transaction-iso.html",
+    "version": "postgresql-18",
+    "locator": "13.2.1 Read Committed",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "PostgreSQL默认Read Committed按语句取得快照，同一事务连续查询可能看到不同已提交数据。"
+    ]
+  },
+  {
+    "id": "constraints",
+    "title": "PostgreSQL constraints",
+    "url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+    "version": "postgresql-18",
+    "locator": "5.5.3 Unique Constraints",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "唯一约束可限制指定列组合重复；事务提交时的业务效果仍需设计，约束不是分布式流程的全部。"
+    ]
+  },
+  {
+    "id": "indexes",
+    "title": "PostgreSQL multicolumn indexes",
+    "url": "https://www.postgresql.org/docs/18/indexes-multicolumn.html",
+    "version": "postgresql-18",
+    "locator": "11.3 B-tree / skip scan",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "多列B-tree通常更受益于前导列约束；PostgreSQL 18的skip scan使缺少前导条件时也可能利用索引。"
+    ]
+  },
+  {
+    "id": "explain",
+    "title": "PostgreSQL EXPLAIN",
+    "url": "https://www.postgresql.org/docs/18/using-explain.html",
+    "version": "postgresql-18",
+    "locator": "14.1.2 EXPLAIN ANALYZE",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "EXPLAIN查看计划；带ANALYZE会实际执行查询并报告实测信息，不能把它当作纯静态查看。"
+    ]
+  },
+  {
+    "id": "redis-set",
+    "title": "Redis SET",
+    "url": "https://redis.io/docs/latest/commands/set/",
+    "version": "snapshot-20261022",
+    "locator": "NX / EX / KEEPTTL",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "SET可在一条命令中使用NX和EX；普通SET覆盖值默认移除原TTL，KEEPTTL可保留。"
+    ]
+  },
+  {
+    "id": "redis-expire",
+    "title": "Redis EXPIRE",
+    "url": "https://redis.io/docs/latest/commands/expire/",
+    "version": "snapshot-20261022",
+    "locator": "TTL semantics",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "EXPIRE设置key过期时间；过期控制与数据库业务事务的原子性不是同一保证。"
+    ]
+  },
+  {
+    "id": "signal",
+    "title": "Linux signal(7)",
+    "url": "https://man7.org/linux/man-pages/man7/signal.7.html",
+    "version": "snapshot-20261022",
+    "locator": "signal dispositions / SIGKILL",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "SIGTERM可被处理以执行清理；SIGKILL不能被捕获、阻塞或忽略。"
+    ]
+  },
+  {
+    "id": "proc-fd",
+    "title": "Linux proc_pid_fd(5)",
+    "url": "https://man7.org/linux/man-pages/man5/proc_pid_fd.5.html",
+    "version": "snapshot-20261022",
+    "locator": "/proc/pid/fd",
+    "checked_at": "2026-10-22",
+    "kind": "official_documentation",
+    "summary_kind": "authored_paraphrase",
+    "summary_lines": [
+      "/proc/pid/fd包含进程打开文件描述符对应的符号链接，可辅助检查句柄增长及对应资源。"
+    ]
+  }
+]

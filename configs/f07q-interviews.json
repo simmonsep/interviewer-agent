@@ -1,0 +1,21 @@
+{
+  "profile": "ja05-deepseek-flash",
+  "model": "deepseek-flash",
+  "observed_model_version": "DeepSeek-V4.1-Flash-1017",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "thinking": "disabled",
+  "max_output_tokens": 2048,
+  "max_payload_bytes": 32768,
+  "input_reservation_tokens": 65536,
+  "max_http_attempts": 12,
+  "max_operation_attempts": 4,
+  "timeout_seconds": 45,
+  "input_miss_nano_cny_per_token": 2000,
+  "input_hit_nano_cny_per_token": 40,
+  "output_nano_cny_per_token": 8000,
+  "pricing_checked_at": "2026-11-11",
+  "pricing_basis": "F07Q operator approval up to CNY0.50 in total, spent as bounded admissions of at most 12 HTTP each (the LivePolicy fuse is not raised); at most 4 HTTP per post-answer decision. Scripted first question prepared locally. Official peak price bounds checked 2026-11-11. No Search/Fetch.",
+  "official_sources": [
+    "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/"
+  ]
+}

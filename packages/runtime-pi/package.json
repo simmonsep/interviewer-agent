@@ -1,0 +1,18 @@
+{
+  "name": "@pi-interview/runtime-pi",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pi runtime adapter for scoped single-answer assessment.",
+  "dependencies": {
+    "@earendil-works/pi-agent-core": "1.3.0",
+    "@earendil-works/pi-ai": "1.3.0",
+    "typebox": "1.3.27",
+    "@pi-interview/contracts": "0.0.0"
+  },
+  "exports": {
+    ".": "./src/adapter.ts",
+    "./store": "./src/scoped-store.ts",
+    "./deepseek": "./src/deepseek-live.ts"
+  }
+}

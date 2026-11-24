@@ -1,0 +1,14 @@
+{
+  "suite": "material-align",
+  "version": "material-align-v0.1",
+  "cases": 4,
+  "shapes": [
+    "mixed_cn_en",
+    "no_evidence",
+    "old_version",
+    "same_named_projects"
+  ],
+  "sha256": {
+    "cases.jsonl": "72265a7342caca38813828a363c64107b2c08edbc1e341ec734faa9fb4c728f0"
+  }
+}

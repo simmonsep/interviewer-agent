@@ -1,0 +1,17 @@
+{
+  "profile": "pm006-deepseek-flash",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "observed_model_version": "DeepSeek-V4.1-Flash-1017",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "thinking": "disabled",
+  "max_output_tokens": 2048,
+  "max_payload_bytes": 16384,
+  "input_reservation_tokens": 32768,
+  "max_http_attempts": 24,
+  "max_retries": 0,
+  "timeout_ms": 45000,
+  "authorization": { "id": "pm006-20261022-cny2", "max_cny": 2, "basis": "user explicitly chose DeepSeek V4.1 Flash and a total ceiling of CNY 2" },
+  "pricing": { "currency": "CNY", "input_miss_per_million": 2, "input_hit_per_million": 0.04, "output_per_million": 8, "basis": "peak rates; conservative for all requests", "checked_at": "2026-10-22", "url": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/" },
+  "official_sources": ["https://api-docs.deepseek.com/zh-cn/guides/tool_calls/", "https://api-docs.deepseek.com/zh-cn/guides/thinking_mode/", "https://www.deepseek.com/news/deepseek-v4-1-flash/"]
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>我的投递 · 本机演示站点</title>
+<style>
+ body{font-family:"Segoe UI","Microsoft YaHei UI",sans-serif;margin:32px auto;max-width:900px;color:#1f2933;background:#f7f8fa}
+ header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+ .who{font-size:13px;color:#52606d}
+ main{background:#fff;border:1px solid #e4e7eb;border-radius:10px;padding:8px 20px}
+ h1{font-size:20px;margin:0 0 4px}
+ .application-row{display:grid;grid-template-columns:1.2fr 1.4fr .8fr auto;gap:12px;align-items:center;
+  padding:14px 8px;border-bottom:1px solid #eceff2;font-size:14px}
+ .application-row:last-child{border-bottom:0}
+ .company{font-weight:600}
+ .title{color:#3e4c59}
+ .status{font-size:13px;color:#0b6b53}
+ .job-link{font-size:13px;color:#1a56db;text-decoration:none}
+ footer{margin-top:16px;font-size:12px;color:#7b8794}
+</style>
+</head>
+<body>
+<header>
+ <div><h1>我的投递</h1><div class="who">本机演示站点 · 已登录（Cookie 仅存在于本机浏览器 profile）</div></div>
+ <a class="job-link" href="login.html">退出登录</a>
+</header>
+<main id="applications">
+ <div class="application-row">
+  <span class="company">星海科技</span><span class="title">Java 后端开发实习生</span>
+  <span class="status">面试中 · 一面待安排</span><a class="job-link" href="detail.html?id=1">查看</a>
+ </div>
+ <div class="application-row">
+  <span class="company">云图数据</span><span class="title">后端研发（校招）</span>
+  <span class="status">已投递 · 简历筛选中</span><a class="job-link" href="detail.html?id=2">查看</a>
+ </div>
+ <div class="application-row">
+  <span class="company">南方智造</span><span class="title">平台开发工程师</span>
+  <span class="status">未通过 · 岗位不匹配</span><a class="job-link" href="detail.html?id=3">查看</a>
+ </div>
+ <div class="application-row">
+  <span class="company">远川网络</span><span class="title">服务端开发</span>
+  <span class="status">已录用 · 待确认意向</span><a class="job-link" href="detail.html?id=4">查看</a>
+ </div>
+</main>
+<footer>这是随仓库提供的本机静态页面，用于验证「打开站点窗口 → 读取当前页面 → 人工确认写入」这条真实代码路径；它不是任何真实招聘网站。</footer>
+</body>
+</html>

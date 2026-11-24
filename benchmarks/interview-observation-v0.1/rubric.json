@@ -1,0 +1,24 @@
+{
+  "version": "interview-observation-rubric-v1",
+  "status": "authored_draft_not_human_reviewed",
+  "label_rules": "label-rules.md",
+  "label_rules_version": "v1 (2026-11-12, F07W)",
+  "what_this_grades": {
+    "label": "模型提交的 observation.label 是否等于人工写的 expected.label",
+    "checks": "observation.summary 里是否点名了该样本必须点出的缺陷（任一同义词命中即算）",
+    "forbid": "observation.summary 里是否出现了不该出现的断言（例如把未核验数字说成已确认）",
+    "action": "决策动作是否落在允许集合内（ask_question / finish）"
+  },
+  "what_this_does_not_grade": [
+    "解释是否好懂、是否有教学价值",
+    "追问问题的深度与针对性（只校验它没把错的当成对的）",
+    "任何'能力/录用概率'结论 —— observation 语义上不提供这类判断"
+  ],
+  "known_limit": "关键词匹配是粗判据：命中同义词不代表语义真的说对了，未命中也不代表模型一定没提。它只能筛出'明显漏判'和'明显误判'，不能替代人工语义审核。",
+  "pass_rule": "label 相符 且 action 在允许集合内 且 所有 checks 命中 且 无 forbid 违规",
+  "label_meaning": {
+    "supported_in_this_answer": "本回答内的证据已足以支持该要点",
+    "needs_probe": "需要用具体情景继续追问；不等于用户没有该经历或能力不足",
+    "inconclusive": "本回答不足以判断；不等于否定"
+  }
+}

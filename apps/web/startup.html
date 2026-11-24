@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>求职 Agent · 正在启动</title>
+<link rel="stylesheet" href="startup.css" />
+</head>
+<body>
+  <main class="card" role="status" aria-live="polite">
+    <h1 id="title">正在启动本地服务</h1>
+    <div class="bar"><span class="dot" id="dot"></span><p class="muted" id="text">正在检查数据库与后台进程，请稍候。</p></div>
+    <div class="detail" id="detail" hidden></div>
+    <div class="row" id="actions" hidden>
+      <button class="primary" id="retry">重新检测</button>
+      <button id="exit">退出</button>
+    </div>
+  </main>
+  <script type="module" src="/startup.js"></script>
+</body>
+</html>

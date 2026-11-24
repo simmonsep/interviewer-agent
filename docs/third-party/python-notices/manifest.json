@@ -1,0 +1,1908 @@
+{
+  "scope": "installed locked Python distributions only; no frontend, container OS/JDK, Git history or upstream source clearance",
+  "lock_sha256": "02763d8847f829075a308cde911f0164c46af0cec17d9bfcca0357e457aa7336",
+  "distribution_approved": false,
+  "project_license_selected_by_this_tool": false,
+  "packages": [
+    {
+      "name": "annotated-doc",
+      "locked_version": "0.0.5",
+      "installed_version": "0.0.5",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "fastapi",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/annotated-doc-0.0.5/00-LICENSE",
+          "sha256": "fff170779a6acbf65abdb405c087f1cee1786691e4a96a4034517e4a504a0cdf",
+          "source_path_in_distribution": "annotated_doc-0.0.5.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "annotated-types",
+      "locked_version": "0.8.0",
+      "installed_version": "0.8.0",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "pydantic",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/annotated-types-0.8.0/00-LICENSE",
+          "sha256": "fe1049884b1a0d9342901e88e07f32925d24b3121d9972b6a6805fb9824b095d",
+          "source_path_in_distribution": "annotated_types-0.8.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "anyio",
+      "locked_version": "4.15.1",
+      "installed_version": "4.15.1",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "httpx",
+          "marker": null
+        },
+        {
+          "from": "httpx2",
+          "marker": "sys_platform != 'emscripten'"
+        },
+        {
+          "from": "langsmith",
+          "marker": null
+        },
+        {
+          "from": "openai",
+          "marker": null
+        },
+        {
+          "from": "starlette",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/anyio-4.15.1/00-LICENSE",
+          "sha256": "5361ac9dc58f2ef5fd2e9b09c68297c17f04950909bbc8023bdb82eacf22c2b0",
+          "source_path_in_distribution": "anyio-4.15.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "argon2-cffi",
+      "locked_version": "25.1.0",
+      "installed_version": "25.1.0",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [],
+      "files": [
+        {
+          "path": "licenses/argon2-cffi-25.1.0/00-LICENSE",
+          "sha256": "b6944d386e87ccf49d9632da083685a4b7624733e686a7fe283dd2d428341d77",
+          "source_path_in_distribution": "argon2_cffi-25.1.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "argon2-cffi-bindings",
+      "locked_version": "26.1.0",
+      "installed_version": "26.1.0",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "argon2-cffi",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/argon2-cffi-bindings-26.1.0/00-LICENSE",
+          "sha256": "966998dc37070a83cc0507bed5e3241d31782c078d0d24870090dead7c471e36",
+          "source_path_in_distribution": "argon2_cffi_bindings-26.1.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "certifi",
+      "locked_version": "2026.10.19",
+      "installed_version": "2026.10.19",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MPL-2.0",
+      "license_classifiers": [
+        "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "httpcore",
+          "marker": null
+        },
+        {
+          "from": "httpx",
+          "marker": null
+        },
+        {
+          "from": "langchain-openai",
+          "marker": null
+        },
+        {
+          "from": "requests",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/certifi-2026.10.19/00-LICENSE",
+          "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7",
+          "source_path_in_distribution": "certifi-2026.10.19.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "cffi",
+      "locked_version": "2.1.1",
+      "installed_version": "2.1.1",
+      "version_matches": true,
+      "license_expression": "MIT-0",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "argon2-cffi-bindings",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/cffi-2.1.1/00-LICENSE",
+          "sha256": "5ba24ddc57067f9249add644c3afc41a5d6dc37e23433ef759d95df370b0af63",
+          "source_path_in_distribution": "cffi-2.1.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "charset-normalizer",
+      "locked_version": "3.5.2",
+      "installed_version": "3.5.2",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT",
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "requests",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/charset-normalizer-3.5.2/00-LICENSE",
+          "sha256": "18577485d3704f1a479ded8e573c0976cfed315fd2fd17983fa988da4c2f70d1",
+          "source_path_in_distribution": "charset_normalizer-3.5.2.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "click",
+      "locked_version": "8.5.0",
+      "installed_version": "8.5.0",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "uvicorn",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/click-8.5.0/00-LICENSE.txt",
+          "sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+          "source_path_in_distribution": "click-8.5.0.dist-info/licenses/LICENSE.txt",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "colorama",
+      "locked_version": "0.4.6",
+      "installed_version": "0.4.6",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: BSD License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "pytest",
+          "marker": "sys_platform == 'win32'"
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/colorama-0.4.6/00-LICENSE.txt",
+          "sha256": "cac35c02686e5d04a5a7140bfb3b36e73aed496656e891102e428886d7930318",
+          "source_path_in_distribution": "colorama-0.4.6.dist-info/licenses/LICENSE.txt",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "distro",
+      "locked_version": "1.9.0",
+      "installed_version": "1.9.0",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "Apache License, Version 2.0",
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langsmith",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/distro-1.9.0/00-LICENSE",
+          "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14",
+          "source_path_in_distribution": "distro-1.9.0.dist-info/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "dnspython",
+      "locked_version": "2.9.0",
+      "installed_version": "2.9.0",
+      "version_matches": true,
+      "license_expression": "ISC",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "email-validator",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/dnspython-2.9.0/upstream-LICENSE.txt",
+          "sha256": "c3ea3ff5654b329c19d3bc5f7481af623c3dded4a6145585499f843ad3d741cd",
+          "source_kind": "pinned_upstream_supplement",
+          "source_url": "https://raw.githubusercontent.com/rthalley/dnspython/e790c8f20a67ad439c7aafef2321e161c6028eee/LICENSE",
+          "source_commit": "e790c8f20a67ad439c7aafef2321e161c6028eee"
+        }
+      ]
+    },
+    {
+      "name": "email-validator",
+      "locked_version": "2.3.0",
+      "installed_version": "2.3.0",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "Unlicense",
+      "license_classifiers": [
+        "License :: OSI Approved :: The Unlicense (Unlicense)"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/email-validator-2.3.0/00-LICENSE",
+          "sha256": "672179752e109134a3fb2bdd0780b29fdb7a03974f0f586a13aead5129562d4c",
+          "source_path_in_distribution": "email_validator-2.3.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "fastapi",
+      "locked_version": "0.161.1",
+      "installed_version": "0.161.1",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/fastapi-0.161.1/00-LICENSE",
+          "sha256": "4ec89ffc81485b97fec584b2d4a961032eeffe834453894fd9c1274906cc744e",
+          "source_path_in_distribution": "fastapi-0.161.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "h11",
+      "locked_version": "0.16.0",
+      "installed_version": "0.16.0",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "httpcore",
+          "marker": null
+        },
+        {
+          "from": "httpcore2",
+          "marker": null
+        },
+        {
+          "from": "uvicorn",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/h11-0.16.0/00-LICENSE.txt",
+          "sha256": "37db5bb85926db28a427a25867f10b1232003aea1be69ccb851138adb8e6f361",
+          "source_path_in_distribution": "h11-0.16.0.dist-info/licenses/LICENSE.txt",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "httpcore",
+      "locked_version": "1.0.9",
+      "installed_version": "1.0.9",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: BSD License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "httpx",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/httpcore-1.0.9/00-LICENSE.md",
+          "sha256": "fdcb59154c74cbaba16a11242f7740bea9f23d6feb5547917d8c5f94a80392a5",
+          "source_path_in_distribution": "httpcore-1.0.9.dist-info/licenses/LICENSE.md",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "httpcore2",
+      "locked_version": "2.16.0",
+      "installed_version": "2.16.0",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: BSD License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "httpx2",
+          "marker": "sys_platform != 'emscripten'"
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/httpcore2-2.16.0/00-LICENSE.md",
+          "sha256": "c4df125c807b0613501e943a5c92496dd11d2c16604ce396097a8dde396304d9",
+          "source_path_in_distribution": "httpcore2-2.16.0.dist-info/licenses/LICENSE.md",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "httpx",
+      "locked_version": "0.28.1",
+      "installed_version": "0.28.1",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "BSD-3-Clause",
+      "license_classifiers": [
+        "License :: OSI Approved :: BSD License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-core",
+          "marker": null
+        },
+        {
+          "from": "langgraph-sdk",
+          "marker": null
+        },
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/httpx-0.28.1/00-LICENSE.md",
+          "sha256": "4ec59d544f12b5f539a3a716fd321ac58ccd8030b465221f2c880200cdf28d8d",
+          "source_path_in_distribution": "httpx-0.28.1.dist-info/licenses/LICENSE.md",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "httpx2",
+      "locked_version": "2.16.0",
+      "installed_version": "2.16.0",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: BSD License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langsmith",
+          "marker": null
+        },
+        {
+          "from": "openai",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/httpx2-2.16.0/00-LICENSE.md",
+          "sha256": "7e7d6dbaf7fe160d39fd6e84fd02c33cab96bcbea34d36998d545bceb4a19c30",
+          "source_path_in_distribution": "httpx2-2.16.0.dist-info/licenses/LICENSE.md",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "httpx2-jsfetch",
+      "locked_version": "1.0",
+      "installed_version": null,
+      "version_matches": false,
+      "license_expression": null,
+      "license_declaration": null,
+      "license_classifiers": null,
+      "incoming_dependency_markers": [
+        {
+          "from": "httpx2",
+          "marker": "sys_platform == 'emscripten'"
+        }
+      ],
+      "files": []
+    },
+    {
+      "name": "idna",
+      "locked_version": "3.20",
+      "installed_version": "3.20",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "anyio",
+          "marker": null
+        },
+        {
+          "from": "email-validator",
+          "marker": null
+        },
+        {
+          "from": "httpx",
+          "marker": null
+        },
+        {
+          "from": "httpx2",
+          "marker": null
+        },
+        {
+          "from": "requests",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/idna-3.20/00-LICENSE.md",
+          "sha256": "1a9a4f0e3d479a27240ddd59a9137a66ab4a0f9dfdc8ca6188cc0bfd85187f04",
+          "source_path_in_distribution": "idna-3.20.dist-info/licenses/LICENSE.md",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "iniconfig",
+      "locked_version": "2.3.1",
+      "installed_version": "2.3.1",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "pytest",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/iniconfig-2.3.1/00-LICENSE",
+          "sha256": "3409fa91f7ace557894632676656e32264fe5ef7581535725dc9a23774551bd4",
+          "source_path_in_distribution": "iniconfig-2.3.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "jiter",
+      "locked_version": "0.17.0",
+      "installed_version": "0.17.0",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "openai",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/jiter-0.17.0/00-LICENSE",
+          "sha256": "e65c152aa65deaaa52019855bf1bbce4a0d592a048cb523b6ca691965741241e",
+          "source_path_in_distribution": "jiter-0.17.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "jsonpatch",
+      "locked_version": "1.36",
+      "installed_version": "1.36",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-core",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/jsonpatch-1.36/00-AUTHORS",
+          "sha256": "84eb449c119b7c37a02a3ccc0c4979bee549c9ccdb2363e5604da1a382e318d4",
+          "source_path_in_distribution": "jsonpatch-1.36.dist-info/licenses/AUTHORS",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/jsonpatch-1.36/01-LICENSE",
+          "sha256": "4393eb6733fa1e367f41769b382f4f1be7bf0daeb1e243ed92b3f5d8bafd236f",
+          "source_path_in_distribution": "jsonpatch-1.36.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "jsonpointer",
+      "locked_version": "3.4",
+      "installed_version": "3.4",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "Modified BSD License",
+      "license_classifiers": [
+        "License :: OSI Approved :: BSD License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "jsonpatch",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/jsonpointer-3.4/00-AUTHORS",
+          "sha256": "4d58319d0f59c87bef5b07b3fe4db0f19c2d7d5545b034c6bf7b57c89bbef57f",
+          "source_path_in_distribution": "jsonpointer-3.4.dist-info/licenses/AUTHORS",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/jsonpointer-3.4/01-LICENSE.txt",
+          "sha256": "d8b24f15d472885f788a2d6e985850f264627b86012a17bb242c83f310d907e5",
+          "source_path_in_distribution": "jsonpointer-3.4.dist-info/licenses/LICENSE.txt",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "langchain-core",
+      "locked_version": "1.7.0",
+      "installed_version": "1.7.0",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-deepseek",
+          "marker": null
+        },
+        {
+          "from": "langchain-openai",
+          "marker": null
+        },
+        {
+          "from": "langgraph",
+          "marker": null
+        },
+        {
+          "from": "langgraph-checkpoint",
+          "marker": null
+        },
+        {
+          "from": "langgraph-prebuilt",
+          "marker": null
+        },
+        {
+          "from": "langgraph-sdk",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/langchain-core-1.7.0/00-LICENSE",
+          "sha256": "4ec67e4ca6e6721dba849b2ca82261597c86a61ee214bbf21416006b7b2d0478",
+          "source_path_in_distribution": "langchain_core-1.7.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "langchain-deepseek",
+      "locked_version": "1.1.1",
+      "installed_version": "1.1.1",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/langchain-deepseek-1.1.1/00-LICENSE",
+          "sha256": "d9bb52f2e3540d60ff50d8f0f5b6ba649b7fd346948c4c3d086c8afb120763c7",
+          "source_path_in_distribution": "langchain_deepseek-1.1.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "langchain-openai",
+      "locked_version": "1.7.2",
+      "installed_version": "1.7.2",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-deepseek",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/langchain-openai-1.7.2/00-LICENSE",
+          "sha256": "0e9a6675825549cd637746a2a3aa6d9cc527e6d207add021435d927251017c18",
+          "source_path_in_distribution": "langchain_openai-1.7.2.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "langchain-protocol",
+      "locked_version": "0.0.20",
+      "installed_version": "0.0.20",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-core",
+          "marker": null
+        },
+        {
+          "from": "langgraph-sdk",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/langchain-protocol-0.0.20/00-LICENSE",
+          "sha256": "893e6e30275896912c21c77f9f7c112aba85fd985d05b26a29424cf7e511d177",
+          "source_path_in_distribution": "langchain_protocol-0.0.20.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "langgraph",
+      "locked_version": "1.2.16",
+      "installed_version": "1.2.16",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/langgraph-1.2.16/00-LICENSE",
+          "sha256": "d9bb52f2e3540d60ff50d8f0f5b6ba649b7fd346948c4c3d086c8afb120763c7",
+          "source_path_in_distribution": "langgraph-1.2.16.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "langgraph-checkpoint",
+      "locked_version": "4.3.0",
+      "installed_version": "4.3.0",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langgraph",
+          "marker": null
+        },
+        {
+          "from": "langgraph-prebuilt",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/langgraph-checkpoint-4.3.0/00-LICENSE",
+          "sha256": "d9bb52f2e3540d60ff50d8f0f5b6ba649b7fd346948c4c3d086c8afb120763c7",
+          "source_path_in_distribution": "langgraph_checkpoint-4.3.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "langgraph-prebuilt",
+      "locked_version": "1.1.1",
+      "installed_version": "1.1.1",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langgraph",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/langgraph-prebuilt-1.1.1/00-LICENSE",
+          "sha256": "d9bb52f2e3540d60ff50d8f0f5b6ba649b7fd346948c4c3d086c8afb120763c7",
+          "source_path_in_distribution": "langgraph_prebuilt-1.1.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "langgraph-sdk",
+      "locked_version": "0.4.8",
+      "installed_version": "0.4.8",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langgraph",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/langgraph-sdk-0.4.8/00-LICENSE",
+          "sha256": "d9bb52f2e3540d60ff50d8f0f5b6ba649b7fd346948c4c3d086c8afb120763c7",
+          "source_path_in_distribution": "langgraph_sdk-0.4.8.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "langsmith",
+      "locked_version": "0.14.12",
+      "installed_version": "0.14.12",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-core",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/langsmith-0.14.12/00-LICENSE",
+          "sha256": "b309deba813e5bef2c128236a105d0eb74197aaf4ede3861730bdc0e5c5edfbb",
+          "source_path_in_distribution": "langsmith-0.14.12.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "openai",
+      "locked_version": "3.37.0",
+      "installed_version": "3.37.0",
+      "version_matches": true,
+      "license_expression": "Apache-2.0",
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-openai",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/openai-3.37.0/00-LICENSE",
+          "sha256": "636eb7d79da9bb6d515a4b3fd417aa26679eb3cf16396ddab4bc55fa74e616e4",
+          "source_path_in_distribution": "openai-3.37.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/openai-3.37.0/01-LICENSE",
+          "sha256": "154759c1e9eb58e42643ee43ec59d556def4d1d702d911a484c469e02f85dd5d",
+          "source_path_in_distribution": "openai/_vendor/httpx_aiohttp/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "opentelemetry-api",
+      "locked_version": "1.45.1",
+      "installed_version": "1.45.1",
+      "version_matches": true,
+      "license_expression": "Apache-2.0",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "fastapi",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/opentelemetry-api-1.45.1/00-LICENSE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "source_path_in_distribution": "opentelemetry_api-1.45.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "orjson",
+      "locked_version": "3.13.0",
+      "installed_version": "3.13.0",
+      "version_matches": true,
+      "license_expression": "MPL-2.0 AND (Apache-2.0 OR MIT)",
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License",
+        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langgraph-sdk",
+          "marker": null
+        },
+        {
+          "from": "langsmith",
+          "marker": "platform_python_implementation != 'PyPy'"
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/orjson-3.13.0/00-LICENSE-APACHE",
+          "sha256": "7cfd738c53d61c79f07e348f622bf7707c9084237054d37fbe07788a75f5881c",
+          "source_path_in_distribution": "orjson-3.13.0.dist-info/licenses/LICENSE-APACHE",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/orjson-3.13.0/01-LICENSE-MIT",
+          "sha256": "36516aefdc84c5d5a1e7485425913a22dbda69eb1930c5e84d6ae4972b5194b9",
+          "source_path_in_distribution": "orjson-3.13.0.dist-info/licenses/LICENSE-MIT",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/orjson-3.13.0/02-LICENSE-MPL-2.0",
+          "sha256": "9303ea1cfbf049945652668089d753fb1a7e1f2e52c680615c3d2cea7515c118",
+          "source_path_in_distribution": "orjson-3.13.0.dist-info/licenses/LICENSE-MPL-2.0",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "ormsgpack",
+      "locked_version": "1.13.0",
+      "installed_version": "1.13.0",
+      "version_matches": true,
+      "license_expression": "Apache-2.0 OR MIT",
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License",
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langgraph-checkpoint",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/ormsgpack-1.13.0/00-LICENSE-APACHE",
+          "sha256": "7cfd738c53d61c79f07e348f622bf7707c9084237054d37fbe07788a75f5881c",
+          "source_path_in_distribution": "ormsgpack-1.13.0.dist-info/licenses/LICENSE-APACHE",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/ormsgpack-1.13.0/01-LICENSE-MIT",
+          "sha256": "36516aefdc84c5d5a1e7485425913a22dbda69eb1930c5e84d6ae4972b5194b9",
+          "source_path_in_distribution": "ormsgpack-1.13.0.dist-info/licenses/LICENSE-MIT",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "packaging",
+      "locked_version": "26.3",
+      "installed_version": "26.3",
+      "version_matches": true,
+      "license_expression": "Apache-2.0 OR BSD-2-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-core",
+          "marker": null
+        },
+        {
+          "from": "langsmith",
+          "marker": null
+        },
+        {
+          "from": "pytest",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/packaging-26.3/00-LICENSE",
+          "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
+          "source_path_in_distribution": "packaging-26.3.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/packaging-26.3/01-LICENSE.APACHE",
+          "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+          "source_path_in_distribution": "packaging-26.3.dist-info/licenses/LICENSE.APACHE",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/packaging-26.3/02-LICENSE.BSD",
+          "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
+          "source_path_in_distribution": "packaging-26.3.dist-info/licenses/LICENSE.BSD",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/packaging-26.3/03-__init__.py",
+          "sha256": "590d12eee73ddbec53b4e9ee5bfc64d9cb3aacb4940e8ebcba260757ce56740b",
+          "source_path_in_distribution": "packaging/licenses/__init__.py",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/packaging-26.3/04-_spdx.py",
+          "sha256": "596ec35e2ca0ebcba9fd8343ff0a51625af548786257815f24b41f7e08613314",
+          "source_path_in_distribution": "packaging/licenses/_spdx.py",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "pluggy",
+      "locked_version": "1.7.0",
+      "installed_version": "1.7.0",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "pytest",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/pluggy-1.7.0/00-LICENSE",
+          "sha256": "d6b65e6c213a5d0b577911d34d6e5949b9f59d76c238c5071a2f3fc16cfb2606",
+          "source_path_in_distribution": "pluggy-1.7.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "psycopg",
+      "locked_version": "3.3.6",
+      "installed_version": "3.3.6",
+      "version_matches": true,
+      "license_expression": "LGPL-3.0-only",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/psycopg-3.3.6/00-LICENSE.txt",
+          "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+          "source_path_in_distribution": "psycopg-3.3.6.dist-info/licenses/LICENSE.txt",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "psycopg-binary",
+      "locked_version": "3.3.6",
+      "installed_version": "3.3.6",
+      "version_matches": true,
+      "license_expression": "LGPL-3.0-only",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [],
+      "files": [
+        {
+          "path": "licenses/psycopg-binary-3.3.6/00-LICENSE.txt",
+          "sha256": "7d3a95e5e06978064ed3f8e2b7c8f845e7fd8a405294727cc708f94cb83b8059",
+          "source_path_in_distribution": "psycopg_binary-3.3.6.dist-info/licenses/LICENSE.txt",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "psycopg-pool",
+      "locked_version": "3.3.3",
+      "installed_version": "3.3.3",
+      "version_matches": true,
+      "license_expression": "LGPL-3.0-only",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/psycopg-pool-3.3.3/00-LICENSE.txt",
+          "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+          "source_path_in_distribution": "psycopg_pool-3.3.3.dist-info/licenses/LICENSE.txt",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "pwdlib",
+      "locked_version": "0.3.1",
+      "installed_version": "0.3.1",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/pwdlib-0.3.1/00-LICENSE",
+          "sha256": "4bdaaafc879717d95eddd23b1ba1c3eccdf1092071805cc515171488f7ff43eb",
+          "source_path_in_distribution": "pwdlib-0.3.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "pycparser",
+      "locked_version": "3.12",
+      "installed_version": "3.12",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "cffi",
+          "marker": "implementation_name != 'PyPy'"
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/pycparser-3.12/00-LICENSE",
+          "sha256": "0a9e78156ae8b96caf1b4f11ac2df424b83de29736f9e757630548a6272fdf90",
+          "source_path_in_distribution": "pycparser-3.12.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "pydantic",
+      "locked_version": "2.14.1",
+      "installed_version": "2.14.1",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "fastapi",
+          "marker": null
+        },
+        {
+          "from": "langchain-core",
+          "marker": null
+        },
+        {
+          "from": "langgraph",
+          "marker": null
+        },
+        {
+          "from": "langsmith",
+          "marker": null
+        },
+        {
+          "from": "openai",
+          "marker": null
+        },
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/pydantic-2.14.1/00-LICENSE",
+          "sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3",
+          "source_path_in_distribution": "pydantic-2.14.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "pydantic-core",
+      "locked_version": "2.50.1",
+      "installed_version": "2.50.1",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "pydantic",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/pydantic-core-2.50.1/00-LICENSE",
+          "sha256": "fbe7f615f18d135c07000e5a86325db27f42c7729699ef166ac1f7a3f4586bf4",
+          "source_path_in_distribution": "pydantic_core-2.50.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "pygments",
+      "locked_version": "2.21.0",
+      "installed_version": "2.21.0",
+      "version_matches": true,
+      "license_expression": "BSD-2-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "pytest",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/pygments-2.21.0/00-AUTHORS",
+          "sha256": "71a83872ad82f57be692cf827e048e2cd51d45169cfa1ea3f28706d97a872c0f",
+          "source_path_in_distribution": "pygments-2.21.0.dist-info/licenses/AUTHORS",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/pygments-2.21.0/01-LICENSE",
+          "sha256": "a9d66f1d526df02e29dce73436d34e56e8632f46c275bbdffc70569e882f9f17",
+          "source_path_in_distribution": "pygments-2.21.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "pytest",
+      "locked_version": "9.1.1",
+      "installed_version": "9.1.1",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [],
+      "files": [
+        {
+          "path": "licenses/pytest-9.1.1/00-LICENSE",
+          "sha256": "ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b",
+          "source_path_in_distribution": "pytest-9.1.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "pyyaml",
+      "locked_version": "6.0.3",
+      "installed_version": "6.0.3",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-core",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/pyyaml-6.0.3/00-LICENSE",
+          "sha256": "8d3928f9dc4490fd635707cb88eb26bd764102a7282954307d3e5167a577e8a4",
+          "source_path_in_distribution": "pyyaml-6.0.3.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "redis",
+      "locked_version": "8.1.0",
+      "installed_version": "8.1.0",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/redis-8.1.0/00-LICENSE",
+          "sha256": "a57b250a5bf03d7afe55b74063313f2adb7b00d546c0ab149a89398333fe3cc8",
+          "source_path_in_distribution": "redis-8.1.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "regex",
+      "locked_version": "2026.9.29",
+      "installed_version": "2026.9.29",
+      "version_matches": true,
+      "license_expression": "Apache-2.0 AND CNRI-Python",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "tiktoken",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/regex-2026.9.29/00-LICENSE.txt",
+          "sha256": "3d220c06594b826bbabf110312f60f385f99e57e529fa4b9e536f79091f8b4c7",
+          "source_path_in_distribution": "regex-2026.9.29.dist-info/licenses/LICENSE.txt",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "requests",
+      "locked_version": "2.34.2",
+      "installed_version": "2.34.2",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "Apache-2.0",
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langsmith",
+          "marker": null
+        },
+        {
+          "from": "requests-toolbelt",
+          "marker": null
+        },
+        {
+          "from": "tiktoken",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/requests-2.34.2/00-LICENSE",
+          "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+          "source_path_in_distribution": "requests-2.34.2.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/requests-2.34.2/01-NOTICE",
+          "sha256": "f5110972dedad2b4e9d314518daf3b7d72d6e02e499acd802181de6f74571dcc",
+          "source_path_in_distribution": "requests-2.34.2.dist-info/licenses/NOTICE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "requests-toolbelt",
+      "locked_version": "1.0.0",
+      "installed_version": "1.0.0",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "Apache 2.0",
+      "license_classifiers": [
+        "License :: OSI Approved :: Apache Software License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langsmith",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/requests-toolbelt-1.0.0/00-LICENSE",
+          "sha256": "1f8cf8bdacd98ed6d36d0fec0c07f7765acebd6e81205962ab5146023b3c858d",
+          "source_path_in_distribution": "requests_toolbelt-1.0.0.dist-info/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "sniffio",
+      "locked_version": "1.3.1",
+      "installed_version": "1.3.1",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT OR Apache-2.0",
+      "license_classifiers": [
+        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: Apache Software License"
+      ],
+      "incoming_dependency_markers": [
+        {
+          "from": "langsmith",
+          "marker": null
+        },
+        {
+          "from": "openai",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/sniffio-1.3.1/00-LICENSE",
+          "sha256": "652c878488d1456361e08c3f8607fd7ba59892a14103d15cce4ff93c85b5cc8b",
+          "source_path_in_distribution": "sniffio-1.3.1.dist-info/LICENSE",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/sniffio-1.3.1/01-LICENSE.APACHE2",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source_path_in_distribution": "sniffio-1.3.1.dist-info/LICENSE.APACHE2",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/sniffio-1.3.1/02-LICENSE.MIT",
+          "sha256": "3e6dae555eb92787fc82d1d48355677f454c7f65aeb38d3f9e72bf9a3daf034b",
+          "source_path_in_distribution": "sniffio-1.3.1.dist-info/LICENSE.MIT",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "starlette",
+      "locked_version": "1.9.0",
+      "installed_version": "1.9.0",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "fastapi",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/starlette-1.9.0/00-LICENSE.md",
+          "sha256": "dcb95677a02240243187e964f941847d19b17821cf99e5afae684fab328c19bf",
+          "source_path_in_distribution": "starlette-1.9.0.dist-info/licenses/LICENSE.md",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "tenacity",
+      "locked_version": "9.2.1",
+      "installed_version": "9.2.1",
+      "version_matches": true,
+      "license_expression": "Apache-2.0",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-core",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/tenacity-9.2.1/00-LICENSE",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+          "source_path_in_distribution": "tenacity-9.2.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "tiktoken",
+      "locked_version": "0.14.0",
+      "installed_version": "0.14.0",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "MIT License\n\nCopyright (c) 2022 OpenAI, Shantanu Jain\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-openai",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/tiktoken-0.14.0/00-LICENSE",
+          "sha256": "258463fc3788f1f9b6a3f1820d8a87481ac24018d53167597e25d3e9031851ca",
+          "source_path_in_distribution": "tiktoken-0.14.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "truststore",
+      "locked_version": "0.10.5",
+      "installed_version": "0.10.5",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "httpcore2",
+          "marker": null
+        },
+        {
+          "from": "httpx2",
+          "marker": "sys_platform != 'emscripten'"
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/truststore-0.10.5/00-LICENSE",
+          "sha256": "33be7b7e8fa4fd19b1760e1a8ed8a668bdab852c91b692dd41424bcb725a9fca",
+          "source_path_in_distribution": "truststore-0.10.5.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "typing-extensions",
+      "locked_version": "4.16.0",
+      "installed_version": "4.16.0",
+      "version_matches": true,
+      "license_expression": "PSF-2.0",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "anyio",
+          "marker": null
+        },
+        {
+          "from": "fastapi",
+          "marker": null
+        },
+        {
+          "from": "langchain-core",
+          "marker": null
+        },
+        {
+          "from": "langchain-protocol",
+          "marker": null
+        },
+        {
+          "from": "langsmith",
+          "marker": null
+        },
+        {
+          "from": "openai",
+          "marker": null
+        },
+        {
+          "from": "opentelemetry-api",
+          "marker": null
+        },
+        {
+          "from": "psycopg-pool",
+          "marker": null
+        },
+        {
+          "from": "pydantic",
+          "marker": null
+        },
+        {
+          "from": "pydantic-core",
+          "marker": null
+        },
+        {
+          "from": "typing-inspection",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/typing-extensions-4.16.0/00-LICENSE",
+          "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+          "source_path_in_distribution": "typing_extensions-4.16.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "typing-inspection",
+      "locked_version": "0.4.4",
+      "installed_version": "0.4.4",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "fastapi",
+          "marker": null
+        },
+        {
+          "from": "pydantic",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/typing-inspection-0.4.4/00-LICENSE",
+          "sha256": "804b59b25f2c31bd278f9202a19ae49a3945aa2664387e2d0a128c7cacc61ec3",
+          "source_path_in_distribution": "typing_inspection-0.4.4.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "tzdata",
+      "locked_version": "2026.5",
+      "installed_version": "2026.5",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "Apache-2.0",
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "psycopg",
+          "marker": "sys_platform == 'win32'"
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/tzdata-2026.5/00-LICENSE",
+          "sha256": "df58f69ea88683035d720b5375bcef0cf5aeaa98a1d098d572e0992c378deb46",
+          "source_path_in_distribution": "tzdata-2026.5.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        },
+        {
+          "path": "licenses/tzdata-2026.5/01-LICENSE_APACHE",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "source_path_in_distribution": "tzdata-2026.5.dist-info/licenses/licenses/LICENSE_APACHE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "urllib3",
+      "locked_version": "2.8.0",
+      "installed_version": "2.8.0",
+      "version_matches": true,
+      "license_expression": "MIT",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "requests",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/urllib3-2.8.0/00-LICENSE.txt",
+          "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686",
+          "source_path_in_distribution": "urllib3-2.8.0.dist-info/licenses/LICENSE.txt",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "uuid-utils",
+      "locked_version": "0.18.0",
+      "installed_version": "0.18.0",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langchain-core",
+          "marker": null
+        },
+        {
+          "from": "langsmith",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/uuid-utils-0.18.0/00-LICENSE.md",
+          "sha256": "209330e81d3a89860e9ec79e9bf894be705f0755a3869d77aa091fc4a2f91903",
+          "source_path_in_distribution": "uuid_utils-0.18.0.dist-info/licenses/LICENSE.md",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "uvicorn",
+      "locked_version": "0.54.0",
+      "installed_version": "0.54.0",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "python-interview-agent",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/uvicorn-0.54.0/00-LICENSE.md",
+          "sha256": "efe1acf3e62fb99c288b0ec73e5a773b7268ef4320fe757ea994214e4b63c371",
+          "source_path_in_distribution": "uvicorn-0.54.0.dist-info/licenses/LICENSE.md",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "websockets",
+      "locked_version": "16.1.1",
+      "installed_version": "16.1.1",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langgraph-sdk",
+          "marker": null
+        },
+        {
+          "from": "langsmith",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/websockets-16.1.1/00-LICENSE",
+          "sha256": "0f44514998aca209d3482d10204a8adf2aa4296ff157a36a5c0922f2280632d3",
+          "source_path_in_distribution": "websockets-16.1.1.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "xxhash",
+      "locked_version": "4.0.2",
+      "installed_version": "4.0.2",
+      "version_matches": true,
+      "license_expression": null,
+      "license_declaration": "BSD-2-Clause",
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langgraph",
+          "marker": null
+        },
+        {
+          "from": "langsmith",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/xxhash-4.0.2/00-LICENSE",
+          "sha256": "b76e99529f3e47372029e11914a8f4b95d6313463ed5a1a5c9afe96c3e015114",
+          "source_path_in_distribution": "xxhash-4.0.2.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    },
+    {
+      "name": "zstandard",
+      "locked_version": "0.25.0",
+      "installed_version": "0.25.0",
+      "version_matches": true,
+      "license_expression": "BSD-3-Clause",
+      "license_declaration": null,
+      "license_classifiers": [],
+      "incoming_dependency_markers": [
+        {
+          "from": "langsmith",
+          "marker": null
+        }
+      ],
+      "files": [
+        {
+          "path": "licenses/zstandard-0.25.0/00-LICENSE",
+          "sha256": "c15b28f8866500bd3d607c739e87710aa5c47627aa30a0573948414564ff1da2",
+          "source_path_in_distribution": "zstandard-0.25.0.dist-info/licenses/LICENSE",
+          "source_kind": "installed_distribution"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "locked_distributions": 68,
+    "installed_matching": 67,
+    "installed_with_notice_materials": 67,
+    "copied_notice_files": 82
+  },
+  "excluded_scope": [
+    "project license decision",
+    "frontend npm tree",
+    "Python interpreter",
+    "container OS/JDK",
+    "upstream copied source/history",
+    "uninstalled platform-specific dependencies",
+    "complete native dependency/legal clearance"
+  ]
+}

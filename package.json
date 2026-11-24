@@ -1,0 +1,55 @@
+{
+  "name": "pi-interview",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Role-based interview training, with optional resume and job-description context.",
+  "engines": {
+    "node": "24.19.0",
+    "npm": "11.17.0"
+  },
+  "packageManager": "npm@11.17.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "doctor:offline": "node scripts/doctor-offline.mjs",
+    "typecheck": "tsc --project tsconfig.json",
+    "check:sdk": "node scripts/check-pi-imports.mjs",
+    "check:rebuild": "node scripts/check-dependency-rebuild.mjs",
+    "check:protocol": "node scripts/protocol-check.mjs",
+    "check:lifecycle": "node scripts/lifecycle-check.mjs",
+    "check:fixtures": "node scripts/fixture-check.mjs",
+    "check:live-offline": "node scripts/live-offline-check.mjs",
+    "live:preflight": "node scripts/pm006-live.ts",
+    "live:pm006": "node scripts/pm006-live.ts --run",
+    "db:setup": "node scripts/setup-postgres.mjs",
+    "db:start": "node scripts/postgres-local.mjs start",
+    "db:stop": "node scripts/postgres-local.mjs stop",
+    "db:prepare": "node scripts/database-local.mjs",
+    "db:migrate": "node scripts/db-migrate.ts",
+    "api:dev": "node apps/api/src/main.ts",
+    "check:storage": "node scripts/storage-check.mjs",
+    "redis:start": "node scripts/redis-local.mjs start",
+    "redis:stop": "node scripts/redis-local.mjs stop",
+    "redis:status": "node scripts/redis-local.mjs status",
+    "worker:dev": "node apps/worker/src/main.ts",
+    "check:queue": "node scripts/queue-check.mjs",
+    "web:build": "vite build --config apps/web/vite.config.ts",
+    "web:dev": "vite --config apps/web/vite.config.ts",
+    "check:training": "node scripts/training-check.mjs",
+    "check:web": "node scripts/web-check.mjs",
+    "worker:pi09-live": "node apps/worker/src/main.ts --live-pi09",
+    "live:pi09": "node scripts/pi09-live-web.mjs --run"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "2.12.4",
+    "@types/node": "24.19.2",
+    "@wdio/cli": "9.31.9",
+    "@wdio/local-runner": "9.31.9",
+    "@wdio/mocha-framework": "9.31.9",
+    "@wdio/tauri-service": "1.5.1",
+    "typescript": "7.0.2"
+  }
+}

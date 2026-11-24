@@ -1,0 +1,33 @@
+{
+  "version": "career-pilot-v0.1",
+  "created_at": "2026-10-30",
+  "tasks": 18,
+  "splits": {
+    "development": 12,
+    "reserved_candidate": 6
+  },
+  "authorship": "AI-assisted project-authored synthetic scenarios; no human audit completed",
+  "external_materials": "none",
+  "review": "pending_human_review",
+  "reserved_status": "candidate partition, NOT a secret or independently validated holdout",
+  "grading_version": "ja09-deterministic-v1",
+  "max_provider_steps": 3,
+  "max_repeats": 3,
+  "covered": [
+    "goal selection",
+    "application next action",
+    "effective training evidence selection"
+  ],
+  "not_covered": [
+    "job research accuracy",
+    "material factuality quality",
+    "interview semantic quality",
+    "written/coding task success",
+    "user learning effectiveness"
+  ],
+  "sha256": {
+    "tasks.jsonl": "fa728afba8f8eb841da9dc58a398fe964cedb4da191270e3dc12cdb69811a757",
+    "oracles.jsonl": "8f1ad8bb645842881568134fe67413a13aa71b3fbaa6b76f6ad12338befc4f1a"
+  },
+  "baseline_spec_sha256": "4fc9935e03e6dc7f44cc3d1ece57a199cf45579ee4b75bafb3a19bc4c3183bfc"
+}

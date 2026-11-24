@@ -1,0 +1,18 @@
+{
+  "version": "ja09-baseline-plan-v1",
+  "current_smoke_adapters": [
+    "system_scripted",
+    "fixed_rules"
+  ],
+  "not_a_same_model_comparison": true,
+  "frozen_before_first_pilot_run": true,
+  "planned_same_model_baseline": {
+    "status": "Designed",
+    "model": "same provider/model/settings as candidate; select at evaluation time",
+    "resources": "same initial task state, tools, authorized evidence, total HTTP/cost and stop limits",
+    "workflow": "fixed read-goal/read-application when applicable, then model selection; compare to dynamic graph without withholding useful evidence",
+    "accounting": "all roles/retries/judges count; new stage authorization required; no old ledger reset"
+  },
+  "smoke_rules": "read goal; respect explicit stop; clarify multiple applications; prefer evidenced retest, otherwise first server action; JD training or confirmed-direction research; clarify unknown direction",
+  "comparison": "retain every attempt and task pairing; do not use scripted results to claim multi-agent or LLM quality gains"
+}

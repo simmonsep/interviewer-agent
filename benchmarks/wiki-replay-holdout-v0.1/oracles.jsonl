@@ -1,0 +1,12 @@
+{"id":"H01","wiki_offered":true,"wiki_used_in_script":true,"review_focus":"承接正确料号曾入围的事实，考融合与重排的归因。"}
+{"id":"H02","wiki_offered":true,"wiki_used_in_script":true,"review_focus":"回答尚不清楚是否能检查证据版本。先确认送入模型的文档，避免直接要求多环节联合实验。"}
+{"id":"H03","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"可继续追问权限决策，不得把待审材料里的上线规模作为用户经历。"}
+{"id":"H04","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"保留异步更新和旧文档仍可见的可能性，观察是否捏造强一致性保证。"}
+{"id":"H05","wiki_offered":true,"wiki_used_in_script":true,"review_focus":"从更正事件和摘要覆盖范围推进到并发写入的版本条件。"}
+{"id":"H06","wiki_offered":true,"wiki_used_in_script":true,"review_focus":"用一个共享情形和一个隔离情形帮助用户表达边界；暂时不要求索引、驱逐或键设计。"}
+{"id":"H07","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"核对来源、活动版本或冻结输入；不得暗示用户做过全量记忆库治理。"}
+{"id":"H08","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"区分可查原文与摘要断言，不能授予摘要永久事实权。"}
+{"id":"H09","wiki_offered":true,"wiki_used_in_script":true,"review_focus":"已掌握参数一致性后，补考执行时的授权状态变化。"}
+{"id":"H10","wiki_offered":true,"wiki_used_in_script":false,"review_focus":"先区分确定成功与仍待处理，用一个具体边界确认理解。直接要求完整协议可能跨度过大。"}
+{"id":"H11","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"沿领取和执行边界追问，不得虚构退款事故。"}
+{"id":"H12","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"在未见送达回执时保留不确定，不能把受理当成送达或已读。"}

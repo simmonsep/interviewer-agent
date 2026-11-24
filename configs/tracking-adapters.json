@@ -1,0 +1,38 @@
+{
+  "note": "站点进度同步适配器。entry_url 是打开站点时进入的页面；row/company/title/status/link 是当前页面上的 CSS 选择器；status_map 把站点原文状态映射到本地状态。配置只保存在本机，应用不读取或保存账号、Cookie、令牌，也不缓存网页正文。真实招聘网站的选择器需要使用者对照自己已登录的页面填写，仓库不预置未经验证的站点规则。local-demo 指向随仓库提供的本机夹具页；需先在仓库根目录执行 python -m http.server 8899 --directory fixtures/tracking-demo 才会可访问，正式产品目录里需改为自己站点的入口。",
+  "adapters": [
+    {
+      "id": "local-demo",
+      "label": "本机演示站点（验收用）",
+      "entry_url": "http://127.0.0.1:8899/applications.html",
+      "host": "127.0.0.1:8899",
+      "row": ".application-row",
+      "company": ".company",
+      "title": ".title",
+      "status": ".status",
+      "link": "a.job-link",
+      "status_map": {
+        "已投递": "SUBMITTED",
+        "笔试": "INTERVIEW",
+        "面试": "INTERVIEW",
+        "不合适": "REJECTED",
+        "未通过": "REJECTED",
+        "录用": "OFFER"
+      },
+      "verified": true
+    },
+    {
+      "id": "my-site",
+      "label": "自定义站点（待填写选择器）",
+      "entry_url": "https://example.com/",
+      "host": "example.com",
+      "row": "",
+      "company": "",
+      "title": "",
+      "status": "",
+      "link": "",
+      "status_map": {},
+      "verified": false
+    }
+  ]
+}

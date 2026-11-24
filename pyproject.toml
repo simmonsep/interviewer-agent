@@ -1,0 +1,62 @@
+[project]
+name = "python-interview-agent"
+version = "0.1.0"
+description = "Python migration of the interview practice agent"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "docs/third-party/NOTICE.md", "docs/third-party/Pi-LICENSE.txt", "docs/third-party/python-notices/*", "docs/third-party/python-notices/licenses/*/*"]
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "fastapi==0.161.1",
+    "uvicorn==0.54.0",
+    "pydantic==2.14.1",
+    "langgraph==1.2.16",
+    "langchain-deepseek==1.1.1",
+    "psycopg[binary]==3.3.6",
+    "psycopg-pool==3.3.3",
+    "redis==8.1.0",
+    "pwdlib[argon2]==0.3.1",
+    "email-validator==2.3.0",
+    "httpx[zstd]==0.28.1",
+    "pypdf==6.21.4",
+    "opentelemetry-sdk==1.45.1",
+    "langgraph-checkpoint-postgres==3.2.1",
+    "langgraph-store-postgres==0.1.0",
+    "langchain>=1,<2",
+    "mcp==1.26.0",
+]
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]
+
+[project.scripts]
+interview-api = "interview_agent.api.__main__:main"
+
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["backend/src/interview_agent"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"fixtures/pm0-05" = "interview_agent/_resources/fixtures/pm0-05"
+"fixtures/question-banks" = "interview_agent/_resources/fixtures/question-banks"
+"backend/migrations" = "interview_agent/_resources/backend/migrations"
+
+[tool.hatch.build.targets.sdist]
+include = ["/backend", "/fixtures", "/configs", "/scripts", "/docs", "/benchmarks", "/manifests", "/*.md", "/LICENSE", "/pyproject.toml", "/uv.lock", "/.python-version", "/.env.example", "/.gitattributes"]
+exclude = ["/.private", "/.bootstrap", "/.venv", "/.uv-cache", "/fixtures/private", "**/node_modules", "**/__pycache__"]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+addopts = "-ra --strict-config --strict-markers"
+markers = ["postgres: real independent PostgreSQL integration; requires PY_INTERVIEW_TEST_CONFIG", "redis: real Python Redis and PostgreSQL integration; requires PY_INTERVIEW_WORKER_TEST_CONFIG", "docker: real opt-in isolated Java execution; requires PY_INTERVIEW_EXECUTOR_PROFILE"]
+
+[tool.uv]
+required-version = "==0.13.5"
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"
+default = true

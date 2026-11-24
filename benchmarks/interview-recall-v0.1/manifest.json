@@ -1,0 +1,20 @@
+{
+  "suite": "interview-recall",
+  "version": "interview-recall-v0.1",
+  "cases": 4,
+  "shapes": [
+    "relevant_older_than_recency_window",
+    "three_relevant_only_one_inside_the_window",
+    "nothing_relevant_falls_back_to_recency",
+    "retracted_relevant_never_comes_back"
+  ],
+  "question": "Does topic-aware retrieval (Store projection + SQL re-validation) find cross-session evidence that plain recency ordering misses?",
+  "arms": {
+    "A": "InterviewRepository without a projector: ORDER BY created_at DESC LIMIT 6",
+    "B": "InterviewRepository with MemoryProjector: Store topic candidates, then the same SQL re-validation"
+  },
+  "cost": "0 (no model call; real PostgreSQL + real LangGraph Store, scripted fixtures)",
+  "sha256": {
+    "cases.jsonl": "a450052df1ee2a22cdc286fa28bebb96d803307be95354ed3569129cf7dde54e"
+  }
+}

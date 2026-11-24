@@ -1,0 +1,11 @@
+{
+  "image": "redis@sha256:0bf6577d7774e592b29d093e3ac9390eb91e13d72c21e506afce736de5e0eeb0",
+  "source_tag": "redis:8.10.2-alpine",
+  "container": "python-interview-redis",
+  "volume": "python-interview-redis-data",
+  "host": "127.0.0.1",
+  "port": 25380,
+  "database": 0,
+  "test_database": 1,
+  "source": "https://hub.docker.com/_/redis"
+}

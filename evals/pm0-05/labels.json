@@ -1,0 +1,53 @@
+{
+  "version": "v1",
+  "origin": "authored_synthetic",
+  "review": {
+    "status": "source_checked_draft",
+    "human_reviewer": null,
+    "reviewed_at": null,
+    "eligible_for_semantic_scoring": false
+  },
+  "visibility": "evaluator_only_not_secret",
+  "answers": [
+    {
+      "answer_id": "answer-01",
+      "expected_kind": "correct",
+      "rationale": "覆盖格式/权限区别及服务端资源检查。"
+    },
+    {
+      "answer_id": "answer-02",
+      "expected_kind": "partial",
+      "rationale": "未说明资源归属与用户身份约束。"
+    },
+    {
+      "answer_id": "answer-03",
+      "expected_kind": "incorrect",
+      "rationale": "明确把Schema当成授权。"
+    },
+    {
+      "answer_id": "answer-04",
+      "expected_kind": "acceptable_alternative",
+      "rationale": "措辞不同但覆盖关键授权边界。"
+    },
+    {
+      "answer_id": "answer-05",
+      "expected_kind": "unknown",
+      "rationale": "承认不知道，不当作错误自信结论。"
+    },
+    {
+      "answer_id": "answer-06",
+      "expected_kind": "hinted",
+      "rationale": "回答使用了提示，不能计为独立展示。"
+    },
+    {
+      "answer_id": "answer-07",
+      "expected_kind": "contribution_clarification",
+      "rationale": "限定本人实现范围，指标仍未证实。"
+    },
+    {
+      "answer_id": "answer-08",
+      "expected_kind": "insufficient_evidence",
+      "rationale": "使用经历未展示底层能力，不足以确认掌握。"
+    }
+  ]
+}

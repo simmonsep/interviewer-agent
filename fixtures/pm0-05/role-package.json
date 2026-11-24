@@ -1,0 +1,152 @@
+{
+  "id": "agent-intern",
+  "version": "candidate-v1",
+  "title": "AI应用 / Agent开发实习",
+  "level": "intern",
+  "status": "candidate",
+  "review": {
+    "status": "source_checked_draft",
+    "human_reviewer": null,
+    "reviewed_at": null,
+    "eligible_for_semantic_scoring": false
+  },
+  "supported_topics": [
+    "tool-use",
+    "planning",
+    "context",
+    "memory",
+    "rag",
+    "eval",
+    "python-async",
+    "http",
+    "sql",
+    "index",
+    "redis",
+    "linux"
+  ],
+  "unsupported_topics": [
+    "cpp-systems",
+    "embedded",
+    "gpu-kernels"
+  ],
+  "default_plan": {
+    "minutes": 30,
+    "main_questions": 6,
+    "max_followups_per_question": 2,
+    "role_only_mix": {
+      "foundation": 3,
+      "scenario": 2,
+      "code_discussion": 1
+    }
+  },
+  "capabilities": [
+    {
+      "id": "tool-use",
+      "name": "工具调用",
+      "question_family_ids": [
+        "tool-use"
+      ]
+    },
+    {
+      "id": "planning",
+      "name": "规划与ReAct",
+      "question_family_ids": [
+        "planning"
+      ]
+    },
+    {
+      "id": "context",
+      "name": "上下文工程",
+      "question_family_ids": [
+        "context"
+      ]
+    },
+    {
+      "id": "memory",
+      "name": "长期记忆",
+      "question_family_ids": [
+        "memory"
+      ]
+    },
+    {
+      "id": "rag",
+      "name": "RAG",
+      "question_family_ids": [
+        "rag"
+      ]
+    },
+    {
+      "id": "eval",
+      "name": "评测与恢复",
+      "question_family_ids": [
+        "eval"
+      ]
+    },
+    {
+      "id": "python-async",
+      "name": "Python异步",
+      "question_family_ids": [
+        "python-async"
+      ]
+    },
+    {
+      "id": "http",
+      "name": "HTTP与网络",
+      "question_family_ids": [
+        "http"
+      ]
+    },
+    {
+      "id": "sql",
+      "name": "SQL事务",
+      "question_family_ids": [
+        "sql"
+      ]
+    },
+    {
+      "id": "index",
+      "name": "SQL索引",
+      "question_family_ids": [
+        "index"
+      ]
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "question_family_ids": [
+        "redis"
+      ]
+    },
+    {
+      "id": "linux",
+      "name": "Linux",
+      "question_family_ids": [
+        "linux"
+      ]
+    }
+  ],
+  "source_ids": [
+    "json-schema",
+    "authorization",
+    "react",
+    "workflow",
+    "context",
+    "injection",
+    "memory",
+    "rag",
+    "evals",
+    "jobs",
+    "asyncio",
+    "http",
+    "isolation",
+    "constraints",
+    "indexes",
+    "explain",
+    "redis-set",
+    "redis-expire",
+    "signal",
+    "proc-fd"
+  ],
+  "provenance": "authored_from_primary_sources",
+  "origin": "authored_synthetic"
+}

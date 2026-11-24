@@ -1,0 +1,1150 @@
+/* Desktop workbench shell. Every rule is scoped to .desktop-shell so the web entry
+   keeps its own layout, spacing and colours. The shell owns only presentation; data,
+   polling and submission stay in the shared components. */
+
+/* Two faces only: Geist carries text, Geist Mono carries numbers. Both shipped locally
+   because a missing woff2 falls back silently while computed style still reports the name. */
+@font-face{font-family:"Geist";src:url("/fonts/geist-latin.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("/fonts/geist-mono-latin.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+.desktop-shell{
+  /* structure (theme independent) */
+  --d-rail-w:216px;
+  /* light palette — the default */
+  --d-bg:#f4f4f7; --d-rail:#ffffff; --d-panel:#ffffff; --d-input:#fbfbfc;
+  --d-line:#dededf; --d-line-2:#e9e9ee; --d-line-3:#c8c8d0;
+  /* --d-ink-3 was #87878e: measured 3.25-3.57:1 on the light panels, below the
+     WCAG AA 4.5:1 floor for body-sized text. #6e6e76 keeps the cool tone and
+     measures 4.60-5.05:1 on #ffffff, #f2f7f4 and #f4f4f7. */
+  --d-ink:#141418; --d-ink-2:#4a4a50; --d-ink-3:#6e6e76;
+  /* F07Z-75: white on #02955a measured 3.85:1 - below the 4.5 AA floor for 14px labels.
+    The accent is darkened one step (same hue) so primary buttons and the brand mark pass;
+    the hover step stays visibly darker than the resting state. */
+ --d-accent:#017a49; --d-accent-2:#016240; --d-accent-ink:#ffffff;
+  --d-soft:#e9f5ef; --d-soft-2:#f2f7f4;
+  --d-hover:#f1f1f5; --d-hover-2:#fafafc;
+  --d-tag:#fbfbfc; --d-tag-line:#e4e4e8;
+ --d-placeholder:#6a6a70;
+  --d-ok-bg:#e9f5ee; --d-ok-line:#c3e2d2; --d-ok-ink:#01703f;
+  --d-bad-bg:#fdf2f0; --d-bad-line:#f0d6d1; --d-bad-ink:#9b3e36;
+  --d-shadow:0 1px 2px rgba(16,24,40,.05);
+  --d-menu-shadow:0 10px 26px rgba(16,24,40,.13);
+  --d-num:"Segoe UI","Microsoft YaHei UI",system-ui,-apple-system,sans-serif;
+
+  display:flex; flex-direction:column; height:100vh;
+  background:var(--d-bg); color:var(--d-ink);
+  font-family:"Geist",system-ui,-apple-system,"Segoe UI","Microsoft YaHei UI",sans-serif;
+  font-size:14px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+/* top bar: sidebar toggle, page identity on the left; theme and account on the right.
+   The OS title bar stays, so this row is app chrome, not window chrome. */
+.desktop-topbar{flex:0 0 44px;display:flex;align-items:center;gap:10px;padding:0 14px 0 10px;
+  border-bottom:1px solid var(--d-line);background:var(--d-panel)}
+.d-rail-toggle{width:30px;height:30px;border-radius:6px;border:1px solid var(--d-line-2);background:none;
+  color:var(--d-ink-2);display:grid;place-items:center;cursor:pointer;padding:0}
+.d-rail-toggle:hover{background:var(--d-hover);color:var(--d-ink)}
+.d-rail-toggle svg{width:15px;height:15px}
+.d-topbar-title{font-size:13.5px;font-weight:600;letter-spacing:-.01em;white-space:nowrap}
+.d-topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+/* The product window is undecorated: the app draws its own window buttons, so
+   the top bar has to reach the very edge of the window on the right. */
+.desktop-shell .d-window-controls{display:flex;align-items:stretch;margin-left:2px;
+  border-left:1px solid var(--d-line-2);margin-right:-14px;padding-right:0}
+.desktop-shell .d-window-controls button{width:40px;height:43px;border:0;background:none;
+  color:var(--d-ink-2);cursor:pointer;display:grid;place-items:center;font-size:13px;
+  font-family:inherit;line-height:1}
+.desktop-shell .d-window-controls button:hover{background:var(--d-hover);color:var(--d-ink)}
+.desktop-shell .d-window-controls button.is-close:hover{background:#c42b1c;color:#fff}
+.desktop-shell .d-topbar-gap{flex:0 1 24px;align-self:stretch;min-width:0;max-width:24px}
+/* F07Z-105: the boot and login screens render before the workbench but the window has no
+   native title bar, so they get a minimal strip that can drag, minimise, maximise and close. */
+.desktop-window-strip{position:sticky;top:0;z-index:5;display:flex;align-items:center;
+  height:36px;padding:0 0 0 12px;background:var(--d-rail);border-bottom:1px solid var(--d-line)}
+.desktop-window-strip-title{font-size:12.5px;font-weight:600;color:var(--d-ink-2);letter-spacing:-.01em;white-space:nowrap}
+.desktop-shell .desktop-window-strip .d-window-controls{margin:0 0 0 auto}
+.desktop-shell .desktop-window-strip .d-window-controls button{height:35px}
+.d-theme-quick{display:flex;align-items:center;border:1px solid var(--d-line-2);border-radius:6px;overflow:hidden}
+.d-theme-quick button{width:28px;height:26px;border:0;background:none;color:var(--d-ink-3);cursor:pointer;
+  display:grid;place-items:center;font-size:13px;padding:0}
+.d-theme-quick button:hover{background:var(--d-hover);color:var(--d-ink)}
+.d-theme-quick button[aria-pressed="true"]{background:var(--d-soft);color:var(--d-accent-2)}
+/* the rail+main row under the top bar */
+.desktop-work{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:var(--d-rail-w) minmax(0,1fr)}
+.desktop-shell[data-rail="collapsed"] .desktop-work{grid-template-columns:64px minmax(0,1fr)}
+.desktop-shell[data-rail="collapsed"] .desktop-rail{padding:12px 7px;align-items:center}
+.desktop-shell[data-rail="collapsed"] .d-brand{justify-content:center;padding:2px 0 10px}
+.desktop-shell[data-rail="collapsed"] .d-brand-text,
+.desktop-shell[data-rail="collapsed"] .d-nav-label,
+.desktop-shell[data-rail="collapsed"] .d-rail-foot{display:none}
+.desktop-shell[data-rail="collapsed"] .d-nav-item{justify-content:center;padding:8px 0}
+.desktop-shell[data-rail="collapsed"] .d-nav-item>span[aria-hidden]{width:auto}
+.desktop-shell[data-rail="collapsed"] .d-nav-item[aria-current="page"]::before{left:-7px;top:4px;bottom:4px}
+.desktop-shell[data-theme="dark"]{
+  --d-bg:#060608; --d-rail:#0b0b0e; --d-panel:#121216; --d-input:#0d0d11;
+  --d-line:#2b2b33; --d-line-2:#232329; --d-line-3:#3b3b45;
+  --d-ink:#fafafb; --d-ink-2:#b1b1b4; --d-ink-3:#8a8a91;
+  --d-accent:#61d596; --d-accent-2:#4cc484; --d-accent-ink:#042917;
+  --d-soft:#15241c; --d-soft-2:#141a17;
+  --d-hover:#1a1a20; --d-hover-2:#151519;
+  --d-tag:#17171c; --d-tag-line:#2b2b33;
+ --d-placeholder:#9a9aa2;
+  --d-ok-bg:#12241a; --d-ok-line:#245036; --d-ok-ink:#7fe0ad;
+  --d-bad-bg:#2a1715; --d-bad-line:#4a2723; --d-bad-ink:#f0a49b;
+  --d-shadow:none;
+  --d-menu-shadow:0 10px 26px rgba(0,0,0,.55);
+  color-scheme:dark;
+}
+.desktop-shell.is-booting,.desktop-shell.is-login{display:block;overflow:auto}
+.desktop-loading{padding:120px 0;text-align:center;color:var(--d-ink-3)}
+.desktop-login{max-width:1120px;margin:0 auto;padding:36px 32px}
+.desktop-login-error{max-width:1120px}
+
+/* Numbers: one family, two weights. The family is the system UI stack (not the mono
+   face): mixed with Chinese labels, mono digits looked stiff; tabular-nums keeps the
+   alignment that mattered. The 21px statistic is 600; small figures are 500. */
+.d-num{font-family:var(--d-num);font-weight:500;font-variant-numeric:tabular-nums;-webkit-font-feature-settings:"tnum" 1;font-feature-settings:"tnum" 1;letter-spacing:0}
+.d-num-lg{font-size:21px;font-weight:600;line-height:1;letter-spacing:-.02em}
+.d-num-sm{font-size:12.5px;font-weight:500}
+
+/* rail */
+.desktop-rail{background:var(--d-rail);border-right:1px solid var(--d-line);padding:12px 9px;display:flex;flex-direction:column;gap:4px;min-height:0;overflow:auto}
+.d-brand{display:flex;gap:9px;align-items:center;padding:2px 8px 12px;min-width:0}
+.d-brand-mark{width:24px;height:24px;flex:0 0 24px;border-radius:5px;background:var(--d-accent);color:var(--d-accent-ink);display:grid;place-items:center;font-weight:700;font-size:11.5px;letter-spacing:.02em}
+.d-brand-text{font-size:13.5px;font-weight:600;line-height:1.25;white-space:nowrap;letter-spacing:-.01em}
+.d-brand-text small{display:block;font-size:10px;letter-spacing:.1em;color:var(--d-ink-3);font-weight:500;margin-top:1px}
+.d-nav{display:flex;flex-direction:column;gap:1px}
+.d-nav-label{font-size:11.5px;letter-spacing:.08em;color:var(--d-ink-3);font-weight:600;padding:9px 9px 5px;text-transform:uppercase}
+.d-nav-item{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:transparent;border:0;border-radius:5px;padding:6px 9px;color:var(--d-ink);font-size:14px;box-shadow:none;cursor:pointer;position:relative;white-space:nowrap}
+.d-nav-item:hover{background:var(--d-hover);color:var(--d-ink)}
+.d-nav-item:focus-visible{outline:2px solid var(--d-accent);outline-offset:-2px}
+.d-nav-item[aria-current="page"]{background:var(--d-hover);color:var(--d-ink);font-weight:700}
+.d-nav-item[aria-current="page"]::before{content:"";position:absolute;left:-9px;top:5px;bottom:5px;width:2px;background:var(--d-accent);border-radius:0 2px 2px 0}
+.d-nav-item>span[aria-hidden]{display:flex;align-items:center;justify-content:center;
+ width:16px;height:16px;flex:0 0 16px;opacity:1}
+.d-nav-item>span[aria-hidden] svg{display:block;width:15px;height:15px}
+/* An entry's text reuses the group-label class for historical reasons. A menu
+   entry must render at body size and inherit the entry's own colour and weight;
+   otherwise every entry looks like a muted section heading and the selected one
+   cannot be told apart from the rest. */
+.desktop-shell .d-nav-item>.d-nav-label{font-size:inherit;font-weight:inherit;color:inherit;
+ letter-spacing:0;text-transform:none;padding:0}
+.d-rail-foot{margin-top:auto;border-top:1px solid var(--d-line-2);padding:9px 9px 0;font-size:12.5px;color:var(--d-ink-3);line-height:1.55}
+.d-rail-foot p{margin:0}
+
+/* context bar */
+.desktop-main{display:flex;flex-direction:column;min-width:0;min-height:0}
+.desktop-context{display:flex;align-items:center;gap:11px;padding:7px 20px;background:var(--d-panel);border-bottom:1px solid var(--d-line);min-height:44px;flex:0 0 auto}
+.d-context-goal{display:flex;align-items:baseline;gap:8px;min-width:0}
+.d-context-goal strong{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px;letter-spacing:-.01em}
+.d-context-goal small{font-size:12.5px;color:var(--d-ink-3);white-space:nowrap}
+.d-divider{width:1px;height:16px;background:var(--d-line-2);flex:0 0 1px}
+.d-context-page{font-size:13px;color:var(--d-ink-2);white-space:nowrap}
+.desktop-shell .d-context-refresh{font-size:12.5px;color:var(--d-ink-2);white-space:nowrap;
+ padding:0 2px;flex:0 0 auto}
+.desktop-shell .d-context-refresh:hover{color:var(--d-ink);text-decoration:underline}
+.desktop-shell .d-context-refresh:disabled{color:var(--d-ink-3);cursor:default;text-decoration:none}
+.d-context-session{font-size:13px;color:var(--d-ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  border-left:1px solid var(--d-line-2);padding-left:11px}
+.d-context-pick{font-size:13px;color:var(--d-ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px;
+  border-left:1px solid var(--d-line-2);padding-left:11px}
+.d-spacer{flex:1 1 auto;min-width:8px}
+.d-account{position:relative}
+.d-account>summary{list-style:none;cursor:pointer;font-size:13px;color:var(--d-ink-2);border:1px solid var(--d-line);border-radius:5px;padding:3px 8px;white-space:nowrap}
+.d-account>summary::-webkit-details-marker{display:none}
+.d-account-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:20;background:var(--d-panel);border:1px solid var(--d-line);border-radius:7px;padding:8px 12px;min-width:170px;box-shadow:var(--d-menu-shadow);font-size:13px;color:var(--d-ink-2)}
+.d-account-menu p{margin:0 0 4px}
+/* F07Z-79: the account handle added in F07Z-77 widened the top bar enough to push the window
+   past the viewport at 760px. Below the rail's comfortable width the handle is dropped; the
+   menu and the settings page still carry the full address. */
+@media(max-width:980px){.d-account-tag{display:none}
+ /* F07Z-90: a 14px UI made the top bar wider, and at 760px the one-sentence input fell to
+    198px (its floor is 200). The app name is already in the OS title bar, and the context bar
+    carries the page name, so the duplicated title is the thing that goes - not the input. */
+ .desktop-shell .d-topbar-title{display:none}}
+
+/* body and panes */
+.desktop-body{flex:1 1 auto;min-height:0;overflow:auto;padding:18px 22px 28px;max-width:none;margin:0}
+/* The workbench uses the window it is given; only the interview card keeps a reading
+   width, because a long question is read line by line. */
+.desktop-pane{max-width:1080px;margin:0 auto;min-width:0}
+.desktop-pane[hidden]{display:none!important}
+.d-pane-head{margin-bottom:12px}
+.d-pane-head h1{font-size:19px;letter-spacing:-.02em;margin:0 0 2px;font-weight:600}
+.d-pane-head p{margin:0;color:var(--d-ink-2);font-size:13.5px}
+/* F07Z-81: only headers that carry a page-level action switch to a row. */
+.d-pane-head-actions{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.desktop-shell .card{background:var(--d-panel);border:1px solid var(--d-line);border-radius:7px;padding:15px 17px;box-shadow:var(--d-shadow)}
+.desktop-shell .card+.card{margin-top:12px}
+.d-card{margin:0 0 12px}
+.d-card h2{font-size:14px;margin:0 0 4px;font-weight:600}
+.d-card-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
+.d-goal-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.d-goal-row h2{font-size:16px;margin:0 0 3px;letter-spacing:-.02em}
+.d-goal-row p{margin:0;font-size:12.5px}
+.d-goal-row .primary{padding:7px 15px;font-size:13px;flex:0 0 auto}
+.d-goal-details{margin-top:12px;border:1px solid var(--d-line);border-radius:6px;padding:0 12px}
+.d-goal-details>summary{cursor:pointer;padding:8px 0;font-size:12.5px;color:var(--d-ink-2)}
+.d-goal-form{margin-top:14px}
+.d-form-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--d-line)}
+.d-form-foot .primary{padding:7px 15px;font-size:13px}
+.desktop-shell .goal-card{margin:12px 0 0;padding:11px 13px;background:var(--d-soft-2);border-radius:6px;font-size:12.5px}
+.desktop-shell .goal-card p{margin:4px 0}
+.desktop-shell .goal-card .notice{margin:8px 0 0}
+.d-session-list{display:flex;flex-direction:column;gap:5px;margin-top:8px}
+/* F07Z-80: a row inside a card does not get its own card. Separation is a hairline and hover
+   sits on the row; the keyboard ring is untouched, so focus stays visible. */
+.d-session-item{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;background:transparent;border:0;border-radius:0;padding:8px 2px;color:var(--d-ink);cursor:pointer}
+.d-session-item+.d-session-item{border-top:1px solid var(--d-line-2)}
+.d-session-item:hover{background:var(--d-hover-2);box-shadow:inset 2px 0 0 var(--d-accent)}
+.d-session-item strong{display:block;font-size:13px;font-weight:600}
+.d-session-item small{display:block;font-size:12.5px;color:var(--d-ink-3)}
+/* History rows keep the same secondary size; without this rule the UA small (smaller) wins. */
+.desktop-shell .history-item small{font-size:12.5px;color:var(--d-ink-3)}
+.d-zone{padding:0 14px}
+.d-zone>summary{cursor:pointer;padding:10px 0;font-size:13px;color:var(--d-ink-2)}
+.d-empty h1{font-size:18px;margin:0 0 6px}
+.d-empty .primary{margin-top:10px}
+
+/* workbench: content column + utility column. The side column only holds what the
+   user can act on right now, so a wide window does not stretch one card across 1080px. */
+.d-workbench{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}
+.d-workbench-main{min-width:0}
+.d-workbench-side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.d-workbench-side .card{margin:0}
+.d-workbench-side .card+.card{margin-top:0}
+.d-num-mid{font-size:17px;font-weight:600;line-height:1;letter-spacing:-.02em}
+.d-side-stats{display:flex;gap:16px;margin-top:4px}
+.d-side-stats>div{display:flex;align-items:baseline;gap:5px}
+.d-side-stats span{font-size:12.5px;color:var(--d-ink-3)}
+.d-side-action{margin-top:10px;display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:6px 12px}
+.d-goal-list{display:flex;flex-direction:column;margin-top:2px}
+.d-goal-item{display:flex;flex-direction:column;gap:1px;border:0;border-bottom:1px solid var(--d-line-2);background:none;font:inherit;
+  text-align:left;padding:8px 0;cursor:pointer;color:var(--d-ink-2);min-width:0}
+.d-goal-item:last-child{border-bottom:0}
+.d-goal-item:hover{color:var(--d-ink)}
+.d-goal-item span{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d-goal-item small{font-size:12.5px;color:var(--d-ink-3)}
+.d-quick{display:flex;flex-direction:column;margin-top:2px}
+.d-quick-item{display:flex;align-items:center;justify-content:space-between;gap:8px;border:0;border-bottom:1px solid var(--d-line-2);
+  background:none;font:inherit;font-size:13px;color:var(--d-ink-2);padding:8px 0;text-align:left;cursor:pointer}
+.d-quick-item:last-child{border-bottom:0}
+.d-quick-item:hover{color:var(--d-ink)}
+.d-quick-item:disabled{color:var(--d-ink-3);opacity:.55;cursor:default}
+.d-quick-item span{color:var(--d-ink-3)}
+
+/* shared element tuning inside the shell */
+.desktop-shell .primary{background:var(--d-accent);border-color:var(--d-accent);color:var(--d-accent-ink);box-shadow:none;border-radius:5px;font-weight:600}
+.desktop-shell .primary:hover{background:var(--d-accent-2);border-color:var(--d-accent-2)}
+.desktop-shell .secondary{background:var(--d-hover);border-color:var(--d-line);color:var(--d-ink);border-radius:5px}
+.desktop-shell .text-button{color:var(--d-accent);padding:4px 0;font-size:13.5px}
+.desktop-shell .tag{background:var(--d-tag);border-color:var(--d-tag-line);color:var(--d-ink-2);border-radius:3px;font-size:11.5px;letter-spacing:0;padding:0 6px;line-height:19px}
+.desktop-shell .tag.done{background:var(--d-ok-bg);border-color:var(--d-ok-line);color:var(--d-ok-ink)}
+.desktop-shell .tag.bad{background:var(--d-bad-bg);border-color:var(--d-bad-line);color:var(--d-bad-ink)}
+.desktop-shell .notice{margin:10px 0;border-left:2px solid var(--d-accent);border-top:0;border-right:0;border-bottom:0;border-radius:0 6px 6px 0;background:var(--d-soft);color:var(--d-ink-2);font-size:13px}
+.desktop-shell .error{border-radius:6px;font-size:13px}
+.desktop-shell .fine-print{margin:10px 0 0;font-size:12.5px;color:var(--d-ink-3)}
+.desktop-shell label{font-size:13px;color:var(--d-ink-2);margin:13px 0 5px}
+.desktop-shell input,.desktop-shell select,.desktop-shell textarea{border:1px solid var(--d-line-3);border-radius:6px;background:var(--d-input);color:var(--d-ink);padding:8px 10px;font-size:13.5px;font-family:inherit}
+.desktop-shell input:focus-visible,.desktop-shell select:focus-visible,.desktop-shell textarea:focus-visible{outline:2px solid var(--d-accent);outline-offset:1px;border-color:var(--d-accent)}
+.desktop-shell textarea{display:block;width:100%;min-height:96px;resize:vertical}
+.desktop-shell .eyebrow{font-size:11px;letter-spacing:.09em;color:var(--d-ink-3);font-weight:600;text-transform:uppercase}
+.desktop-shell .section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:2px}
+.desktop-shell .muted{color:var(--d-ink-2);font-size:13px}
+
+/* interview card */
+.desktop-shell .interview-workspace{max-width:900px;margin:0 auto;padding:15px 18px 16px}
+.desktop-shell .d-card-title{font-size:16px;margin:2px 0 8px;letter-spacing:-.02em}
+.desktop-shell .interview-setup{max-width:560px;margin-top:6px}
+.desktop-shell .interview-setup .bank-row{display:flex;align-items:center;gap:10px}
+.desktop-shell .interview-setup .bank-row select{flex:1 1 auto;min-width:0}
+.desktop-shell .interview-setup .bank-row .text-button{flex:0 0 auto;font-size:13px;white-space:nowrap}
+.desktop-shell .interview-setup select{width:100%}
+.desktop-shell .interview-setup .primary{margin-top:12px}
+.desktop-shell .interview-question{font-size:18px;line-height:1.7;font-weight:600;letter-spacing:-.01em;margin:6px 0 14px}
+.desktop-shell .interview-answer textarea{height:150px;min-height:150px;line-height:1.75}
+.desktop-shell .answer-toolbar{margin-top:10px}
+.desktop-shell .interview-retry{margin:12px 0;padding:10px 12px;background:var(--d-hover-2);border:1px solid var(--d-line);border-radius:6px}
+.desktop-shell .interview-report{margin-top:14px;border-top:1px solid var(--d-line);padding-top:12px}
+.desktop-shell .interview-report h2{font-size:15px}
+.desktop-shell .interview-report-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:10px 0}
+.desktop-shell .interview-report-grid span{background:var(--d-soft-2);border:1px solid var(--d-line);border-radius:6px;padding:7px 10px;font-size:12.5px;color:var(--d-ink-3)}
+.desktop-shell .interview-report-grid strong{font-size:15px;color:var(--d-accent)}
+.desktop-shell .interview-summary{background:var(--d-soft-2);border-radius:6px;padding:11px;font-size:13px;color:var(--d-ink-2)}
+.desktop-shell .interview-observation{padding:13px 0}
+.desktop-shell .interview-explanation{margin:10px 0 14px;padding:11px 13px;background:var(--d-hover-2);
+  border-left:3px solid var(--d-accent);border-radius:0 6px 6px 0}
+.desktop-shell .interview-explanation>p{white-space:pre-wrap;overflow-wrap:anywhere;
+  font-size:13px;line-height:1.7;color:var(--d-ink-2);margin:5px 0 0}
+.desktop-shell .interview-observation>p{font-size:13px;color:var(--d-ink-2)}
+.desktop-shell .interview-observation blockquote{margin:8px 0 0;padding:8px 10px;background:var(--d-hover-2);border-left:2px solid var(--d-line-3);border-radius:0 5px 5px 0;font-size:13px}
+.desktop-shell .citation-label{display:block;font-size:11.5px;color:var(--d-ink-3);margin-bottom:3px}
+.desktop-shell .interview-answers{margin-top:12px}
+.desktop-shell .interview-answers summary{cursor:pointer;font-size:13px;color:var(--d-ink-2)}
+.desktop-shell .interview-history{margin-top:16px;border-top:1px solid var(--d-line);padding-top:10px}
+.desktop-shell .interview-history h2{font-size:13.5px}
+.desktop-shell .history-item{width:100%;border-bottom:1px solid var(--d-line);color:var(--d-ink-2);padding:9px 2px}
+.desktop-shell .history-item small{display:block;color:var(--d-ink-3)}
+.d-report-actions{margin:10px 0 4px}
+.d-session-meta{font-size:12.5px;color:var(--d-ink-3);margin:0 0 6px}
+
+/* F07Z-67: one 面试 entry, two modes chosen on the setup card. */
+/* F07Z-75: the browser default placeholder (#757575) measured 4.46:1 on the light field and
+   4.21:1 on the dark one - both below the 4.5 AA floor. Placeholder text carries real meaning
+   here ("写下你的判断…"), so it gets an explicit, theme-aware colour instead. */
+.desktop-shell input::placeholder,.desktop-shell textarea::placeholder{color:var(--d-placeholder);opacity:1}
+.desktop-shell .setup-label{display:block;font-size:13px;color:var(--d-ink-2);margin:16px 0 5px}
+.desktop-shell .d-mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.desktop-shell .d-mode-switch button{text-align:left;padding:9px 12px;border:1px solid var(--d-line);
+ border-radius:10px;background:var(--d-panel);color:var(--d-ink);font-size:13px;font-weight:600}
+.desktop-shell .d-mode-switch button small{display:block;margin-top:2px;font-size:12.5px;font-weight:400;color:var(--d-ink-3)}
+.desktop-shell .d-mode-switch button[aria-pressed="true"]{border-color:var(--d-accent);box-shadow:0 0 0 1px var(--d-accent);background:var(--d-soft);color:var(--d-accent-2)}
+.desktop-shell .d-mode-switch button[aria-pressed="true"] small{color:var(--d-ink-2)}
+.desktop-shell .d-mode-switch button:disabled{opacity:.6}
+
+/* Answering owns the viewport: the question area is capped and scrolls on its own,
+   the composer keeps the rest and the textarea grows into it. Nothing but the form
+   can push the submit button below the fold. */
+.desktop-shell[data-answering="true"] .desktop-body{overflow:hidden;display:flex;flex-direction:column;padding-bottom:14px}
+.desktop-shell[data-answering="true"] .desktop-pane{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;width:100%}
+.desktop-shell[data-answering="true"] .interview-workspace{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;margin-bottom:0}
+.desktop-shell[data-answering="true"] .interview-session{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+.desktop-shell[data-answering="true"] .d-question-scroll{flex:0 1 auto;max-height:52%;overflow:auto}
+.desktop-shell[data-answering="true"] .interview-answer{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;border-top:1px solid var(--d-line);padding-top:10px;margin-top:10px}
+.desktop-shell[data-answering="true"] .interview-answer textarea{flex:1 1 auto;height:auto;min-height:110px;resize:none}
+.desktop-shell[data-answering="true"] .answer-toolbar{margin-top:10px;flex:0 0 auto}
+
+/* research run state: colour follows the outcome, not the generic notice green */
+.desktop-shell .research-status{margin:12px 0;padding:11px 13px;border:1px solid var(--d-line);border-radius:6px;background:var(--d-soft-2)}
+.desktop-shell .research-status[data-status="PENDING"],.desktop-shell .research-status[data-status="RUNNING"]{background:var(--d-soft);border-color:var(--d-ok-line)}
+.desktop-shell .research-status[data-status="FAILED"]{background:var(--d-bad-bg);border-color:var(--d-bad-line)}
+.desktop-shell .research-status[data-status="FAILED"] strong{color:var(--d-bad-ink)}
+.desktop-shell .research-status p{margin:4px 0;font-size:13px;color:var(--d-ink-2)}
+
+/* written */
+.d-written{max-width:900px}
+.d-written-list{display:flex;flex-direction:column;gap:10px;margin:8px 0 0}
+/* F07Z-80: question items are rows of one list, not twelve separate cards. */
+.d-written-item{padding:12px 2px;background:transparent;border:0;border-radius:0}
+.d-written-item+.d-written-item{border-top:1px solid var(--d-line-2)}
+.d-written-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.d-written-head strong{font-size:13px;font-weight:600}
+.d-written-head .tag:last-child{margin-left:auto}
+/* F07Z-76: a 100-character data question rendered at the full 836px column measured about 67
+   CJK characters per line - far past the point where the eye can track a line back. The text
+   column is capped at 46em (~46 characters at this size), author line breaks are preserved,
+   and long tokens may break instead of pushing the card sideways. */
+.d-written-question{margin:8px 0 10px;font-size:14px;line-height:1.8;color:var(--d-ink);
+ max-width:46em;white-space:pre-wrap;overflow-wrap:anywhere}
+.d-written-item textarea{min-height:84px;font-size:13px;line-height:1.7}
+.d-written-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+.d-written-foot .secondary{padding:5px 11px;font-size:13px}
+.d-written-answer{margin:0;padding:9px 11px;background:var(--d-hover-2);border-left:2px solid var(--d-line-3);border-radius:0 5px 5px 0;
+  font-size:13px;color:var(--d-ink-2);white-space:pre-wrap;line-height:1.7}
+.d-written-actions{display:flex;align-items:center;gap:10px}
+/* F07Z-54: choice questions and the code-question surface. */
+.d-written-options{margin:0 0 8px;padding:0;border:0;display:flex;flex-direction:column;gap:6px}
+/* F07Z-71: the derived checklist is a review aid, so it looks like a list, not like a result. */
+.d-written-points{margin:8px 0 0;padding:9px 11px;border:1px dashed var(--d-line-3);border-radius:6px;background:var(--d-hover-2)}
+.d-written-points ul{margin:6px 0 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:5px}
+.d-written-points li{font-size:13.5px;color:var(--d-ink-2);max-width:46em;
+ white-space:pre-wrap;overflow-wrap:anywhere}
+.d-written-points label{display:flex;align-items:flex-start;gap:8px;margin:0;cursor:pointer}
+.d-written-points input{margin:2px 0 0;width:auto}
+/* F07Z-79: scoped to .desktop-shell because the generic `.desktop-shell label` rule (12.5px)
+   would otherwise win on specificity and quietly keep the options at the old size. */
+.desktop-shell .d-written-option{display:flex;align-items:flex-start;gap:8px;margin:0;font-size:13.5px;color:var(--d-ink);
+  padding:6px 9px;border:1px solid var(--d-line);border-radius:6px;background:var(--d-panel);cursor:pointer}
+.d-written-option input{margin:2px 0 0;width:auto}
+.d-code-list{display:flex;flex-direction:column;gap:10px;margin:8px 0 0}
+.d-code-item{border:1px solid var(--d-line);border-radius:6px;padding:11px 13px;background:var(--d-panel)}
+.d-code-sample{margin:6px 0 8px}
+.d-code-sample summary{cursor:pointer;font-size:12.5px;color:var(--d-ink-3)}
+.d-code-io{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;align-items:start;margin-top:6px}
+.d-code-io pre,.d-code-io-pre{margin:0;padding:7px 9px;background:var(--d-hover-2);border-radius:5px;
+  font-family:var(--d-num);font-size:12.5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.d-code-editor{display:block;margin:8px 0 0;font-size:12.5px;color:var(--d-ink-3)}
+.d-code-editor textarea{min-height:220px;margin-top:6px;font-family:var(--d-num);font-size:12.5px;line-height:1.65;
+  tab-size:2;white-space:pre}
+.d-code-submissions{display:flex;flex-direction:column;gap:9px;margin-top:11px}
+.d-code-submission{border:1px solid var(--d-line);border-radius:6px;padding:9px 11px;background:var(--d-hover-2)}
+.d-code-cases{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.d-code-case{display:flex;align-items:center;gap:8px}
+.write-pre{margin:8px 0;font-size:12.5px;line-height:1.75;color:var(--d-ink-2);white-space:pre-wrap}
+/* F07Z-57: external algorithm practice — record form and list. */
+.d-practice-sites{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:10px 0 2px}
+.d-practice-site{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:8px 11px;
+  border:1px solid var(--d-line);border-radius:7px;background:var(--d-panel);cursor:pointer;text-align:left}
+.d-practice-site:hover{background:var(--d-hover)}
+.d-practice-site strong{font-size:12.5px;font-weight:600}
+.d-practice-site small{font-size:12.5px;color:var(--d-ink-3)}
+.d-practice-explanation{margin:4px 0 2px;font-size:12.5px;color:var(--d-ink-2)}
+.d-practice-explanation summary{cursor:pointer;color:var(--d-ink-3)}
+.d-practice-explanation p{margin:5px 0 0;white-space:pre-wrap;line-height:1.65}
+.d-practice-item{flex-direction:column;align-items:stretch;cursor:default}
+.d-practice-row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%}
+.d-practice-record{margin-top:12px;border-top:1px solid var(--d-line);padding-top:11px}
+.d-practice-note{display:block;margin-top:8px;font-size:12.5px;color:var(--d-ink-3)}
+.d-practice-note textarea{min-height:72px;margin-top:5px;font-size:12.5px;line-height:1.7}
+.d-practice-list{margin-top:14px}
+.d-practice-list h3{margin:0;font-size:13px}
+.d-practice-memo{display:block;margin-top:3px;color:var(--d-ink-3);font-size:12.5px;white-space:pre-wrap}
+
+/* question banks */
+.d-banks{max-width:900px}
+.d-bank-list{display:flex;flex-direction:column;margin:8px 0 0}
+.d-bank{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--d-line-2)}
+.d-bank:last-child{border-bottom:0}
+.d-bank-main{min-width:0;flex:1 1 auto}
+.d-bank-main strong{display:block;font-size:12.5px;font-weight:600}
+.d-bank-meta{display:flex;align-items:center;gap:7px;margin-top:4px;color:var(--d-ink-3)}
+.d-bank-actions{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.d-switch{width:34px;height:19px;border-radius:999px;border:1px solid var(--d-line-3);background:var(--d-line-2);
+  position:relative;cursor:pointer;padding:0;transition:background .15s ease}
+.d-switch span{position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;
+  background:var(--d-panel);border:1px solid var(--d-line-3);transition:transform .15s ease}
+.d-switch.is-on{background:var(--d-accent);border-color:var(--d-accent)}
+.d-switch.is-on span{transform:translateX(15px);background:#fff;border-color:transparent}
+.d-switch:disabled{opacity:.5;cursor:default}
+.d-switch:focus-visible{outline:2px solid var(--d-accent);outline-offset:2px}
+.d-import-tools{display:flex;align-items:center;gap:10px;margin:6px 0}
+.d-json{min-height:170px;font-family:var(--d-num);font-size:12.5px;line-height:1.6}
+.d-preview{margin-top:12px;padding:11px 13px;border:1px solid var(--d-line);border-radius:6px;background:var(--d-soft-2)}
+.d-preview p{margin:0 0 6px;font-size:12.5px}
+.d-preview ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--d-ink-2);line-height:1.7}
+
+/* materials */
+.d-materials{max-width:900px}
+.d-source-list{display:flex;flex-direction:column;gap:8px;margin:8px 0 4px}
+.d-source{border:1px solid var(--d-line);border-radius:6px;padding:9px 11px;background:var(--d-hover-2)}
+.d-source-head{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--d-ink-2)}
+.d-source-head strong{font-size:12.5px;color:var(--d-ink);font-weight:600}
+.d-source-head .tag{margin-left:0}
+.d-source-head .d-num{margin-left:auto;color:var(--d-ink-3)}
+.d-source-body{margin:6px 0 0;font-size:12.5px;color:var(--d-ink-2);line-height:1.6;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.d-source-add{margin-top:10px;border-top:1px solid var(--d-line-2);padding-top:10px}
+.d-source-add>summary{cursor:pointer;font-size:12.5px;color:var(--d-ink-2)}
+.d-run-line{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin:10px 0 0;padding:7px 11px;
+  border:1px solid var(--d-line);border-radius:6px;background:var(--d-soft-2);font-size:12.5px;color:var(--d-ink-2)}
+.d-run-line strong{font-weight:600;color:var(--d-ink)}
+.d-run-line[data-status="FAILED"]{background:var(--d-bad-bg);border-color:var(--d-bad-line)}
+.d-run-line[data-status="FAILED"] strong{color:var(--d-bad-ink)}
+.d-run-err{color:var(--d-bad-ink);flex-basis:100%}
+.d-run-actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
+.d-run-actions .secondary{padding:6px 12px;font-size:12.5px}
+.d-proposals{display:flex;flex-direction:column;gap:2px;margin:8px 0}
+.d-proposal{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid var(--d-line-2);margin:0;font-size:12.5px;color:var(--d-ink-2);cursor:pointer}
+.d-proposal:last-child{border-bottom:0}
+.d-proposal input{width:auto;min-width:15px;margin-top:2px;flex:0 0 auto}
+.d-proposal-body{display:flex;flex-direction:column;gap:4px;min-width:0;line-height:1.6}
+.d-proposal-body .tag{align-self:flex-start}
+.d-facts{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.d-facts li{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--d-ink-2);line-height:1.6}
+.d-facts .tag{flex:0 0 auto;margin-top:1px}
+.d-draft-items{display:flex;flex-direction:column;gap:10px;margin:8px 0 0}
+.d-draft-sections{display:flex;flex-direction:column;gap:10px;margin:8px 0 14px}
+.d-draft-section{border:1px solid var(--d-line);border-radius:6px;padding:9px 11px;background:var(--d-hover-2)}
+.d-draft-line{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px}
+.d-draft-line textarea{min-height:38px;font-size:12.5px;line-height:1.6;flex:1 1 auto}
+.d-draft-line .text-button{flex:0 0 auto;padding:2px 4px}
+.d-draft-section>.text-button{margin-top:2px}
+.d-coverage{margin:8px 0 0}
+.d-coverage .notice{margin:6px 0 0;font-size:12.5px;line-height:1.6}
+.d-coverage-missing{display:block;margin-top:3px;color:var(--d-ink-2)}
+.d-segments{margin:10px 0 0;border-top:1px solid var(--d-line-2);padding-top:8px}
+.d-segments summary{cursor:pointer;font-size:12.5px;color:var(--d-ink-2)}
+.d-segment-list{display:flex;flex-direction:column;gap:4px;margin-top:8px;max-height:320px;overflow:auto}
+.d-segment{display:grid;grid-template-columns:44px 118px minmax(0,1fr);gap:8px;align-items:baseline;font-size:12.5px;
+  color:var(--d-ink-2);line-height:1.55}
+.d-segment-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.d-segment-where{font-size:12.5px}
+.d-where-section{color:var(--d-ink-2)}
+.d-where-item{color:var(--d-accent)}
+.d-where-omitted{color:var(--d-ink-3)}
+.d-where-missing{color:#b4453a}
+.d-draft-item{border:1px solid var(--d-line);border-radius:6px;padding:9px 11px}
+.d-draft-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.d-draft-head .fine-print{margin:0}
+.d-draft-item textarea{min-height:96px;font-size:12.5px;line-height:1.7}
+.d-md{margin:8px 0 0;padding:12px 14px;background:var(--d-hover-2);border:1px solid var(--d-line);
+  border-radius:6px;font-family:var(--d-num);font-size:12.5px;line-height:1.75;color:var(--d-ink-2);
+  white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto}
+
+/* status bar */
+.desktop-status{flex:0 0 24px;display:flex;align-items:center;gap:7px;padding:0 16px;
+  border-top:1px solid var(--d-line);background:var(--d-rail);font-size:11.5px;color:var(--d-ink-3);white-space:nowrap}
+.desktop-status .dot{width:5px;height:5px;border-radius:50%;background:var(--d-accent);flex:0 0 5px}
+.desktop-status .sep{opacity:.5}
+.desktop-status .d-num{color:var(--d-ink-2)}
+
+/* settings */
+.d-settings{max-width:720px}
+.d-set-group{margin-bottom:22px}
+.d-set-group>h2{font-size:12.5px;font-weight:600;margin:0 0 3px}
+.d-set-group>.hint{margin:0 0 10px;font-size:12.5px;color:var(--d-ink-3)}
+.d-themes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.d-theme{border:1px solid var(--d-line);border-radius:6px;background:var(--d-panel);padding:7px;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.d-theme:hover{border-color:var(--d-line-3)}
+.d-theme:focus-visible{outline:2px solid var(--d-accent);outline-offset:2px}
+.d-theme[aria-pressed="true"]{border-color:var(--d-accent);box-shadow:0 0 0 1px var(--d-accent)}
+.d-theme .pv{height:54px;border-radius:4px;border:1px solid var(--d-line);overflow:hidden;display:flex;position:relative}
+.d-theme .pv .a{width:26%;background:#fff;border-right:1px solid #dededf;padding:6px 5px;display:flex;flex-direction:column;gap:3px}
+.d-theme .pv .a i{display:block;height:3px;border-radius:1px;background:#dcdce2}
+.d-theme .pv .a i:first-child{background:#02955a;opacity:.5}
+.d-theme .pv .b{flex:1;background:#f4f4f7;padding:6px;display:flex;flex-direction:column;gap:4px}
+.d-theme .pv .b i{display:block;border-radius:2px;background:#fff;border:1px solid #e4e4e8;height:11px}
+.d-theme .pv .b i:last-child{width:40%;background:#02955a;border:0;height:8px}
+.d-theme[data-preview="dark"] .pv{border-color:#2b2b33}
+.d-theme[data-preview="dark"] .pv .a{background:#0b0b0e;border-right-color:#2b2b33}
+.d-theme[data-preview="dark"] .pv .a i{background:#2a2a32}
+.d-theme[data-preview="dark"] .pv .a i:first-child{background:#61d596;opacity:.55}
+.d-theme[data-preview="dark"] .pv .b{background:#060608}
+.d-theme[data-preview="dark"] .pv .b i{background:#121216;border-color:#2b2b33}
+.d-theme[data-preview="dark"] .pv .b i:last-child{background:#61d596;border:0}
+.d-theme[data-preview="auto"] .pv::after{content:"";position:absolute;inset:0 0 0 50%;background:#060608;border-left:1px solid #2b2b33}
+.d-theme[data-preview="auto"] .pv .a i,.d-theme[data-preview="auto"] .pv .b i{position:relative;z-index:1}
+.d-theme .lbl{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:12.5px;font-weight:500}
+.d-theme .lbl .tick{margin-left:auto;width:13px;height:13px;color:var(--d-accent);display:none}
+.d-theme[aria-pressed="true"] .lbl .tick{display:block}
+.d-set-row{display:flex;align-items:center;gap:12px;padding:10px 13px;border:1px solid var(--d-line);
+  border-radius:6px;background:var(--d-panel);font-size:12.5px}
+.d-set-row .val{margin-left:auto;color:var(--d-ink-3);font-size:12.5px}
+
+/* Narrow windows (880x600, and the smaller CSS viewport WebView2 gets under high DPI) */
+@media(max-width:980px){
+  .desktop-work{grid-template-columns:64px minmax(0,1fr)}
+  .desktop-rail{padding:12px 7px;align-items:center}
+  .d-brand{justify-content:center;padding:2px 0 10px}
+  .d-brand-text,.d-nav-label,.d-rail-foot{display:none}
+  .d-nav-item{justify-content:center;padding:8px 0}
+  /* F07Z-53: the badge used to sit in the flex row, so icon + gap + a 55px pill
+     overflowed the 64px rail by 8px at the 880px minimum window width. Park it in
+     the item's top-right corner and keep it inside the rail. */
+  .desktop-shell .d-nav-item .d-nav-badge{margin:0;position:absolute;top:3px;right:1px;max-width:22px;
+    padding:0 3px;font-size:8.5px;line-height:13px;border-radius:7px}
+  .d-nav-item>span[aria-hidden]{width:auto}
+  .d-nav-item[aria-current="page"]::before{left:-7px;top:4px;bottom:4px}
+  .desktop-context{padding:6px 12px;gap:9px;min-height:40px;flex-wrap:wrap}
+  .d-context-goal small,.d-divider{display:none}
+  .d-context-goal strong{max-width:180px;font-size:12.5px}
+  .d-context-page,.d-context-session{font-size:12.5px}
+  .d-context-page{border-left:1px solid var(--d-line-2);padding-left:9px}
+  .desktop-body{padding:13px 13px 18px}
+  .d-workbench{grid-template-columns:minmax(0,1fr)}
+  .d-workbench-side{order:2}
+  .d-pane-head h1{font-size:17px}
+  .desktop-shell .interview-workspace{padding:11px 13px}
+  .desktop-shell .interview-question{font-size:16px;line-height:1.65;margin:2px 0 10px}
+  .desktop-shell .interview-answer textarea{height:96px;min-height:96px}
+  .desktop-shell .card{padding:13px}
+  .d-themes{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .desktop-shell .interview-report-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* Very small windows (WebView2 CSS viewport under display scaling): the context bar
+   already names the page, so the card title gives its space to the composer. */
+@media(max-width:760px){
+  .desktop-shell .d-workspace-head{justify-content:flex-end}
+  .desktop-shell .d-card-title{display:none}
+}
+@media(prefers-reduced-motion:reduce){.desktop-shell *{transition:none!important}}
+
+/* desktop login */
+.desktop-auth{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:56px;align-items:center;max-width:1080px;margin:0 auto;padding:56px 32px;min-height:calc(100vh - 40px)}
+.desktop-auth-intro h1{font-size:29px;line-height:1.4;letter-spacing:-.02em;margin:10px 0 12px;font-weight:600}
+.desktop-auth-intro p{margin:0;color:var(--d-ink-2);font-size:13px;max-width:44ch}
+.desktop-auth-steps{margin:20px 0 0;padding:0;list-style:none;color:var(--d-ink-2);font-size:12.5px;counter-reset:s}
+.desktop-auth-steps li{counter-increment:s;padding-left:26px;position:relative;margin:7px 0}
+.desktop-auth-steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;color:var(--d-accent);font-size:12.5px;font-weight:600;font-family:var(--d-num)}
+.desktop-auth-card{padding:24px 26px;border-radius:8px}
+.desktop-auth-card h2{font-size:21px;margin:8px 0 4px;letter-spacing:-.02em}
+.desktop-auth-card form{margin-top:16px}
+.desktop-auth-card .wide{width:100%;margin-top:6px}
+.desktop-auth-card .text-button{margin-top:10px}
+.desktop-auth-card .fine-print{margin-top:12px}
+@media(max-width:980px){
+  .desktop-auth{grid-template-columns:1fr;gap:20px;padding:24px 18px;min-height:0}
+  .desktop-auth-intro h1{font-size:21px}
+  .desktop-auth-steps{display:none}
+}
+
+/* applications */
+.d-apps{max-width:900px}
+/* model settings */
+.d-model-form{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.d-check-row{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--d-ink-2);line-height:1.6}
+.d-check-row input{width:auto;min-width:15px;margin-top:3px;flex:0 0 auto}
+.interview-mistakes{margin:6px 0 2px}
+.d-set-actions{margin-top:10px;display:flex;gap:8px}
+.d-set-actions .secondary{padding:6px 12px;font-size:12.5px}
+/* login page: the guest entry link under the auth card */
+.desktop-login-alt{margin-top:14px;color:var(--d-ink-3);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.d-app-progress{margin-top:14px;border-top:1px solid var(--d-line-2);padding-top:12px}
+.d-app-progress h3{font-size:12.5px;margin:0 0 6px}
+.d-app-progress textarea{min-height:70px;font-size:12.5px;line-height:1.7}
+.d-app-events{margin-top:14px;border-top:1px solid var(--d-line-2);padding-top:12px}
+.d-app-events h3{font-size:12.5px;margin:0 0 8px}
+.d-app-events ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.d-app-events li{display:flex;align-items:baseline;gap:8px;font-size:12.5px;color:var(--d-ink-2);line-height:1.6}
+.d-app-events li small{margin-left:auto;color:var(--d-ink-3)}
+
+/* F05C: local site progress sync (all rules scoped to the desktop shell) */
+.desktop-shell .d-sync{max-width:900px}
+.desktop-shell .d-sync .fine-print{line-height:1.7}
+.desktop-shell .d-sync-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.desktop-shell .d-sync-config{margin-top:12px;border-top:1px solid var(--d-line-2);padding-top:10px}
+.desktop-shell .d-sync-config summary{cursor:pointer;font-size:12.5px;color:var(--d-ink-2)}
+.desktop-shell .d-sync-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;margin-top:12px}
+.desktop-shell .d-sync-fields label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--d-ink-2)}
+.desktop-shell .d-sync-fields input,.desktop-shell .d-sync-fields textarea{font-size:13px}
+.desktop-shell .d-sync-fields textarea{min-height:76px;line-height:1.6}
+.desktop-shell .d-sync-fields .d-form-foot{grid-column:1/-1}
+.desktop-shell .d-sync-probe{margin-top:12px;border-top:1px solid var(--d-line-2);padding-top:10px}
+.desktop-shell .d-sync-probe h3{font-size:12.5px;margin:0 0 6px}
+.desktop-shell .d-sync-probe ul{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.desktop-shell .d-sync-probe li{display:flex;gap:10px;font-size:12.5px;color:var(--d-ink-2);line-height:1.6}
+.desktop-shell .d-sync-probe code{font-size:12.5px;color:var(--d-ink-3);white-space:nowrap;max-width:280px;overflow:hidden;text-overflow:ellipsis}
+.desktop-shell .d-sync-results{margin-top:14px;border-top:1px solid var(--d-line-2);padding-top:10px}
+.desktop-shell .d-sync-results h3{font-size:12.5px;margin:0 0 6px}
+.desktop-shell .d-sync-row{border:1px solid var(--d-line-2);border-radius:6px;padding:10px 12px;margin-top:10px}
+.desktop-shell .d-sync-check{display:flex;align-items:center;gap:8px;font-size:12.5px}
+.desktop-shell .d-sync-check input{width:auto;min-width:15px}
+.desktop-shell .d-sync-row .career-fields{margin-top:8px}
+@media(max-width:980px){.desktop-shell .d-sync-fields{grid-template-columns:1fr}}
+
+/* F06A — the Agent console is the main path; the eight panes become secondary
+   artifact views. Their DOM, titles and behaviour stay intact for existing suites. */
+.desktop-shell .d-nav-primary{background:var(--d-soft);border:1px solid var(--d-ok-line);color:var(--d-ink);font-weight:600;font-size:13px;padding:8px 9px}
+.desktop-shell .d-nav-primary:hover{background:var(--d-ok-bg)}
+.desktop-shell .d-nav-primary .d-nav-label{font-size:13px;letter-spacing:0;text-transform:none;color:inherit;font-weight:600;padding:0}
+.desktop-shell .d-nav-secondary{margin-top:8px;border-top:1px solid var(--d-line-2);padding-top:2px}
+.desktop-shell .d-nav-secondary>div.d-nav-label{padding:9px 9px 3px;color:var(--d-ink-3)}
+.desktop-shell .d-nav-secondary .d-nav-item{font-size:12.5px;padding:4px 9px 4px 18px;color:var(--d-ink-3)}
+.desktop-shell .d-nav-secondary .d-nav-item>span[aria-hidden]{display:none}
+.desktop-shell .d-nav-secondary .d-nav-item .d-nav-label{font-size:12.5px;letter-spacing:0;text-transform:none;color:inherit;font-weight:400;padding:0}
+.desktop-shell .d-nav-secondary .d-nav-item[aria-current="page"]{color:var(--d-ink);font-weight:600}
+.desktop-shell .d-agent-source{margin:0 0 10px}
+.desktop-shell .d-agent-empty{padding:10px 0 2px;color:var(--d-ink-2);font-size:13px;line-height:1.7}
+.desktop-shell .d-agent-empty p{margin:0 0 6px}
+.desktop-shell .d-agent-proposal{display:flex;align-items:center;justify-content:space-between;gap:16px;
+ background:var(--d-soft-2);border:1px solid var(--d-ok-line);border-radius:8px;padding:12px 14px;margin-bottom:14px}
+.desktop-shell .d-agent-proposal h3{font-size:13.5px;font-weight:600;margin:4px 0 6px}
+.desktop-shell .d-agent-proposal p{margin:0;font-size:13.5px;line-height:1.65;color:var(--d-ink-2)}
+.desktop-shell .d-agent-cta{white-space:nowrap;flex:0 0 auto}
+.desktop-shell .d-agent .eyebrow{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--d-ink-3)}
+.desktop-shell .d-agent-extract{border-top:1px solid var(--d-line-2);padding-top:10px;margin-bottom:12px}
+.desktop-shell .d-agent-extract h3{font-size:12.5px;font-weight:600;margin:0 0 6px}
+.desktop-shell .d-agent-extract p{margin:0 0 4px;font-size:12.5px;color:var(--d-ink-2)}
+.desktop-shell .d-agent-timeline{list-style:none;margin:0;padding:0 0 0 4px;border-left:1px solid var(--d-line-2)}
+.desktop-shell .d-agent-timeline li{position:relative;padding:0 0 14px 18px}
+.desktop-shell .d-agent-timeline li:last-child{padding-bottom:2px}
+.desktop-shell .d-agent-timeline .d-agent-dot{position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;
+ background:var(--d-line-3);border:2px solid var(--d-panel)}
+.desktop-shell .d-agent-timeline li.current .d-agent-dot{background:var(--d-accent)}
+.desktop-shell .d-agent-turn-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.desktop-shell .d-agent-turn-head strong{font-size:12.5px;font-weight:600}
+.desktop-shell .d-agent-turn p{margin:4px 0 0;font-size:12.5px;line-height:1.6;color:var(--d-ink-2);white-space:pre-wrap}
+.desktop-shell .d-agent-artifact{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px}
+.desktop-shell .d-agent-artifact-label{color:var(--d-ink)}
+/* F07Z-82: zones inside the artifacts card, so a results page reads as results and a
+   record/configuration list reads as something else. */
+/* F07Z-82: a zone boundary is a hairline plus a label - the same language the rail and the
+   row lists already use, so three zones do not become three more boxes. */
+.d-artifact-zone{margin-top:14px}
+.d-artifact-zone:first-of-type{margin-top:10px}
+.d-artifact-zone+.d-artifact-zone{padding-top:12px;border-top:1px solid var(--d-line-2)}
+/* F07Z-86: the learning list reuses the row + zone language from the artifacts page. */
+.d-resource-open{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px;align-items:flex-start;
+ background:none;border:0;padding:0;text-align:left;cursor:pointer;color:inherit;font:inherit}
+.d-resource-open:hover .d-agent-artifact-label{text-decoration:underline}
+.d-resource{background:none;border:0}
+.d-resource-form{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-top:14px}
+.d-resource-form label{flex:1 1 200px;min-width:160px;margin:0}
+.d-resource-form input{width:100%}
+.d-resource-zones{margin-top:6px}
+/* F07Z-89: the question picker under a bank row. */
+.d-pick{border:1px solid var(--d-line-2);border-radius:7px;padding:10px 12px;margin:8px 0 12px;background:var(--d-hover-2)}
+.d-pick-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.d-pick-role{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:12.5px;color:var(--d-ink-2)}
+.d-pick-role select{width:auto;min-width:120px}
+.d-pick-list{display:flex;flex-direction:column;gap:2px;max-height:260px;overflow:auto;margin:6px 0}
+.d-pick-item{display:flex;align-items:flex-start;gap:9px;margin:0;padding:6px 2px;cursor:pointer;font-size:12.5px;color:var(--d-ink)}
+.d-pick-item+.d-pick-item{border-top:1px solid var(--d-line-2)}
+.d-pick-item input{margin:2px 0 0;width:auto;flex:0 0 auto}
+.d-pick-item span{display:flex;flex-direction:column;gap:2px;min-width:0}
+/* F07Z-91: kind filter and random draw inside the picker. */
+.d-pick-auto{border-top:1px solid var(--d-line-2);margin:8px 0 2px;padding:8px 0 0}
+.d-pick-kinds{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 8px}
+.d-pick-kinds>.fine-print{margin:0 2px 0 0}
+.d-kind{display:inline-flex;align-items:center;gap:5px;margin:0;padding:3px 9px;border:1px solid var(--d-line-3);
+ border-radius:999px;font-size:12.5px;color:var(--d-ink-2);cursor:pointer}
+.d-kind input{margin:0;width:auto;flex:0 0 auto}
+.d-kind.is-on{border-color:var(--d-accent);background:var(--d-soft);color:var(--d-accent-2)}
+.d-pick-auto-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.d-pick-count{display:inline-flex;align-items:center;gap:6px;margin:0;font-size:12.5px;color:var(--d-ink-2)}
+.d-pick-count input{width:64px;min-width:0;padding:4px 6px;font-size:13px}
+/* F07Z-94: resume file import (parse -> preview -> import). */
+.d-file-import{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 0}
+.d-file-preview{border:1px solid var(--d-line-2);border-radius:7px;padding:10px 12px;margin:10px 0 0;background:var(--d-hover-2)}
+.d-file-preview-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.d-file-preview-text{max-height:180px;overflow:auto;white-space:pre-wrap;font-size:12.5px;line-height:1.7;
+ margin:8px 0;color:var(--d-ink-2);font-family:inherit}
+/* F07Z-88: the local-data rows print absolute paths; let them wrap instead of pushing the card. */
+.desktop-shell .d-set-row .val.d-num{overflow-wrap:anywhere;text-align:right;max-width:70%}
+.d-artifact-zone-label{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+ color:var(--d-ink-3);font-weight:600;margin:0 0 4px}
+.d-artifact-zone-note{margin:0 0 6px}
+.d-artifact-empty{margin:2px 0 6px}
+.d-artifact-zone-action{margin-top:16px}
+.desktop-shell .d-agent-artifact-value{color:var(--d-ink-3);font-size:12.5px;max-width:110px;
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:980px){.desktop-shell .d-agent-proposal{flex-direction:column;align-items:stretch}}
+
+/* F06B — Agent autonomy settings and three-way proposal decisions. */
+.desktop-shell .d-agent-policy{margin:2px 0 0;color:var(--d-ink-3)}
+/* F07Z-78: the persistence hint explains all three choices, so it spans the card instead of
+   squeezing into the space next to the buttons. */
+.desktop-shell .d-agent-proposal{flex-wrap:wrap}
+.desktop-shell .d-agent-persistence{flex:1 1 100%;margin:8px 0 0;padding-top:6px;
+ border-top:1px dashed var(--d-line)}
+.desktop-shell .d-agent-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.desktop-shell .d-agent-actions .d-agent-cta{flex:0 0 auto}
+.desktop-shell .d-policy-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0 14px}
+.desktop-shell .d-policy-mode{display:flex;flex-direction:column;gap:5px;text-align:left;background:var(--d-panel);
+ border:1px solid var(--d-line-2);border-radius:9px;padding:11px 12px;color:var(--d-ink);cursor:pointer}
+.desktop-shell .d-policy-mode:hover{border-color:var(--d-line-3);background:var(--d-hover-2)}
+.desktop-shell .d-policy-mode[data-active="true"]{border-color:var(--d-accent);background:var(--d-soft-2)}
+.desktop-shell .d-policy-mode:disabled{opacity:.6;cursor:default}
+.desktop-shell .d-policy-mode .fine-print{line-height:1.6;margin:0}
+.desktop-shell .d-policy-mode-head{display:flex;align-items:center;gap:8px;font-size:12.5px}
+.desktop-shell .d-policy-mode-head strong{font-weight:600}
+.desktop-shell .d-policy-current{font-size:11px;color:var(--d-accent-2);border:1px solid var(--d-accent);
+ border-radius:20px;padding:1px 6px;line-height:1.5}
+.desktop-shell .d-policy-grants{margin:6px 0 12px}
+.desktop-shell .d-policy-grant{display:flex;align-items:center;gap:10px;padding:6px 0;
+ border-bottom:1px solid var(--d-line-2);font-size:12.5px;color:var(--d-ink-2)}
+.desktop-shell .d-policy-grant>span:first-child{flex:1}
+.desktop-shell .d-model-preset{display:flex;flex-direction:column;gap:5px;margin:0 0 10px;font-size:13px;color:var(--d-ink-2)}
+.desktop-shell .d-model-preset select{max-width:320px}
+.desktop-shell .d-artifact-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.desktop-shell .d-artifact-nav .d-nav-item{width:auto;border:1px solid var(--d-line-2);border-radius:8px;
+ padding:10px 12px;color:var(--d-ink-2);font-size:12.5px}
+.desktop-shell .d-artifact-nav .d-nav-item:hover{border-color:var(--d-line-3);background:var(--d-hover-2)}
+.desktop-shell .d-artifact-nav .d-nav-item[aria-current="page"]::before{display:none}
+.desktop-shell .d-artifact-nav .d-nav-item .d-nav-label{font-size:12.5px;color:inherit}
+@media(max-width:980px){.desktop-shell .d-policy-modes{grid-template-columns:1fr}
+ }
+
+/* ---- Version B: 8 functional entries + three fixed Agent interfaces ------- */
+/* The version badge and the artifacts shortcut live in the top bar so the rail
+   stays exactly eight entries. They work in both themes because every colour is
+   a --d-* token. */
+.desktop-shell .d-ui-variant{font-size:11px;font-weight:600;color:var(--d-accent-2);
+ background:var(--d-soft);border:1px solid var(--d-ok-line);border-radius:20px;
+ padding:1px 8px;line-height:1.6;white-space:nowrap}
+
+/* Rail group: three Agent jump buttons are deliberately NOT .d-nav-item, so the
+   rail entries keep their original DOM contract (nine after F07Z-81 added 产物).
+   The group is not a boxed panel: the rail is the app's outermost edge, and a
+   frame inside it only added a second layer around the same content. */
+.desktop-shell .d-agent-jump{background:none;border:0;border-radius:0;
+ padding:2px 0 7px;margin:0 0 8px}
+.desktop-shell .d-agent-jump>.d-nav-label{color:var(--d-accent-2);letter-spacing:.06em;padding-top:8px}
+.desktop-shell .d-agent-jump-item{display:flex;align-items:flex-start;gap:7px;width:100%;text-align:left;
+ background:transparent;border:0;border-radius:5px;padding:5px 6px;color:var(--d-ink);
+ font-size:12.5px;font-weight:600;cursor:pointer;line-height:1.35}
+.desktop-shell .d-agent-jump-item:hover{background:var(--d-hover)}
+.desktop-shell .d-agent-jump-body{display:block;min-width:0;flex:1 1 auto}
+.desktop-shell .d-agent-jump-body>span{display:block;white-space:nowrap}
+.desktop-shell .d-agent-jump-item small{display:block;font-size:11.5px;font-weight:400;
+ color:var(--d-ink);letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* The rail dot sits inside the entry, in the same 16px column the eight
+   functional entries use for their icons, so every entry's text starts on the
+   same vertical line. (The timeline dot is absolutely positioned; scoping that
+   rule above keeps the two from sharing a position.) */
+.desktop-shell .d-agent-jump-item{gap:9px}
+.desktop-shell .d-agent-jump-item .d-agent-dot{position:static;display:flex;align-items:center;
+ justify-content:center;flex:0 0 16px;width:16px;height:16px;background:none;border:0;margin:0}
+.desktop-shell .d-agent-jump-item .d-agent-dot::before{content:"";display:block;width:6px;height:6px;
+ border-radius:50%;background:var(--d-accent)}
+.desktop-shell .d-agent-jump>.fine-print{font-size:12.5px;line-height:1.5;padding:4px 6px 0;margin:0;color:var(--d-ink)}
+.desktop-shell[data-rail="collapsed"] .d-agent-jump{padding:4px 2px;margin-bottom:6px;width:100%}
+.desktop-shell[data-rail="collapsed"] .d-agent-jump>.d-nav-label,
+.desktop-shell[data-rail="collapsed"] .d-agent-jump>.fine-print,
+.desktop-shell[data-rail="collapsed"] .d-agent-jump-body{display:none}
+.desktop-shell[data-rail="collapsed"] .d-agent-jump-item{justify-content:center;padding:6px 0}
+.desktop-shell[data-rail="collapsed"] .d-agent-jump-item .d-agent-dot{display:none}
+
+/* Workbench dock: three cards, each naming a real route and a frozen mode. */
+.desktop-shell .d-agent-dock{margin:0 0 14px;border:1px solid var(--d-line-2);border-radius:10px;
+ background:var(--d-panel);padding:14px 16px 12px;box-shadow:var(--d-shadow)}
+.desktop-shell .d-dock-head{display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:12px}
+.desktop-shell .d-dock-head h2{font-size:15px;font-weight:650;margin:2px 0 0;letter-spacing:-.01em}
+.desktop-shell .d-dock-head p{flex:1 1 340px;min-width:240px;margin:0;font-size:12.5px;color:var(--d-ink-2);line-height:1.6}
+/* The card group now carries one short caption instead of a paragraph, so it
+   keeps its natural width and sits next to the heading. */
+.desktop-shell .d-dock-head .d-dock-caption{flex:0 0 auto;min-width:0;font-size:12.5px;
+ color:var(--d-ink-2);align-self:baseline}
+.desktop-shell .d-agent-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.desktop-shell .d-agent-card{border:1px solid var(--d-line-2);border-left:3px solid var(--d-accent);
+ border-radius:8px;background:var(--d-hover-2);padding:10px 12px;min-width:0;display:flex;flex-direction:column}
+.desktop-shell .d-agent-card header{display:flex;align-items:center;gap:7px;min-width:0}
+.desktop-shell .d-agent-card h3{font-size:12.5px;font-weight:650;margin:0;white-space:nowrap}
+.desktop-shell .d-agent-badge{display:inline-grid;place-items:center;flex:0 0 20px;height:18px;
+ border-radius:4px;background:var(--d-accent);color:var(--d-accent-ink);font-size:10px;font-weight:700;letter-spacing:.04em}
+.desktop-shell .d-agent-intro{font-size:12.5px;line-height:1.55;color:var(--d-ink-2);margin:8px 0}
+.desktop-shell .d-agent-api{margin:0 0 8px;font-size:11.5px;line-height:1.5}
+.desktop-shell .d-agent-api dt{color:var(--d-ink-3);font-weight:600;margin-top:4px}
+.desktop-shell .d-agent-api dd{margin:1px 0 0;overflow-wrap:anywhere}
+.desktop-shell .d-agent-api code,.desktop-shell .d-agent-banner code{font-family:var(--d-num);
+ font-size:11.5px;color:var(--d-accent-2);font-variant-numeric:tabular-nums}
+.desktop-shell .d-pipeline-status:empty{display:none}
+.desktop-shell .d-agent-state{font-size:11.5px;line-height:1.5;color:var(--d-ink-2);
+ background:transparent;border:0;border-radius:0;padding:0;margin:0 0 9px;min-height:34px}
+.desktop-shell .d-agent-actions{margin-top:auto}
+.desktop-shell .d-agent-actions button{font-size:12.5px;padding:5px 10px;width:100%}
+.desktop-shell .d-agent-boundary{margin-top:9px;font-size:11.5px;color:var(--d-ink-2)}
+.desktop-shell .d-agent-boundary summary{cursor:pointer;color:var(--d-ink-3)}
+.desktop-shell .d-agent-boundary p{line-height:1.6;margin:6px 0 0}
+.desktop-shell .d-dock-note{margin:11px 0 0;line-height:1.6}
+.desktop-shell .d-section-label{font-size:11.5px;font-weight:600;letter-spacing:.03em;
+ color:var(--d-ink-3);margin:16px 0 6px}
+
+/* In-panel banner: the pinned mode and the exact route stay visible while the
+   user actually starts the Agent. */
+.desktop-shell .d-agent-banner{border:1px solid var(--d-ok-line);background:var(--d-soft-2);
+ border-radius:8px;padding:9px 12px;margin:0 0 12px}
+.desktop-shell .d-agent-banner-head{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.desktop-shell .d-agent-banner-head strong{font-size:12.5px}
+.desktop-shell .d-agent-banner p{font-size:12.5px;line-height:1.6;margin:2px 0}
+.desktop-shell .d-agent-banner .fine-print{color:var(--d-ink-2);margin-top:6px}
+.desktop-shell .d-agent-banner-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.desktop-shell .d-agent-banner-actions button{font-size:12.5px;padding:5px 10px}
+.desktop-shell .d-agent-banner-actions .fine-print{flex:1 1 220px;font-size:12.5px;margin:0}
+@media(max-width:1100px){.desktop-shell .d-agent-grid{grid-template-columns:1fr}}
+@media(max-width:980px){.desktop-shell .d-dock-head{display:block}
+ .desktop-shell .d-dock-head p{margin-top:7px}}
+
+/* ---- B+ : one-sentence top bar, real result badges, three-role pipeline -- */
+/* F07Z-81: the input grows into whatever the bar has left, up to a readable measure;
+   the drag region shrinks to a spacer, because dragging is never the user's first task. */
+.desktop-shell .d-topbar-omni{display:flex;align-items:center;flex:1 1 290px;max-width:460px;min-width:148px;height:28px;
+ border:1px solid var(--d-line-2);background:var(--d-input);border-radius:7px;overflow:hidden}
+.desktop-shell .d-topbar-omni:focus-within{border-color:var(--d-accent)}
+.desktop-shell .d-topbar-omni input{flex:1 1 auto;min-width:0;height:100%;border:0;outline:0;
+ background:transparent;color:var(--d-ink);font:inherit;font-size:13.5px;padding:0 8px}
+.desktop-shell .d-topbar-omni input::placeholder{color:var(--d-ink-3)}
+.desktop-shell .d-omni-send{flex:0 0 28px;height:100%;padding:0;border:0;border-left:1px solid var(--d-line-2);
+ background:var(--d-soft);color:var(--d-accent-2);font-size:14px;cursor:pointer}
+.desktop-shell .d-omni-send:disabled{opacity:.45;cursor:not-allowed}
+.desktop-shell .d-nav-badge{margin-left:auto;flex:0 0 auto;max-width:82px;overflow:hidden;
+ text-overflow:ellipsis;white-space:nowrap;background:var(--d-soft);border:1px solid var(--d-ok-line);
+ color:var(--d-ok-ink);border-radius:9px;padding:0 6px;font-family:var(--d-num);font-size:11.5px;
+ line-height:16px;font-weight:600;font-variant-numeric:tabular-nums}
+.desktop-shell[data-rail="collapsed"] .d-nav-badge{display:none}
+.desktop-shell .d-coordinator-details summary{cursor:pointer;list-style:none}
+.desktop-shell .d-coordinator-details summary::-webkit-details-marker{display:none}
+.desktop-shell .d-coordinator-details summary::before{content:"▾ ";color:var(--d-ink-3)}
+.desktop-shell .d-coordinator-details:not([open]) summary::before{content:"▸ "}
+.desktop-shell .d-pipeline{margin-bottom:14px;border-color:var(--d-ok-line);background:var(--d-soft-2)}
+.desktop-shell .d-pipeline>.d-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.desktop-shell .d-pipeline>.d-card-head h2{margin:2px 0 0;font-size:15px}
+.desktop-shell .d-pipeline>.d-card-head button{font-size:12.5px;white-space:nowrap;padding:6px 11px}
+.desktop-shell .d-pipeline>.fine-print{margin:0 0 10px}
+/* F07Z-80: steps read as one list inside the card. Phase is carried by a left bar, the tag,
+   and (failure only) a tint, instead of three more bordered boxes. */
+.desktop-shell .d-pipeline-steps{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.desktop-shell .d-pipeline-steps li{display:flex;align-items:flex-start;gap:10px;position:relative;
+ border:0;border-radius:0;background:transparent;padding:10px 2px 10px 13px}
+.desktop-shell .d-pipeline-steps li+li{border-top:1px solid var(--d-line-2)}
+.desktop-shell .d-pipeline-steps li::before{content:"";position:absolute;left:0;top:11px;bottom:11px;
+ width:2px;border-radius:2px;background:var(--d-line-3)}
+.desktop-shell .d-pipeline-steps li[data-phase="running"]::before{background:var(--d-accent)}
+.desktop-shell .d-pipeline-steps li[data-phase="done"]::before{background:var(--d-ok-line)}
+.desktop-shell .d-pipeline-steps li[data-phase="failed"]{background:var(--d-bad-bg)}
+.desktop-shell .d-pipeline-steps li[data-phase="failed"]::before{background:var(--d-bad-line)}
+.desktop-shell .d-pipeline-steps li[data-phase="skipped"]{opacity:.7}
+.desktop-shell .d-pipeline-index{flex:0 0 20px;width:20px;height:20px;border-radius:50%;display:grid;
+ place-items:center;background:var(--d-hover);color:var(--d-ink-2);font-family:var(--d-num);
+ font-size:11.5px;font-weight:600;font-variant-numeric:tabular-nums}
+.desktop-shell .d-pipeline-steps li[data-phase="done"] .d-pipeline-index{background:var(--d-accent);color:var(--d-accent-ink)}
+.desktop-shell .d-pipeline-body{flex:1 1 auto;min-width:0}
+.desktop-shell .d-pipeline-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.desktop-shell .d-pipeline-head strong{font-size:12.5px}
+.desktop-shell .d-pipeline-tag{font-size:11px;padding:0 6px}
+.desktop-shell .d-pipeline-tag[data-phase="done"]{background:var(--d-ok-bg);color:var(--d-ok-ink);border-color:var(--d-ok-line)}
+.desktop-shell .d-pipeline-tag[data-phase="failed"]{background:var(--d-bad-bg);color:var(--d-bad-ink);border-color:var(--d-bad-line)}
+.desktop-shell .d-pipeline-body code{display:block;font-size:11.5px;color:var(--d-ink-2);
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.desktop-shell .d-pipeline-body .fine-print{margin:3px 0 0}
+.desktop-shell .d-pipeline-detail{font-size:11.5px;line-height:1.55;margin:5px 0 0;
+ color:var(--d-ink-2);font-family:var(--d-num)}
+.desktop-shell .d-pipeline-summary{margin-top:10px;border:1px solid var(--d-ok-line);
+ border-radius:8px;padding:10px 12px;background:var(--d-panel)}
+.desktop-shell .d-pipeline-summary h3{font-size:12.5px;margin:0 0 8px}
+.desktop-shell .d-pipeline-numbers{display:flex;gap:22px;margin-bottom:6px}
+.desktop-shell .d-pipeline-numbers div{display:flex;align-items:baseline;gap:5px}
+.desktop-shell .d-pipeline-numbers span{font-size:11.5px;color:var(--d-ink-3)}
+.desktop-shell .d-pipeline-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.desktop-shell .d-pipeline-boundary{margin:10px 0 0}
+.desktop-shell .d-prep-plan{margin-top:8px;border:1px solid var(--d-line);border-radius:8px;padding:10px 12px;background:var(--d-panel)}
+.desktop-shell .d-prep-plan h4{font-size:12.5px;margin:0 0 6px}
+.desktop-shell .d-prep-plan p{margin:0 0 6px;font-size:12px;color:var(--d-ink-2)}
+.desktop-shell .d-prep-plan code{font-size:11.5px;color:var(--d-ink-3)}
+.desktop-shell .d-pipeline-noresume{margin-top:10px;border:1px dashed var(--d-line);border-radius:8px;padding:10px 12px}
+@media(max-width:1180px){.desktop-shell .d-topbar-omni{flex:1 1 200px}}
+@media(max-width:980px){.desktop-shell .d-pipeline>.d-card-head{display:block}
+ .desktop-shell .d-pipeline>.d-card-head button{margin-top:8px}}
+
+/* ---- F06F: publish-readiness UI convergence -------------------------------- */
+/* Empty state: one unmistakable primary action above the capability cards. */
+.desktop-shell .d-empty-cta{display:flex;align-items:center;gap:18px;justify-content:space-between;
+ margin:0 0 12px;padding:16px 18px;border-color:var(--d-ok-line);background:var(--d-soft-2)}
+.desktop-shell .d-empty-cta h2{font-size:16px;margin:0 0 4px}
+.desktop-shell .d-empty-cta p{margin:0;font-size:12.5px;color:var(--d-ink-2);max-width:62ch}
+.desktop-shell .d-empty-cta button{flex:0 0 auto;white-space:nowrap}
+.desktop-shell .d-section-note{margin:2px 0 8px;font-size:12.5px;color:var(--d-ink-3)}
+@media(max-width:980px){.desktop-shell .d-empty-cta{display:block}
+ .desktop-shell .d-empty-cta button{margin-top:10px}}
+
+/* The per-step ⓘ panel and the per-card tech block are gone (F07-E): routes and
+   frozen params are documented in the hand-off report, not rendered here. */
+.desktop-shell .d-pipeline-status{margin:5px 0 0;font-size:12.5px;color:var(--d-ink-2)}
+.desktop-shell .d-agent-api{margin:6px 0 0}
+
+/* Readability: no auxiliary label below 11px (Windows scaling / mixed CJK). */
+.desktop-shell .d-agent-jump-item small{font-size:11.5px}
+.desktop-shell .d-agent-jump>.fine-print{font-size:12.5px}
+.desktop-shell .d-nav-badge{font-size:11.5px;line-height:18px}
+.desktop-shell .d-agent-banner-actions .fine-print{font-size:12.5px}
+.desktop-shell .d-pipeline-numbers span{font-size:12.5px}
+
+/* The 980px media query predates F06C's Agent group: it collapsed the rail to
+   64px and hid .d-nav-label, but the later .d-agent-jump rules only handled
+   [data-rail="collapsed"]. Collapse it for narrow windows too, and clamp its
+   width so nowrap text can never stretch the flex column past the rail. */
+@media(max-width:980px){
+ .desktop-shell .d-agent-jump{box-sizing:border-box;min-width:0;max-width:100%;width:100%;
+  overflow:hidden;padding:4px 2px;margin-bottom:6px;border:0;background:transparent}
+ .desktop-shell .d-agent-jump>.d-nav-label,
+ .desktop-shell .d-agent-jump>.fine-print,
+ .desktop-shell .d-agent-jump-body{display:none}
+ .desktop-shell .d-agent-jump-item{justify-content:center;min-width:0;width:100%;padding:7px 0}
+ .desktop-shell .d-agent-dot{margin-top:0;flex:0 0 8px;width:8px;height:8px}
+}
+
+/* Collapsed / narrow rail: three identical dots are not distinguishable, so show
+   a one-character glyph instead. title + aria-label still carry the full name. */
+.desktop-shell .d-agent-short{display:none;flex:0 0 auto;font-size:11.5px;font-weight:700;
+ color:var(--d-accent-2);line-height:1.2}
+.desktop-shell[data-rail="collapsed"] .d-agent-short{display:block}
+.desktop-shell[data-rail="collapsed"] .d-agent-dot{display:none}
+@media(max-width:980px){
+ .desktop-shell .d-agent-short{display:block}
+ .desktop-shell .d-agent-dot{display:none}
+ /* The grouped dot carries its own centring box, so it needs an override with
+    the same specificity to stay hidden in the narrow rail. */
+ .desktop-shell .d-agent-jump-item .d-agent-dot{display:none}
+}
+
+
+/* F07Z-140: hierarchy pass after the design review. The user's own state now comes first in
+   CareerPanel.tsx (goal card above the pipeline, coordinator details below the session list).
+   These rules only re-weight what already exists: the palette and the type scale are the
+   measured ones (F07Z-75 contrast, F07Z-90 sizes), not a second token system. */
+.desktop-shell .d-goal-eyebrow{display:block;margin:0 0 3px;color:var(--d-ink-3);font-size:11.5px;letter-spacing:.06em}
+/* The green spine repeated the brand accent four times per screen. A neutral spine plus
+   quiet ability tags keeps both cards as entry points instead of competing CTAs. */
+.desktop-shell .d-agent-card{border-left-width:1px;border-left-color:var(--d-line-2)}
+.desktop-shell .d-agent-card .tag{background:transparent;border:0;padding:0;color:var(--d-ink-3);line-height:1.5}
+/* The card button keeps the `primary` class on purpose: d01-desktop-f06f pins that selector
+   for the "both roles wait for a goal" contract. Visually it steps back, so the screen keeps
+   a single accent action (the goal card's 开始面试 / 一键准备). */
+.desktop-shell .d-agent-card .primary{background:var(--d-hover);border-color:var(--d-line);color:var(--d-ink)}
+.desktop-shell .d-agent-card .primary:hover:not(:disabled){background:var(--d-line-2);border-color:var(--d-line-3)}
+/* The pipeline wore a green tinted card, which read as a status rather than a container. */
+.desktop-shell .d-pipeline{background:var(--d-panel);border-color:var(--d-line)}
+/* Keyboard focus was styled only on rail items; everything else kept the browser ring, which
+   is invisible on the tinted cards in Windows WebView2. */
+.desktop-shell :is(button,input,select,textarea,summary,a):not(.d-nav-item):focus-visible{outline:2px solid var(--d-accent);outline-offset:2px}
+
+/* F07Z-140: at 390px the bar was 552px wide (rail + omni floor + theme group + account),
+   so the page scrolled sideways. The theme switch also lives in 设置 → 外观, so the bar
+   keeps only what a narrow screen needs: the one-sentence input and the account menu. */
+/* F07Z-140: at 390px the bar measured 552px wide (rail toggle + dev A/B marker + omni floor
+   + theme group + account), so the page scrolled sideways. A phone needs three things: the
+   one-sentence input, the account menu and the rail toggle. The theme switch also lives in
+   设置 → 外观, and the A/B marker only exists in dev builds. */
+@media(max-width:560px){
+  .desktop-shell .d-theme-quick{display:none}
+  .desktop-shell .d-ui-variant{display:none}
+  .desktop-shell .d-topbar-omni{flex:1 1 auto;min-width:0}
+  .desktop-shell .d-account>summary{max-width:132px;overflow:hidden;text-overflow:ellipsis}
+  /* On the workbench the context bar only repeated the page itself (target, status, page
+     name); the other panes keep it because it carries their session/selection line. */
+  .desktop-shell[data-pane="workbench"] .desktop-context{display:none}
+}
+
+/* F07Z-141: second-round pass. One primary action, one target surface, and one lightly
+   emphasised Next Action. Everything below reuses the existing --d-* palette; only the
+   action surface adds two tokens, because the doc allows exactly one gentle emphasis. */
+.desktop-shell{--d-action-bg:#f6fbf8;--d-action-line:#dceade}
+.desktop-shell[data-theme="dark"]{--d-action-bg:#101a14;--d-action-line:#1f2f26}
+/* The empty state used to be a green CTA row plus a white form card. It is one card now,
+   so the row layout would squeeze the form: block layout, plain surface, one submit. */
+.desktop-shell .d-empty-cta{display:block;background:var(--d-panel);border-color:var(--d-line)}
+/* The next action is the only container allowed a soft tint (doc 37/38). */
+.desktop-shell .d-pipeline{background:var(--d-action-bg);border-color:var(--d-action-line)}
+.desktop-shell .d-pipeline-lede{font-size:13.5px;color:var(--d-ink-2);margin:2px 0 4px}
+.desktop-shell .d-pipeline .eyebrow{display:block;margin:0}
+/* Optional goal conditions: a native disclosure, quiet on both sizes. */
+.desktop-shell .d-goal-more{margin-top:14px;border:1px solid var(--d-line-2);border-radius:6px;padding:0 12px}
+.desktop-shell .d-goal-more>summary{cursor:pointer;padding:9px 0;font-size:12.5px;color:var(--d-ink-2)}
+.desktop-shell .d-goal-more[open]>summary{padding-bottom:6px}
+/* The goal card action is secondary now; keep it from looking disabled. */
+.desktop-shell .d-goal-row .secondary{padding:7px 14px;font-size:13px;background:var(--d-panel);border-color:var(--d-line)}
+.desktop-shell .d-goal-row .secondary:hover:not(:disabled){background:var(--d-hover);border-color:var(--d-line-3)}
+
+/* F07Z-142: the preparation chain. A quiet single row states where the user is; it is not
+   navigation (no clicks, no tabs) and it reuses the existing palette: accent only marks the
+   current step, ink-3 keeps the rest subdued. */
+.desktop-shell .d-progress{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:0 0 12px;
+  padding:8px 12px;border:1px solid var(--d-line-2);border-radius:6px;background:var(--d-panel);
+  font-size:12.5px;color:var(--d-ink-3)}
+.desktop-shell .d-progress-step{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.desktop-shell .d-progress-mark{font-size:11px;line-height:1;color:var(--d-ink-3)}
+.desktop-shell .d-progress-completed{color:var(--d-ink-2)}
+.desktop-shell .d-progress-completed .d-progress-mark{color:var(--d-accent)}
+.desktop-shell .d-progress-current{color:var(--d-ink);font-weight:600}
+.desktop-shell .d-progress-current .d-progress-mark{color:var(--d-accent)}
+.desktop-shell .d-progress-attention{color:var(--d-ink);font-weight:600}
+.desktop-shell .d-progress-attention .d-progress-mark{color:var(--d-bad-ink)}
+/* The Next Action owns one button; the one-click pipeline steps back to a text link so the
+   screen never shows two competing primaries (F07Z-141 rule kept). */
+.desktop-shell .d-pipeline-head{align-items:flex-start}
+.desktop-shell .d-pipeline-cta{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.desktop-shell .d-pipeline-why{margin:2px 0 6px;font-size:12.5px;color:var(--d-ink-2);max-width:58ch}
+.desktop-shell .d-pipeline-run-alt{font-size:12.5px;color:var(--d-ink-3);padding:2px 0}
+.desktop-shell .d-pipeline-run-alt:hover:not(:disabled){color:var(--d-accent)}
+
+/* F07Z-142: the draft is the end of the materials page, so it gets one quiet confirmation
+   with the next step next to it. Neutral surface - the accent stays on the workbench CTA. */
+.desktop-shell .d-draft-done{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;margin:0 0 12px;padding:11px 14px;border:1px solid var(--d-ok-line);
+  border-radius:7px;background:var(--d-ok-bg)}
+.desktop-shell .d-draft-done strong{font-size:13.5px}
+.desktop-shell .d-draft-done p{margin:2px 0 0;font-size:12.5px;color:var(--d-ink-2)}
+.desktop-shell .d-materials>.d-pane-head{margin-bottom:12px}
+.desktop-shell .d-materials>.d-pane-head h1{font-size:19px;letter-spacing:-.02em;margin:0 0 2px;font-weight:600}
+.desktop-shell .d-materials>.d-pane-head p{margin:0;color:var(--d-ink-2);font-size:13.5px}
+
+/* F07Z-143: the review is a document, not a dashboard. One column, separators instead of
+   cards, and exactly one accent: the next action. */
+.desktop-shell .d-review{max-width:820px;margin-top:6px}
+.desktop-shell .d-review-head{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--d-line)}
+.desktop-shell .d-review-title .eyebrow{margin:0}
+.desktop-shell .d-review-title h2{font-size:19px;line-height:1.3;letter-spacing:-.02em;margin:4px 0 4px;font-weight:600}
+.desktop-shell .d-review-meta{margin:0;font-size:13px;color:var(--d-ink-2)}
+.desktop-shell .d-review-meta strong{color:var(--d-ink);font-weight:600}
+.desktop-shell .d-review-badges{display:flex;gap:6px;flex-wrap:wrap}
+.desktop-shell .d-review-badges .tag{background:var(--d-soft-2);border:1px solid var(--d-line);color:var(--d-ink-2)}
+.desktop-shell .d-review-modenote{margin:8px 0 0}
+.desktop-shell .d-review-block{padding:16px 0;border-bottom:1px solid var(--d-line-2)}
+.desktop-shell .d-review-block h3{font-size:14px;margin:0 0 10px;font-weight:600;color:var(--d-ink)}
+.desktop-shell .d-review .interview-report-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 10px}
+.desktop-shell .d-review-answer{padding:12px 0;border-top:1px solid var(--d-line-2)}
+.desktop-shell .d-review-answer:first-of-type{border-top:0;padding-top:0}
+.desktop-shell .d-review-question{margin:4px 0 10px;font-size:14.5px;line-height:1.55;color:var(--d-ink)}
+.desktop-shell .d-review-answer-label{margin-top:2px}
+.desktop-shell .d-review-answer-text{margin:4px 0 0;font-size:13.5px;line-height:1.65;color:var(--d-ink-2);
+  white-space:pre-wrap;padding-left:10px;border-left:2px solid var(--d-line-2)}
+.desktop-shell .d-review .interview-observation{margin:14px 0 0;padding:0}
+.desktop-shell .d-review-next{padding-top:16px}
+.desktop-shell .d-review-next p{margin:4px 0 10px;font-size:13px;color:var(--d-ink-2);max-width:60ch}
+.desktop-shell .d-review-next .d-report-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0}
+/* Page context (spec PART C): a quiet target name under the page title. */
+.desktop-shell .d-pane-goal{margin:2px 0 6px;font-size:12.5px;color:var(--d-accent);font-weight:600;letter-spacing:.01em}
+.desktop-shell .d-goal-detail{margin:-4px 0 6px}
+@media(max-width:980px){
+ .desktop-shell .d-review .interview-report-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+ .desktop-shell .d-review-head{display:block}
+ .desktop-shell .d-review-badges{margin-top:8px}
+ .desktop-shell .d-review-question{font-size:14px}
+ .desktop-shell .d-review-next .d-report-actions{flex-direction:column;align-items:stretch}
+ .desktop-shell .d-review-next .d-report-actions .text-button{align-self:flex-start}
+}
+/* F07Z-143: the one-click flow is an option once the state-driven CTA owns the card. */
+.desktop-shell .d-pipeline-more{margin-top:12px;border-top:1px solid var(--d-line-2);padding-top:9px}
+.desktop-shell .d-pipeline-more>summary{cursor:pointer;font-size:12.5px;color:var(--d-ink-2);list-style:none}
+.desktop-shell .d-pipeline-more>summary::-webkit-details-marker{display:none}
+.desktop-shell .d-pipeline-more>summary::before{content:"\25B8 ";color:var(--d-ink-3)}
+.desktop-shell .d-pipeline-more[open]>summary::before{content:"\25BE "}
+.desktop-shell .d-pipeline-more>summary:hover{color:var(--d-accent)}
+.desktop-shell .d-pipeline-more[open]>summary{margin-bottom:10px}
+
+/* F07Z-145 / F07Z-146: the last hand-offs, the technical-detail disclosure and the optional-step
+   hint. All of them reuse the existing palette; none of them introduces a new surface. */
+.desktop-shell .d-progress-hint{margin:-4px 0 12px;color:var(--d-ink-3)}
+.desktop-shell .d-position-next{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:10px}
+.desktop-shell .d-position-next p{margin:0;flex:1 1 260px;font-size:13px;color:var(--d-ink-2)}
+.desktop-shell .d-position-next strong{font-size:13.5px}
+.desktop-shell .d-app-guard{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.desktop-shell .d-app-guard p{margin:0;flex:1 1 260px}
+.desktop-shell .d-error-block{display:flex;flex-direction:column;gap:4px}
+.desktop-shell .d-error-details{font-size:12px;color:var(--d-ink-3)}
+.desktop-shell .d-error-details>summary{cursor:pointer;font-size:12.5px;color:var(--d-ink-2)}
+.desktop-shell .d-error-details[open]>summary{margin-bottom:4px}
+.desktop-shell .d-error-details pre{margin:0;padding:8px 10px;background:var(--d-soft-2);border:1px solid var(--d-line);
+  border-radius:6px;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--d-ink-2)}
+.desktop-shell .d-clamp{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.desktop-shell .d-answer-toggle{align-self:flex-start;margin-top:4px}
+
+/* A disabled primary must not look pressable: the applications guard and the submitting states
+   rely on that. Enabled buttons are untouched, so the contrast scan is unaffected. */
+.desktop-shell button.primary:disabled,
+.desktop-shell button.secondary:disabled{opacity:.55;cursor:not-allowed}
+
+/* F07Z-150: a deep link that points at a missing session is a route problem, not a form error. */
+.desktop-shell .d-route-missing{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;
+  margin:10px 0;padding:12px 14px;border:1px solid var(--d-line);border-radius:7px;background:var(--d-soft-2)}
+.desktop-shell .d-route-missing p{margin:0;flex:1 1 260px;font-size:13px;color:var(--d-ink-2)}
+.desktop-shell .d-route-missing strong{font-size:13.5px}
+
+/* F07Z-151: the position brief. A quiet sub-panel inside the research card - the facts, the
+   requirements with their JD quotes, the literal skill words and what is still unknown. */
+.desktop-shell .d-brief{margin:12px 0 16px;padding:14px 16px;border:1px solid var(--d-line-2);
+  border-radius:8px;background:var(--d-panel)}
+.desktop-shell .d-brief-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.desktop-shell .d-brief-head h3{font-size:16px;margin:2px 0 8px;letter-spacing:-.01em}
+.desktop-shell .d-brief-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px 14px;margin-bottom:4px}
+.desktop-shell .d-brief-facts span{font-size:12.5px;color:var(--d-ink-2);overflow-wrap:anywhere}
+.desktop-shell .d-brief-facts b{font-weight:600;color:var(--d-ink-3);margin-right:6px}
+.desktop-shell .d-brief-section{padding-top:10px;margin-top:10px;border-top:1px solid var(--d-line-2)}
+.desktop-shell .d-brief-section h4{font-size:13px;margin:0 0 6px}
+.desktop-shell .d-brief-section ul{margin:4px 0 8px;padding-left:18px;font-size:13px;line-height:1.6;color:var(--d-ink-2)}
+.desktop-shell .d-brief-section q{display:block;font-size:12px;color:var(--d-ink-3);quotes:"\201C" "\201D"}
+.desktop-shell .d-brief-chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.desktop-shell .d-brief-section dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 12px;margin:4px 0;font-size:12.5px}
+.desktop-shell .d-brief-section dt{color:var(--d-ink-3)}
+.desktop-shell .d-brief-section dd{margin:0;color:var(--d-ink-2);overflow-wrap:anywhere}
+.desktop-shell .d-brief-raw summary{cursor:pointer;font-size:12.5px;color:var(--d-ink-2);margin-top:8px}
+.desktop-shell .d-brief-raw p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12.5px;line-height:1.6;
+  color:var(--d-ink-2);max-height:260px;overflow:auto;margin:6px 0 0}
+.desktop-shell .d-job-points{margin:2px 0 10px;color:var(--d-ink-2)}
+
+/* F07Z-151 (arbiter Q3=C): a deep link names a goal, so until it is read back we show a loading
+   surface - never the create form. A failed read gets its own recovery surface. */
+.desktop-shell .d-goal-route{background:var(--d-panel)}
+.desktop-shell .d-goal-route-state{padding:4px 0 2px}
+.desktop-shell .d-goal-route-state h2{font-size:18px;margin:0 0 6px;letter-spacing:-.01em}
+.desktop-shell .d-goal-route-state .d-form-foot{margin-top:10px}
+
+/* 收尾 01: a resolved retest suggestion under its observation. Read-only on purpose - there is
+   no button that pretends to start a drill the interview guard would reject. */
+.desktop-shell .d-review-retest{margin-top:10px;padding:10px 12px;border:1px solid var(--d-line);
+  border-radius:8px;background:var(--d-panel)}
+.desktop-shell .d-review-retest-question{margin:4px 0 6px;font-weight:600;line-height:1.6}
+.desktop-shell .d-review-retest a{font-size:12.5px}

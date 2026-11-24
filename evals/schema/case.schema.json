@@ -1,0 +1,278 @@
+{
+  "$defs": {
+    "Annotation": {
+      "additionalProperties": false,
+      "properties": {
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "confidence": {
+          "default": "high",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "review_status": {
+          "default": "pending",
+          "enum": [
+            "human_reviewed",
+            "pending",
+            "ambiguous"
+          ],
+          "title": "Review Status",
+          "type": "string"
+        },
+        "reviewer": {
+          "default": "",
+          "title": "Reviewer",
+          "type": "string"
+        },
+        "reviewed_at": {
+          "default": "",
+          "title": "Reviewed At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "rationale"
+      ],
+      "title": "Annotation",
+      "type": "object"
+    },
+    "Check": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "any_of": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Any Of",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "any_of"
+      ],
+      "title": "Check",
+      "type": "object"
+    },
+    "Expected": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_labels": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Allowed Labels",
+          "type": "array"
+        },
+        "must_mention": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Check"
+          },
+          "title": "Must Mention",
+          "type": "array"
+        },
+        "must_not": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Check"
+          },
+          "title": "Must Not",
+          "type": "array"
+        },
+        "reference_points": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Reference Points",
+          "type": "array"
+        },
+        "c1_violations": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "C1 Violations",
+          "type": "array"
+        },
+        "grounding_result": {
+          "anyOf": [
+            {
+              "enum": [
+                "pass",
+                "violation",
+                "human_review_required"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Grounding Result"
+        },
+        "forbidden_actions": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Forbidden Actions",
+          "type": "array"
+        },
+        "c2_review": {
+          "default": "not_applicable",
+          "enum": [
+            "required",
+            "sampled",
+            "not_applicable"
+          ],
+          "title": "C2 Review",
+          "type": "string"
+        }
+      },
+      "title": "Expected",
+      "type": "object"
+    },
+    "Input": {
+      "additionalProperties": false,
+      "properties": {
+        "question": {
+          "default": "",
+          "title": "Question",
+          "type": "string"
+        },
+        "reference": {
+          "default": "",
+          "title": "Reference",
+          "type": "string"
+        },
+        "answer": {
+          "default": "",
+          "title": "Answer",
+          "type": "string"
+        },
+        "rewrite": {
+          "default": "",
+          "title": "Rewrite",
+          "type": "string"
+        },
+        "sources": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Sources",
+          "type": "array"
+        },
+        "injected": {
+          "default": "",
+          "title": "Injected",
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "#/$defs/Policy",
+          "default": {
+            "has_reference": true,
+            "max_questions": 1
+          }
+        }
+      },
+      "title": "Input",
+      "type": "object"
+    },
+    "Policy": {
+      "additionalProperties": false,
+      "properties": {
+        "has_reference": {
+          "default": true,
+          "title": "Has Reference",
+          "type": "boolean"
+        },
+        "max_questions": {
+          "default": 1,
+          "maximum": 6,
+          "minimum": 1,
+          "title": "Max Questions",
+          "type": "integer"
+        }
+      },
+      "title": "Policy",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "case_version": {
+      "default": 1,
+      "title": "Case Version",
+      "type": "integer"
+    },
+    "slice": {
+      "enum": [
+        "observation",
+        "abstention",
+        "material_grounding",
+        "injection"
+      ],
+      "title": "Slice",
+      "type": "string"
+    },
+    "severity": {
+      "default": "medium",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "tags": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "input": {
+      "$ref": "#/$defs/Input"
+    },
+    "expected": {
+      "$ref": "#/$defs/Expected"
+    },
+    "annotation": {
+      "$ref": "#/$defs/Annotation"
+    }
+  },
+  "required": [
+    "id",
+    "slice",
+    "input",
+    "expected",
+    "annotation"
+  ],
+  "title": "Case",
+  "type": "object"
+}

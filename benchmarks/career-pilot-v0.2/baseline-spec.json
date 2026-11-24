@@ -1,0 +1,37 @@
+{
+  "version": "ja09-baseline-plan-v2",
+  "current_smoke_adapters": [
+    "system_scripted",
+    "fixed_rules"
+  ],
+  "frozen_before_first_pilot_run": true,
+  "planned_same_model_baseline": {
+    "status": "Implemented_pending_live_verification",
+    "model": "same provider/model/settings as candidate; select at evaluation time",
+    "resources": "same initial task state, tools, authorized evidence, total HTTP/cost and stop limits",
+    "workflow": "fixed read-goal/read-application when applicable, then model selection; compare to dynamic graph without withholding useful evidence",
+    "accounting": "all roles/retries/judges count; new stage authorization required; no old ledger reset"
+  },
+  "smoke_rules": "read goal; respect explicit stop; clarify multiple applications; prefer evidenced retest, otherwise first server action; JD training or confirmed-direction research; clarify unknown direction",
+  "comparison": "retain every attempt and task pairing; do not use scripted results to claim multi-agent or LLM quality gains",
+  "live_adapters": [
+    "system_live",
+    "fixed_prefetch_live"
+  ],
+  "live_difference": "Same model/policy/SYSTEM_PROMPT/tools/SQL gates and max3 HTTP per attempt; fixed_prefetch executes real goal and single-application reads before the same bounded model loop. Different actual HTTP counts are measured, not equalized.",
+  "paid_setup": "Scripted fixture generation only; setup steps separate from evaluated real HTTP; paid synthetic users/goals/ledger retained.",
+  "initial_paid_pilot": {
+    "task_ids": [
+      "G03",
+      "G04",
+      "A02",
+      "M03"
+    ],
+    "repeats": 1,
+    "max_attempts": 8,
+    "max_http_attempts": 24,
+    "max_cny": 2,
+    "status": "not_authorized_or_run_by_this_spec"
+  },
+  "smoke_not_a_same_model_comparison": true
+}

@@ -1,0 +1,20 @@
+{
+  "suite": "material-claims",
+  "version": "material-claims-v0.1",
+  "cases": 13,
+  "labels": {
+    "violation": 6,
+    "faithful": 7
+  },
+  "families": [
+    "activity",
+    "frequency",
+    "number",
+    "outcome",
+    "responsibility",
+    "role_marker"
+  ],
+  "sha256": {
+    "cases.jsonl": "ca95f6233ce39ad2cd3789bb3920277c597f45f4e04fa648ce613c31875d2db2"
+  }
+}

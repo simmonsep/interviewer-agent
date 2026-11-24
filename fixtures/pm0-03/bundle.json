@@ -1,0 +1,30 @@
+{
+  "schema_version": "pm003-v1",
+  "origin": "synthetic",
+  "sessions": [
+    {"id":"session-a","user_id":"user-a","version":1,"question_id":"q-tool-safety","answer_id":"answer-a"},
+    {"id":"session-empty","user_id":"user-a","version":1,"question_id":"q-tool-safety","answer_id":null},
+    {"id":"session-b","user_id":"user-b","version":1,"question_id":"q-tool-safety","answer_id":"answer-b"}
+  ],
+  "questions": [{
+    "id":"q-tool-safety","target_role":"agent-intern",
+    "text":"面试训练Agent读取用户资料时，只有JSON Schema参数校验是否足够？还需要检查什么？",
+    "rubric":["区分参数形状校验与身份/资源授权","说明用户、会话与资料版本绑定","引用当前回答中的实际表述，不推断未展示的能力"],
+    "sources":[{"source_id":"kb-tool-safety","version":"v1"}]
+  }],
+  "evidence": [
+    {"source_id":"kb-tool-safety","version":"v1","owner_user_id":null,"origin":"synthetic","lines":[
+      "参数Schema校验只约束数据形状，不能证明调用者有权访问资源。",
+      "工具执行前应核对服务端绑定用户、会话、允许资源和资料版本。",
+      "评价应引用用户实际回答；引用有效不代表评价语义已经正确。"
+    ]},
+    {"source_id":"private-user-b","version":"v1","owner_user_id":"user-b","origin":"synthetic","lines":["PRIVATE-B-CANARY：另一合成用户的资料，不得返回给user-a。"]}
+  ],
+  "answers": [
+    {"id":"answer-a","version":"v1","user_id":"user-a","session_id":"session-a","question_id":"q-tool-safety","origin":"synthetic_fixture","hints_used":0,"lines":[
+      "Schema只能检查参数格式，不能代替用户权限检查。",
+      "工具里还要检查当前用户和资料所属用户是否一致。"
+    ]},
+    {"id":"answer-b","version":"v1","user_id":"user-b","session_id":"session-b","question_id":"q-tool-safety","origin":"synthetic_fixture","hints_used":1,"lines":["ANSWER-B-CANARY：另一合成用户的回答。"]}
+  ]
+}

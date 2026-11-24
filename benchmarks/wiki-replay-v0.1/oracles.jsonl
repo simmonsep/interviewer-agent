@@ -1,0 +1,12 @@
+{"id":"W01","wiki_offered":true,"wiki_used_in_script":true,"review_focus":"是否沿用前十结果继续区分召回与送入模型的步骤。"}
+{"id":"W02","wiki_offered":true,"wiki_used_in_script":false,"review_focus":"是否降低问题难度，让答题者先说出一个可以观察的信号。"}
+{"id":"W03","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"应保持假设口径，面试前缀未确认候选人上线经历。"}
+{"id":"W04","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"有分歧的候选不应进入送模题包，仍应追问测量方法。"}
+{"id":"W05","wiki_offered":true,"wiki_used_in_script":true,"review_focus":"是否从已回答的快照机制推进到外部效果的独立核对。"}
+{"id":"W06","wiki_offered":true,"wiki_used_in_script":false,"review_focus":"是否先帮助用户区分数据边界，再追问实现。"}
+{"id":"W07","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"缺项目材料时，应继续问假设问题且不引用虚构的线上环境。"}
+{"id":"W08","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"应保留依赖和冲突条件，不能接受未经验证的极端结论。"}
+{"id":"W09","wiki_offered":true,"wiki_used_in_script":true,"review_focus":"应检验重复标识输入不一致的边界，而非反复定义幂等。"}
+{"id":"W10","wiki_offered":true,"wiki_used_in_script":false,"review_focus":"回答初始概念不完整时，应保证下一题仍能具体作答。"}
+{"id":"W11","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"在未确认项目经历的情况下询问场景，避免假设候选人已实施。"}
+{"id":"W12","wiki_offered":false,"wiki_used_in_script":false,"review_focus":"冲突规则不可成为评分依据，问题应继续覆盖成功状态未知的处理。"}

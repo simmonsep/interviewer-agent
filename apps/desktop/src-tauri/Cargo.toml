@@ -1,0 +1,24 @@
+[package]
+name = "interview-desktop-probe"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[build-dependencies]
+tauri-build = "=2.7.4"
+
+[dependencies]
+tauri = "=2.12.5"
+serde_json = "1"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "cookies"] }
+
+# Job objects make the OS close our children when this process dies for ANY reason
+# (clean exit, crash, or an external kill), so no orphaned API or Worker can survive
+# the window that started it. Already in the dependency tree via tauri.
+[target.'cfg(windows)'.dependencies]
+# Win32_Security_Credentials carries CredWriteW/CredReadW/CredDeleteW: the local identity's
+# password lives in the Credential Manager instead of the webview profile (F07Z-83).
+windows-sys = { version = "0.61", features = ["Win32_System_JobObjects", "Win32_System_Threading", "Win32_Foundation", "Win32_Security_Credentials"] }
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]

@@ -1,0 +1,24 @@
+{
+  "schema_version": 3,
+  "name": "我的Java标准输入输出练习",
+  "items": [
+    {
+      "item_id": "sum-two",
+      "kind": "java_programming",
+      "roles": ["java-backend", "ai-application"],
+      "title": "两个整数相加",
+      "question": "从标准输入读取两个整数，范围-1000000到1000000，输出它们的和及换行。本题仅演示自定义题包流程，不是能力评测。",
+      "reference": "读取两个整数，按题意输出和。提供的两个用例不是完整测试覆盖证明。",
+      "source_note": "项目原创流程示例，可复制为自己的私有题库。",
+      "programming": {
+        "profile": "java21-stdio-v1",
+        "starter": "import java.util.*;\npublic class Main { public static void main(String[] args) { Scanner in=new Scanner(System.in); long a=in.nextLong(),b=in.nextLong(); /* TODO */ } }\n",
+        "reference_solution": "import java.util.*;\npublic class Main { public static void main(String[] args) { Scanner in=new Scanner(System.in); System.out.println(in.nextLong()+in.nextLong()); } }\n",
+        "cases": [
+          {"id":"sample-1","visibility":"public","input":"2 3\n","output":"5\n"},
+          {"id":"check-negative","visibility":"hidden","input":"-4 7\n","output":"3\n"}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "suite": "interview-context",
+  "version": "interview-context-v0.1",
+  "question": "After the six-turn window drops an earlier question, can the model still get back to it? Pre-S02A baseline vs the current compiled view, on the same frozen snapshot.",
+  "arms": {
+    "A": "benchmarks/interview-context-v0.1/legacy.py: scope_view copied verbatim from backend/src/interview_agent/interviews/agent.py at b1c657a^ (S02A's parent)",
+    "B": "interview_agent.interviews.context.compile_interview_context"
+  },
+  "baseline_source": {
+    "revision": "32cd5ec747247d42259630ee3634d094500b4068",
+    "revision_label": "b1c657a^",
+    "path": "backend/src/interview_agent/interviews/agent.py",
+    "extraction": "from 'def scope_view(scope):' to 'async def interview(scope:'"
+  },
+  "cost": "0 (no model call, no database, no clock)",
+  "sha256": {
+    "legacy.py": "0f31a9e054346ddbb723cac729366aedffad0d89bbf2133fda969d3180b673c0"
+  }
+}

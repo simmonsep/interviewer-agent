@@ -1,0 +1,12 @@
+{
+  "stage": "CORE-02-01",
+  "package": "pypdf",
+  "version": "6.21.4",
+  "license_expression": "BSD-3-Clause",
+  "source": "installed locked distribution; pypdf-6.21.4.dist-info/licenses/LICENSE",
+  "upstream": "https://pypi.org/project/pypdf/6.21.4/",
+  "notice_path": "licenses/pypdf-6.21.4/00-LICENSE",
+  "sha256": "a97ac230e5f33ef10a5367a850eb01f91f1a0b064e34742c7794d2294557f524",
+  "historical_manifest_rewritten": false,
+  "distribution_approved": false
+}

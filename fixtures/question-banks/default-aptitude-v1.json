@@ -1,0 +1,746 @@
+{
+ "schema_version": 2,
+ "name": "行测 · 数量关系与资料分析",
+ "items": [
+  {
+   "item_id": "math-markup-discount",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 先涨后降",
+   "question": "某商品原价 240 元，先涨价 25%，再降价 20%。最终价格是多少元？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "百分比"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "240 元"
+    },
+    {
+     "option_id": "B",
+     "text": "216 元"
+    },
+    {
+     "option_id": "C",
+     "text": "250 元"
+    },
+    {
+     "option_id": "D",
+     "text": "288 元"
+    }
+   ],
+   "correct_option_ids": [
+    "A"
+   ]
+  },
+  {
+   "item_id": "math-work-days",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 合作工期",
+   "question": "一项工作，甲乙合作 12 天完成，甲单独做需要 20 天。乙单独做需要多少天？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "工程"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "25 天"
+    },
+    {
+     "option_id": "B",
+     "text": "28 天"
+    },
+    {
+     "option_id": "C",
+     "text": "35 天"
+    },
+    {
+     "option_id": "D",
+     "text": "30 天"
+    }
+   ],
+   "correct_option_ids": [
+    "D"
+   ]
+  },
+  {
+   "item_id": "math-three-digit",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 数字推理",
+   "question": "一个三位数，各位数字之和为 15，百位数字比十位数字大 2，个位数字是 5。十位数字是多少？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "数字"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "5"
+    },
+    {
+     "option_id": "B",
+     "text": "6"
+    },
+    {
+     "option_id": "C",
+     "text": "4"
+    },
+    {
+     "option_id": "D",
+     "text": "3"
+    }
+   ],
+   "correct_option_ids": [
+    "C"
+   ]
+  },
+  {
+   "item_id": "math-salt-water",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 浓度稀释",
+   "question": "有 20% 的盐水 200 克，加入多少克水后浓度变为 10%？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "浓度"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "400 克"
+    },
+    {
+     "option_id": "B",
+     "text": "200 克"
+    },
+    {
+     "option_id": "C",
+     "text": "100 克"
+    },
+    {
+     "option_id": "D",
+     "text": "150 克"
+    }
+   ],
+   "correct_option_ids": [
+    "B"
+   ]
+  },
+  {
+   "item_id": "math-two-workers",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 两人合作",
+   "question": "甲单独完成一项工作需要 6 天，乙单独完成需要 4 天。两人合作需要多少天？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "工程"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "2.4 天"
+    },
+    {
+     "option_id": "B",
+     "text": "2 天"
+    },
+    {
+     "option_id": "C",
+     "text": "2.5 天"
+    },
+    {
+     "option_id": "D",
+     "text": "3 天"
+    }
+   ],
+   "correct_option_ids": [
+    "A"
+   ]
+  },
+  {
+   "item_id": "math-remainder",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 余数",
+   "question": "一个正整数除以 7 余 3，除以 5 余 2。满足条件的最小正整数是多少？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "余数"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "12"
+    },
+    {
+     "option_id": "B",
+     "text": "23"
+    },
+    {
+     "option_id": "C",
+     "text": "27"
+    },
+    {
+     "option_id": "D",
+     "text": "17"
+    }
+   ],
+   "correct_option_ids": [
+    "D"
+   ]
+  },
+  {
+   "item_id": "math-distance",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 行程",
+   "question": "一辆车以 60 千米/小时行驶 2 小时 30 分钟，行驶距离是多少千米？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "行程"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "140 千米"
+    },
+    {
+     "option_id": "B",
+     "text": "180 千米"
+    },
+    {
+     "option_id": "C",
+     "text": "150 千米"
+    },
+    {
+     "option_id": "D",
+     "text": "120 千米"
+    }
+   ],
+   "correct_option_ids": [
+    "C"
+   ]
+  },
+  {
+   "item_id": "math-rectangle-area",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 面积变化",
+   "question": "一个长方形的长增加 20%，宽减少 20%。它的面积如何变化？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "几何"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "减少 20%"
+    },
+    {
+     "option_id": "B",
+     "text": "减少 4%"
+    },
+    {
+     "option_id": "C",
+     "text": "不变"
+    },
+    {
+     "option_id": "D",
+     "text": "增加 4%"
+    }
+   ],
+   "correct_option_ids": [
+    "B"
+   ]
+  },
+  {
+   "item_id": "math-piecework",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 工作量",
+   "question": "5 个人 5 天可以加工 5 个零件。按同样效率，10 个人 10 天可以加工多少个零件？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "比例"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "20 个"
+    },
+    {
+     "option_id": "B",
+     "text": "10 个"
+    },
+    {
+     "option_id": "C",
+     "text": "40 个"
+    },
+    {
+     "option_id": "D",
+     "text": "100 个"
+    }
+   ],
+   "correct_option_ids": [
+    "A"
+   ]
+  },
+  {
+   "item_id": "math-interest",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "数量关系 · 单利",
+   "question": "银行一年期存款年利率为 3%，存入 10000 元，按单利计算两年的利息是多少元？",
+   "tags": [
+    "行测",
+    "数量关系",
+    "利息"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "300 元"
+    },
+    {
+     "option_id": "B",
+     "text": "609 元"
+    },
+    {
+     "option_id": "C",
+     "text": "1200 元"
+    },
+    {
+     "option_id": "D",
+     "text": "600 元"
+    }
+   ],
+   "correct_option_ids": [
+    "D"
+   ]
+  },
+  {
+   "item_id": "data-net-profit",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 净利润",
+   "question": "资料：某公司近三年营业收入与净利润率——2021 年 120 亿元（10%）、2022 年 150 亿元（12%）、2023 年 180 亿元（15%）。\n\n问题：2023 年的净利润是多少亿元？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "增长率"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "24 亿元"
+    },
+    {
+     "option_id": "B",
+     "text": "30 亿元"
+    },
+    {
+     "option_id": "C",
+     "text": "27 亿元"
+    },
+    {
+     "option_id": "D",
+     "text": "18 亿元"
+    }
+   ],
+   "correct_option_ids": [
+    "C"
+   ]
+  },
+  {
+   "item_id": "data-revenue-growth",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 营收增速",
+   "question": "资料：某公司近三年营业收入与净利润率——2021 年 120 亿元（10%）、2022 年 150 亿元（12%）、2023 年 180 亿元（15%）。\n\n问题：2022 年到 2023 年的营业收入增长率是多少？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "增长率"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "25%"
+    },
+    {
+     "option_id": "B",
+     "text": "20%"
+    },
+    {
+     "option_id": "C",
+     "text": "15%"
+    },
+    {
+     "option_id": "D",
+     "text": "18%"
+    }
+   ],
+   "correct_option_ids": [
+    "B"
+   ]
+  },
+  {
+   "item_id": "data-revenue-total",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 三年合计",
+   "question": "资料：某公司近三年营业收入与净利润率——2021 年 120 亿元（10%）、2022 年 150 亿元（12%）、2023 年 180 亿元（15%）。\n\n问题：三年营业收入合计是多少亿元？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "合计"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "450 亿元"
+    },
+    {
+     "option_id": "B",
+     "text": "420 亿元"
+    },
+    {
+     "option_id": "C",
+     "text": "440 亿元"
+    },
+    {
+     "option_id": "D",
+     "text": "460 亿元"
+    }
+   ],
+   "correct_option_ids": [
+    "A"
+   ]
+  },
+  {
+   "item_id": "data-parcel-total",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 全年合计",
+   "question": "资料：某市 2023 年四个季度的快递业务量——一季度 320 万件、二季度 360 万件、三季度 400 万件、四季度 520 万件；四季度同比增长 30%。\n\n问题：该市 2023 年快递业务量合计是多少万件？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "合计"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "1500 万件"
+    },
+    {
+     "option_id": "B",
+     "text": "1550 万件"
+    },
+    {
+     "option_id": "C",
+     "text": "1650 万件"
+    },
+    {
+     "option_id": "D",
+     "text": "1600 万件"
+    }
+   ],
+   "correct_option_ids": [
+    "D"
+   ]
+  },
+  {
+   "item_id": "data-parcel-lastyear",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 同比倒推",
+   "question": "资料：某市 2023 年四个季度的快递业务量——一季度 320 万件、二季度 360 万件、三季度 400 万件、四季度 520 万件；四季度同比增长 30%。\n\n问题：该市 2022 年四季度的快递业务量是多少万件？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "同比增长"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "420 万件"
+    },
+    {
+     "option_id": "B",
+     "text": "480 万件"
+    },
+    {
+     "option_id": "C",
+     "text": "400 万件"
+    },
+    {
+     "option_id": "D",
+     "text": "360 万件"
+    }
+   ],
+   "correct_option_ids": [
+    "C"
+   ]
+  },
+  {
+   "item_id": "data-parcel-gap",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 季度差",
+   "question": "资料：某市 2023 年四个季度的快递业务量——一季度 320 万件、二季度 360 万件、三季度 400 万件、四季度 520 万件；四季度同比增长 30%。\n\n问题：2023 年四季度比一季度多多少万件？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "差值"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "220 万件"
+    },
+    {
+     "option_id": "B",
+     "text": "200 万件"
+    },
+    {
+     "option_id": "C",
+     "text": "160 万件"
+    },
+    {
+     "option_id": "D",
+     "text": "180 万件"
+    }
+   ],
+   "correct_option_ids": [
+    "B"
+   ]
+  },
+  {
+   "item_id": "data-parcel-average",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 季度均值",
+   "question": "资料：某市 2023 年四个季度的快递业务量——一季度 320 万件、二季度 360 万件、三季度 400 万件、四季度 520 万件；四季度同比增长 30%。\n\n问题：该市 2023 年平均每季度快递业务量是多少万件？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "平均数"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "400 万件"
+    },
+    {
+     "option_id": "B",
+     "text": "380 万件"
+    },
+    {
+     "option_id": "C",
+     "text": "420 万件"
+    },
+    {
+     "option_id": "D",
+     "text": "440 万件"
+    }
+   ],
+   "correct_option_ids": [
+    "A"
+   ]
+  },
+  {
+   "item_id": "data-cost-material",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 成本构成",
+   "question": "资料：某产品 2023 年总成本 800 万元，其中原材料占 45%、人工占 25%、制造费用占 20%、其他占 10%。\n\n问题：原材料成本是多少万元？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "占比"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "320 万元"
+    },
+    {
+     "option_id": "B",
+     "text": "340 万元"
+    },
+    {
+     "option_id": "C",
+     "text": "380 万元"
+    },
+    {
+     "option_id": "D",
+     "text": "360 万元"
+    }
+   ],
+   "correct_option_ids": [
+    "D"
+   ]
+  },
+  {
+   "item_id": "data-cost-diff",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 结构差",
+   "question": "资料：某产品 2023 年总成本 800 万元，其中原材料占 45%、人工占 25%、制造费用占 20%、其他占 10%。\n\n问题：人工成本比制造费用多多少万元？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "差值"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "32 万元"
+    },
+    {
+     "option_id": "B",
+     "text": "48 万元"
+    },
+    {
+     "option_id": "C",
+     "text": "40 万元"
+    },
+    {
+     "option_id": "D",
+     "text": "20 万元"
+    }
+   ],
+   "correct_option_ids": [
+    "C"
+   ]
+  },
+  {
+   "item_id": "data-cost-after-cut",
+   "kind": "single_choice",
+   "roles": [
+    "java-backend",
+    "ai-application"
+   ],
+   "title": "资料分析 · 成本下降",
+   "question": "资料：某产品 2023 年总成本 800 万元，其中原材料占 45%、人工占 25%、制造费用占 20%、其他占 10%。\n\n问题：如果原材料成本下降 10%，其他成本不变，总成本变成多少万元？",
+   "tags": [
+    "行测",
+    "资料分析",
+    "百分比"
+   ],
+   "difficulty": "basic",
+   "options": [
+    {
+     "option_id": "A",
+     "text": "784 万元"
+    },
+    {
+     "option_id": "B",
+     "text": "764 万元"
+    },
+    {
+     "option_id": "C",
+     "text": "720 万元"
+    },
+    {
+     "option_id": "D",
+     "text": "740 万元"
+    }
+   ],
+   "correct_option_ids": [
+    "B"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+  "suite_version": "interview-session-v0.2",
+  "catalog_version": "ja05-role-pack-v1",
+  "policy_version": "ja05-policy-v1",
+  "project_summary_version": "project-extractive-v1",
+  "bank_versions": {
+    "java-backend": 1,
+    "ai-application": 1
+  },
+  "provider": "scripted",
+  "provider_semantics": "lexical weak-marker branching only; cannot detect off-topic answers, cannot judge technical correctness, not a semantic baseline",
+  "max_model_requests_per_turn": 4,
+  "protocol_checks": {
+    "answers_preserved": "every submitted answer equals the stored answer event payload byte for byte",
+    "observations_cite_session_answers": "every observation cites an answer event of this session",
+    "status_legal": "session stays inside the documented status set and ends where the case says",
+    "no_ability_certification": "report.semantic_scoring_eligible is false",
+    "provider_budget": "each turn used at most max_model_requests_per_turn model requests",
+    "single_session": "the goal owns exactly one interview session",
+    "expected_turn_sequence": "observed questions match the oracle turn by turn",
+    "expected_status_matches": "final session status equals the oracle value",
+    "stop_reason_matches": "final stop_reason equals the oracle value",
+    "no_project_without_material": "no project question without frozen material facts",
+    "project_fact_in_scope": "project questions only use declared material fact ids",
+    "question_text_quotes_fact": "project question text contains the frozen fact quote verbatim",
+    "coaching_explanation_present": "coaching retest has an explanation event and assisted flag",
+    "formal_mode_no_explanation": "interview mode has no explanation event and no assisted answer",
+    "duplicate_answer_idempotent": "replaying the same answer with the same key adds no event",
+    "conflicting_payload_rejected": "same key with a different payload returns 409 idempotency_conflict",
+    "stale_version_rejected": "a stale expected_version returns 409 before any write",
+    "stop_honoured": "user stop ends the session and blocks further questions",
+    "retest_suggestion_matches_observation": "every retest suggestion cites a needs_probe observation of this session, not a retracted one, and carries a question",
+    "retracted_observation_not_suggested": "a retracted observation is never the source of a retest suggestion",
+    "application_progress_unchanged": "the session creates no application and changes no application status"
+  },
+  "human_rubric_dimensions": [
+    "probe_relevance",
+    "information_gain",
+    "technical_correctness",
+    "evidence_support",
+    "mode_isolation"
+  ],
+  "human_review": "pending",
+  "semantic_scoring_eligible": false
+}

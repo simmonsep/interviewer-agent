@@ -1,0 +1,13 @@
+# F07Z-58: opens a configured practice site in its own app window.
+# The practice window itself gets no capability at all; this permission only lets the
+# workbench page ask the host to create that window.
+
+[[permission]]
+identifier = "allow-open-practice-window"
+description = "Enables the open_practice_window command without any pre-configured scope."
+commands.allow = ["open_practice_window"]
+
+[[permission]]
+identifier = "deny-open-practice-window"
+description = "Denies the open_practice_window command without any pre-configured scope."
+commands.deny = ["open_practice_window"]

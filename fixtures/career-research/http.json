@@ -1,0 +1,8 @@
+{
+  "synthetic": true,
+  "list": {"code":"200","data":{"items":[{"id":"81001"},{"id":"81002"}],"_meta":{"total_count":2}}},
+  "details": {
+    "81001":{"code":"200","data":{"id":"81001","name":"合成Java接口开发实习","work_city":[{"label":"上海市"},{"label":"深圳市"}],"obj_city":[{"label":"面试地点不是工作城市"}],"job_type_descr":"实习生","date":"2026-10-01","duty":"<p>开发合成接口。</p><span style=\"display:none\">隐藏内容不进入模型</span>","requirement":"掌握Java与SQL。"}},
+    "81002":{"code":"200","data":{"id":"81002","name":"合成AI应用实习","work_city":[{"label":"北京市"}],"job_type_descr":"实习生","date":"2026-10-02","duty":"开发合成训练应用。","requirement":"掌握Python。"}}
+  }
+}

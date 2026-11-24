@@ -1,0 +1,19 @@
+{
+  "name": "@pi-interview/storage",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/repository.ts",
+    "./operations": "./src/operations.ts",
+    "./training": "./src/training.ts"
+  },
+  "dependencies": {
+    "pg": "8.23.1",
+    "@pi-interview/domain": "0.0.0",
+    "@pi-interview/contracts": "0.0.0"
+  },
+  "devDependencies": {
+    "@types/pg": "8.23.1"
+  }
+}

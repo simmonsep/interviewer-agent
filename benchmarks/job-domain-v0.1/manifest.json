@@ -1,0 +1,19 @@
+{
+  "version": "job-domain-v0.1",
+  "tasks": 54,
+  "splits": {
+    "development": 40,
+    "reserved_candidate": 14
+  },
+  "linked_suite": {
+    "directory": "career-pilot-v0.2",
+    "manifest_sha256": "1fe7c414a3601f7bfb036e326d7463385f501c2266fde88ee81bb15701d482ca"
+  },
+  "sha256": {
+    "tasks.jsonl": "f6e997cc2473535c0651048b37ea20e8d535d798c25488184ab5703361217c17",
+    "oracles.jsonl": "9fada2e32045dd377b4af7065a85e9705ad74eab4a9afb7f8f6c042975312e63",
+    "baseline-spec.json": "bfb86f69e7aa082c30565f932b58dfc9e2a3d1b04fc06119f6d1713c7f9189a2"
+  },
+  "human_review": "pending_human_review",
+  "domain_success_rate": null
+}

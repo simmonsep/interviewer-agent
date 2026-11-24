@@ -1,0 +1,11 @@
+import {dirname,resolve} from "node:path";
+import {fileURLToPath} from "node:url";
+import {loadLocalConnection,createLocalPool} from "./local-config.ts";
+import {buildDevServer} from "./server.ts";
+const root=resolve(dirname(fileURLToPath(import.meta.url)),"../../..");
+const c=loadLocalConnection(root),pool=createLocalPool(c),authPool=createLocalPool(c,c.database,true);
+const app=buildDevServer(pool,authPool,{mode:process.env.NODE_ENV??"development",host:"127.0.0.1",port:3000,baseURL:"http://127.0.0.1:3000",secret:c.authSecret},{root,serveWeb:true});
+app.addHook("onClose",async()=>{await authPool.end();await pool.end();});
+for(const signal of ["SIGINT","SIGTERM"] as const)process.once(signal,()=>{void app.close();});
+await app.listen({host:"127.0.0.1",port:3000});
+console.log("Local development API: http://127.0.0.1:3000");

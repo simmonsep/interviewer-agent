@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "name": "我的项目面试练习",
+  "items": [
+    {
+      "item_id": "project-idempotency",
+      "kind": "short_answer",
+      "roles": ["java-backend", "ai-application"],
+      "title": "描述项目中的幂等设计",
+      "question": "请结合你自己的项目，说明如何识别重复请求、保存结果并处理请求内容冲突。",
+      "tags": ["项目", "幂等"],
+      "difficulty": "unknown",
+      "source_note": "原创示例；未配置参考答案，仅用于记录回答，不判断正确性。"
+    }
+  ]
+}

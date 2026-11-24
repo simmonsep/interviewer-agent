@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f8f5">
+<title>求职工作台 · 桌面原型（合成）</title>
+<style>
+:root{
+  --bg:#f7f8f5;--panel:#ffffff;--line:#e3e7e0;--line-strong:#d5dbd2;
+  --ink:#1f2d27;--ink-2:#5c6b62;--ink-3:#7d8a81;
+  --accent:#2f6b4f;--accent-hover:#245b41;--accent-soft:#eaf1eb;
+  --wait:#8a6a2f;--wait-soft:#f7f1e3;--bad:#9b3e36;--bad-soft:#fbf0ed;
+  --done:#2f6b4f;--done-soft:#edf4ee;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+@media (pointer:fine){html{overscroll-behavior:none}}
+body{background:var(--bg);color:var(--ink);font:14px/1.75 -apple-system,"Segoe UI","Microsoft YaHei","PingFang SC",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,textarea,select,input{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,textarea:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance;line-height:1.4}
+p{overflow-wrap:anywhere}
+.skip-link{position:absolute;left:-9999px;top:0;z-index:20;background:var(--panel);padding:8px 14px;border:1px solid var(--line);border-radius:8px}
+.skip-link:focus{left:12px;top:12px}
+.shell{display:grid;grid-template-columns:220px minmax(0,1fr);height:100vh;min-height:0}
+.shell[data-nav="compact"]{grid-template-columns:64px minmax(0,1fr)}
+.shell[data-nav="bar"]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+.sidebar{background:#f2f4ef;border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:6px;min-height:0;overflow:auto}
+.sidebar-title{font-size:12px;letter-spacing:.08em;color:var(--ink-3);padding:0 8px 8px}
+.nav-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:8px;padding:9px 10px;color:var(--ink-2);transition:background-color .15s,color .15s,border-color .15s}
+.nav-item:hover{background:#e9eee7;color:var(--ink)}
+.nav-item[aria-current="page"]{background:var(--accent-soft);border-color:#cfe0d3;color:var(--accent);font-weight:600}
+.nav-icon{width:20px;height:20px;flex:0 0 20px;display:grid;place-items:center;font-size:15px}
+.nav-label{font-size:14px;white-space:nowrap}
+.sidebar-note{margin-top:auto;padding:10px 8px 0;border-top:1px solid var(--line-strong);font-size:12px;color:var(--ink-3);line-height:1.6}
+.review-note{margin-top:8px;border:1px solid var(--line);border-radius:8px;background:#fbfcfa;padding:0 9px;font-size:12px}
+.review-note summary{padding:6px 0;font-size:12px;color:var(--ink-3)}
+.review-note p{padding-bottom:6px;line-height:1.6}
+.review-note .path{font-family:ui-monospace,Consolas,monospace;font-size:11px;overflow-wrap:anywhere;color:var(--ink-3)}
+.demo-controls{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+.demo-controls label{font-size:12px;color:var(--ink-3)}
+.demo-controls select{width:100%;background:var(--panel);border:1px solid var(--line-strong);border-radius:7px;padding:6px 8px;font-size:12px}
+.shell[data-nav="compact"] .sidebar{padding:16px 8px;align-items:center}
+.shell[data-nav="compact"] .nav-label,.shell[data-nav="compact"] .sidebar-title,.shell[data-nav="compact"] .sidebar-note{display:none}
+.shell[data-nav="compact"] .nav-item{justify-content:center;padding:10px 0}
+.shell[data-nav="bar"] .sidebar{grid-row:1;grid-column:1;flex-direction:row;align-items:center;border-right:0;border-bottom:1px solid var(--line);padding:8px 14px;overflow:visible}
+.shell[data-nav="bar"] .sidebar-title,.shell[data-nav="bar"] .sidebar-note{display:none}
+.shell[data-nav="bar"] .nav-item{width:auto;gap:7px;padding:6px 10px}
+.shell[data-nav="bar"] .nav-label{font-size:13px}
+.shell[data-nav="bar"] .demo-controls{margin:0 0 0 auto;flex-direction:row;align-items:center;gap:6px}
+.shell[data-nav="bar"] .demo-controls label{display:none}
+.shell[data-nav="bar"] .demo-controls select{width:auto;max-width:190px}
+.main{display:flex;flex-direction:column;min-width:0;min-height:0}
+.shell[data-nav="bar"] .main{grid-row:2;grid-column:1}
+.contextbar{display:flex;align-items:center;gap:14px;padding:10px 24px;background:var(--panel);border-bottom:1px solid var(--line);min-height:52px;flex:0 0 auto}
+.context-goal{display:flex;align-items:center;gap:9px;min-width:0}
+.context-goal strong{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px}
+.context-goal small{color:var(--ink-3);font-size:12px;white-space:nowrap}
+.context-divider{width:1px;height:20px;background:var(--line-strong);flex:0 0 1px}
+.context-progress{font-size:13px;color:var(--ink-2);white-space:nowrap;display:flex;align-items:center;gap:9px;min-width:0;overflow:hidden}
+.context-progress .sep{color:var(--line-strong)}
+.context-spacer{flex:1 1 auto;min-width:8px}
+.synthetic-badge{font-size:12px;color:var(--wait);background:var(--wait-soft);border:1px solid #eadfc4;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.context-button{background:transparent;border:1px solid var(--line-strong);border-radius:7px;padding:5px 10px;font-size:12px;color:var(--ink-2);white-space:nowrap;transition:background-color .15s,border-color .15s}
+.context-button:hover{background:#eef2ec;border-color:var(--accent)}
+.account{position:relative}
+.account>summary{list-style:none;cursor:pointer;font-size:12px;color:var(--ink-2);border:1px solid var(--line-strong);border-radius:7px;padding:5px 10px;white-space:nowrap}
+.account>summary::-webkit-details-marker{display:none}
+.account-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:10;background:var(--panel);border:1px solid var(--line-strong);border-radius:9px;padding:10px 12px;font-size:12px;color:var(--ink-2);min-width:190px;box-shadow:0 6px 18px #1f2d2714}
+.account-menu p+p{margin-top:6px}
+.content{flex:1 1 auto;min-height:0;overflow:auto;padding:28px 32px 56px;scroll-behavior:smooth}
+.content-inner{max-width:880px;margin:0 auto}
+.page-head{margin-bottom:18px}
+.panel-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.panel-top .question-meta{margin:0}
+.page-head h1{font-size:22px;font-weight:650;letter-spacing:-.01em}
+.page-head p{color:var(--ink-2);font-size:13px;margin-top:4px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+.panel+.panel{margin-top:14px}
+.panel-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.panel-title h2{font-size:16px;font-weight:600}
+.panel-title small{font-size:12px;color:var(--ink-3)}
+.field-row{display:flex;flex-wrap:wrap;gap:12px}
+.field-row>label{flex:1 1 220px}
+label{display:block;font-size:13px;color:var(--ink-2);margin-bottom:6px}
+/* outline:none is paired with the :focus-visible ring above; never remove that rule. */
+input,textarea,select{width:100%;background:#fbfcfa;border:1px solid var(--line-strong);border-radius:8px;padding:10px 12px;line-height:1.65;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #2f6b4f1c}
+textarea{resize:vertical;min-height:104px}
+textarea#answer-input{min-height:184px;line-height:1.85}
+.primary{background:var(--accent);color:#fff;border:1px solid var(--accent);border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;transition:background-color .15s,border-color .15s}
+.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.secondary{background:#f2f5f0;border:1px solid var(--line-strong);color:var(--ink);border-radius:8px;padding:9px 15px;font-size:13px;transition:background-color .15s,border-color .15s}
+.secondary:hover{background:#e8eee6;border-color:var(--accent)}
+.text-button{background:transparent;border:0;padding:4px 0;color:var(--accent);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.text-button:hover{color:var(--accent-hover)}
+.hint,.fine{font-size:12px;color:var(--ink-3);line-height:1.7}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--line-strong);border-radius:999px;padding:1px 9px;color:var(--ink-2);background:#fafbf8}
+.tag.wait{color:var(--wait);background:var(--wait-soft);border-color:#eadfc4}
+.tag.done{color:var(--done);background:var(--done-soft);border-color:#cfe0d3}
+.tag.bad{color:var(--bad);background:var(--bad-soft);border-color:#efd7d2}
+.notice{border-left:3px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 8px 8px 0;font-size:13px;color:var(--ink-2)}
+.notice.wait{border-left-color:var(--wait);background:var(--wait-soft)}
+.notice.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+.home-hero{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:16px}
+.home-hero .goal-name{font-size:18px;font-weight:600}
+.home-hero .goal-meta{color:var(--ink-2);font-size:13px;margin-top:4px}
+.home-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.section-label{font-size:12px;color:var(--ink-3);letter-spacing:.04em;margin:22px 0 8px}
+.session-list{display:flex;flex-direction:column;gap:8px}
+.session-item{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:11px 14px;transition:border-color .15s,background-color .15s}
+.session-item:hover{border-color:var(--accent);background:#fbfdfa}
+.session-item .id{display:block;font-size:13px;font-weight:600}
+.session-item .meta{display:block;font-size:12px;color:var(--ink-3);margin-top:2px}
+.region-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.region-row button{font-size:12px;color:var(--ink-2);background:#fafbf8;border:1px solid var(--line);border-radius:7px;padding:5px 10px}
+.region-row button:hover{border-color:var(--accent);color:var(--accent)}
+.question-block{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:20px}
+.question-meta{font-size:12px;color:var(--ink-3);margin-bottom:14px}
+.question-index{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:8px}
+.question-text{font-size:20px;line-height:1.75;font-weight:600;max-width:68ch;overflow-wrap:anywhere}
+.answer-block label{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.answer-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+.answer-toolbar .counter{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.inline-error{color:var(--bad);font-size:13px;margin-top:8px}
+details{border:1px solid var(--line);border-radius:9px;background:#fbfcfa;padding:0 14px;margin-top:14px}
+details[open]{padding-bottom:12px}
+summary{cursor:pointer;padding:10px 0;font-size:13px;color:var(--ink-2);list-style-position:inside}
+summary:hover{color:var(--accent)}
+details p,details blockquote{font-size:13px;color:var(--ink-2)}
+blockquote{margin:10px 0 0;padding:10px 12px;background:var(--panel);border-left:2px solid var(--line-strong);border-radius:0 7px 7px 0;overflow-wrap:anywhere}
+blockquote .citation{display:block;font-size:12px;color:var(--ink-3);margin-bottom:5px}
+.review-summary{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:var(--ink-2)}
+.review-summary .metric{background:#f4f7f2;border:1px solid var(--line);border-radius:8px;padding:5px 11px}
+.review-summary .metric strong{color:var(--ink);font-size:15px;margin-left:4px;font-variant-numeric:tabular-nums}
+.review-item+.review-item{margin-top:14px}
+.review-item h2{font-size:15px;font-weight:600;margin-bottom:8px}
+.review-item .question-text{font-size:16px;font-weight:500;line-height:1.75}
+.review-answer{margin-top:12px;background:#f7f9f5;border-radius:8px;padding:12px 14px;font-size:13px;color:var(--ink-2);overflow-wrap:anywhere}
+.review-answer .label{display:block;font-size:12px;color:var(--ink-3);margin-bottom:5px}
+.observation{font-size:13px;color:var(--ink-2);margin-top:10px}
+.observation .label{display:inline-block;font-size:12px;color:var(--wait);background:var(--wait-soft);border-radius:999px;padding:1px 9px;margin-bottom:6px}
+.footer-note{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);line-height:1.8}
+.diagnostics{margin-top:12px}
+.diagnostics .fine{margin-top:6px;overflow-wrap:anywhere}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13px;border-radius:8px;padding:9px 16px;z-index:30;max-width:min(90vw,560px);text-align:center}
+.hidden{display:none!important}
+@media(max-width:1080px){.contextbar{padding:9px 16px;gap:10px}.content{padding:22px 20px 48px}.context-goal strong{max-width:150px}.context-goal small{display:none}}
+/* Narrow desktop viewports (880x600, and the smaller CSS viewport Tauri gets under
+   Windows high DPI): tighten vertical rhythm and pin the composer to the bottom edge
+   so the textarea and submit button stay reachable without hunting for them. Sticky
+   only engages when the panel is taller than the scrollport, so the wide layout is
+   unaffected. */
+@media(max-width:900px){
+  .contextbar{padding:8px 14px;gap:9px;min-height:48px}
+  .content{padding:16px 16px 40px}
+  .page-head{margin-bottom:6px}
+  .page-head h1{font-size:20px}
+  .page-head p{display:none}
+  .panel{padding:14px}
+  .question-meta{margin-bottom:8px}
+  .question-block{padding-bottom:10px;margin-bottom:10px}
+  .question-text{font-size:18px}
+  .question-index{margin-bottom:6px}
+  details{margin-top:8px}
+  textarea#answer-input{min-height:104px}
+  .answer-toolbar{margin-top:8px}
+  /* The interview page owns the viewport: the question area scrolls on its own and
+     the composer stays docked at the panel foot, so the textarea and submit button
+     are always on screen without hiding content behind a floating bar. */
+  .shell[data-view="interview"] .content{overflow:hidden;display:flex;flex-direction:column;padding-bottom:0}
+  .shell[data-view="interview"] .content-inner{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  .shell[data-view="interview"] .panel-interview{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;padding-bottom:0;margin-bottom:0}
+  .question-scroll{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain}
+  .panel-interview .answer-block{flex:0 0 auto;border-top:1px solid var(--line);padding:10px 0 12px;margin-top:10px;background:var(--panel)}
+  .shell[data-view="interview"] .footer-note{display:none}
+}
+@media(max-width:760px){.contextbar{flex-wrap:wrap;padding:8px 12px;gap:8px}.context-progress{order:3;flex-basis:100%;font-size:12px}.context-divider{display:none}.content{padding:18px 14px 44px}.panel{padding:18px 16px}.question-text{font-size:18px}.home-actions .primary{width:100%}.synthetic-badge{font-size:11px;padding:1px 8px}
+  /* 680x520 and similar high-DPI viewports: the context bar already states the page,
+     so drop the redundant page title and shrink the composer to keep the question and
+     the answer area both on screen. */
+  .shell[data-view="interview"] .content{padding:12px 14px 0}
+  .shell[data-view="interview"] .page-head{display:none}
+  .shell[data-view="interview"] .panel{padding:14px 14px 0}
+  .panel-interview .question-meta{display:none}
+  .panel-interview .question-index{display:none}
+  .panel-interview .question-block{padding-bottom:8px;margin-bottom:8px}
+  .panel-interview .hint{display:none}
+  textarea#answer-input{min-height:84px}
+  .panel-interview .answer-block{padding:8px 0 10px;margin-top:8px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">跳到主内容</a>
+<div class="shell" id="app" data-nav="full" data-view="home">
+  <aside class="sidebar" aria-label="工作区导航">
+    <div class="sidebar-title">工作区</div>
+    <button class="nav-item" id="nav-home" type="button" aria-label="工作台" aria-current="page" title="工作台">
+      <span class="nav-icon" aria-hidden="true">◧</span><span class="nav-label">工作台</span></button>
+    <button class="nav-item" id="nav-interview" type="button" aria-label="面试训练" title="面试训练">
+      <span class="nav-icon" aria-hidden="true">◇</span><span class="nav-label">面试训练</span></button>
+    <div class="sidebar-note">
+      <details class="review-note"><summary>评审说明</summary>
+        <p>可点击原型：两题取自仓库夹具，不连后端、不调模型。状态切换只用于评审。</p>
+        <p class="path">fixtures/question-banks/agent-developer-trial.json</p>
+      </details>
+      <div class="demo-controls">
+        <label for="demo-state">评审：合成状态</label>
+        <select id="demo-state" aria-label="评审用合成状态">
+          <option value="in-progress">有目标 · 可继续作答</option>
+          <option value="no-active">有目标 · 无进行中场次</option>
+          <option value="no-goal">无目标</option>
+          <option value="processing">有目标 · 后台处理中</option>
+          <option value="failed">有目标 · 场次失败</option>
+        </select>
+      </div>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="contextbar">
+      <div class="context-goal"><strong id="ctx-goal">—</strong><small id="ctx-goal-status"></small></div>
+      <span class="context-divider" aria-hidden="true"></span>
+      <div class="context-progress" id="ctx-progress"></div>
+      <span class="context-spacer"></span>
+      <span class="synthetic-badge">合成原型 · 数据不来自后端</span>
+      <button class="context-button" id="nav-toggle" type="button" aria-label="收起导航">收起导航</button>
+      <details class="account"><summary aria-label="账号菜单">账号 ▾</summary>
+        <div class="account-menu"><p>合成评审账号</p><p>原型不登录、不读取任何业务数据。</p></div></details>
+    </header>
+    <main class="content" id="content" tabindex="-1"><div class="content-inner" id="content-inner"></div></main>
+  </div>
+</div>
+<div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+<script id="fixture" type="application/json">
+{
+  "schema_version": 1,
+  "name": "Agent开发岗位试运行（无简历）",
+  "items": [
+    {
+      "item_id": "thread-memory",
+      "kind": "knowledge",
+      "roles": ["ai-application"],
+      "title": "LangGraph会话状态与长期记忆",
+      "question": "你用Python和LangGraph实现一个可多轮交互的Agent。同一个用户可能有多个独立会话：你会怎样区分图内state、checkpointer和store的职责？thread_id应如何使用？进程重启后希望继续会话，需要满足什么条件？",
+      "reference": "图state描述当前线程的执行状态。Checkpointer按thread_id保存该线程的检查点，支持会话连续性和恢复；Store存放应用定义的跨线程信息，可用于偏好等长期记忆。同一用户的不同独立会话应使用不同thread_id。内存型保存器无法跨进程重启持久保存，需持久化实现和相应存储。",
+      "source_url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "source_note": "依据2026-11-05官方文档自拟问题并释义，非官方题库。",
+      "tags": ["Python", "LangGraph", "memory"]
+    },
+    {
+      "item_id": "interrupt-side-effects",
+      "kind": "knowledge",
+      "roles": ["ai-application"],
+      "title": "人工确认与工具副作用",
+      "question": "Agent准备调用一个有写入副作用的Python工具，你希望用户确认后才执行。怎样使用LangGraph的interrupt和Command(resume=...)组织流程？恢复时哪些代码可能再次执行？你会把写入放在哪里，并如何避免重复写入？",
+      "reference": "interrupt使用持久化检查点和thread_id暂停等待外部输入，同一thread_id以Command(resume=...)恢复。恢复会从包含interrupt的节点开头重新执行，interrupt之前的副作用应幂等或移到单独节点；不要假定只从暂停的那一行继续。写入应在明确批准后执行，并用业务幂等键等机制应对重试/恢复；审批不替代工具参数和业务权限检查。",
+      "source_url": "https://docs.langchain.com/oss/python/langgraph/interrupts",
+      "source_note": "依据官方interrupt恢复/副作用说明自拟；业务幂等与权限检查为本项目工程考点。",
+      "tags": ["LangGraph", "tools", "harness"]
+    }
+  ]
+}
+</script>
+<script>
+(function(){
+'use strict';
+var FIXTURE=JSON.parse(document.getElementById('fixture').textContent);
+var QUESTIONS=FIXTURE.items.map(function(item){return {id:item.item_id,text:item.question,title:item.title,reference:item.reference,url:item.source_url};});
+var GOAL={id:'goal-synthetic-01',name:'AI 应用 / Agent 开发实习',direction:'上海 · AI 应用 / Agent 开发',status:'进行中'};
+var SYNTH_ANSWER_1='图内 state 是当前线程的运行状态，checkpointer 按 thread_id 保存检查点，store 放跨线程的偏好等长期信息。独立会话要用不同 thread_id；进程重启后要继续，需要持久化 checkpointer 与 store，内存实现不行。';
+var SYNTH_ANSWER_2='interrupt 借助持久化检查点与 thread_id 暂停，用 Command(resume=...) 恢复。恢复会从包含 interrupt 的节点开头重跑，之前节点的副作用要幂等或移到单独节点；写入放在用户明确批准之后，并用业务幂等键防止重复写入。';
+var STOP_REASON='题数已达到本场上限';
+var DATE_FMT=new Intl.DateTimeFormat('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false});
+var CREATED_ACTIVE=DATE_FMT.format(new Date('2026-11-09T22:41:00+08:00'));
+var CREATED_DONE=DATE_FMT.format(new Date('2026-11-09T21:08:00+08:00'));
+function makeSession(id,status,extra){
+  var s={id:id,status:status,bank:FIXTURE.name,bankVersion:1,maxQuestions:QUESTIONS.length,
+    questionIndex:0,answers:{},observations:QUESTIONS.length,stopReason:STOP_REASON,
+    created:CREATED_ACTIVE,deadlineAt:Date.now()+59*60*1000+42*1000};
+  if(extra)Object.keys(extra).forEach(function(k){s[k]=extra[k];});
+  return s;
+}
+var COMPLETED=makeSession('6d31ae07-2c4f-4a1b-9c31-5b8e0d74a1f2','COMPLETED',{
+  answers:Object.fromEntries(QUESTIONS.map(function(q,i){return [q.id,i===0?SYNTH_ANSWER_1:SYNTH_ANSWER_2];})),
+  created:CREATED_DONE});
+var ACTIVE=makeSession('9f1c4d82-7a63-4e50-b1d9-2e6c8f0a3b47','WAITING_FOR_USER');
+var state={
+  view:'home',demo:'in-progress',goal:GOAL,
+  sessions:[ACTIVE,COMPLETED],activeId:ACTIVE.id,
+  nav:'full',manualNav:false,drafts:{},toast:''
+};
+var shell=document.getElementById('app');
+var inner=document.getElementById('content-inner');
+var toastEl=document.getElementById('toast');
+var toastTimer=null;
+var countdownTimer=null;
+var composing=false;
+function esc(value){return String(value==null?'':value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function short(id){return String(id).slice(0,8);}
+function sessionById(id){for(var i=0;i<state.sessions.length;i++)if(state.sessions[i].id===id)return state.sessions[i];return null;}
+function activeSession(){return sessionById(state.activeId);}
+function statusLabel(status){return {WAITING_FOR_USER:'可作答',PENDING:'等待出题',RUNNING:'后台处理中',COMPLETED:'已完成',FAILED:'失败',CANCELLED:'已取消',EXPIRED:'已到期'}[status]||status;}
+function statusClass(status){return status==='COMPLETED'?'done':status==='FAILED'||status==='EXPIRED'?'bad':['PENDING','RUNNING'].indexOf(status)>=0?'wait':'';}
+function showToast(message){state.toast=message;toastEl.textContent=message;toastEl.classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(function(){toastEl.classList.add('hidden');state.toast='';},3200);}
+function autoNav(){if(state.manualNav)return;var w=window.innerWidth;state.nav=w<760?'bar':w<1080?'compact':'full';}
+function applyNav(){
+  shell.dataset.nav=state.nav;
+  var toggle=document.getElementById('nav-toggle');
+  toggle.textContent=state.nav==='bar'?'展开导航':'收起导航';
+  toggle.setAttribute('aria-label',state.nav==='bar'?'展开导航':'收起导航');
+}
+function syncHash(){
+  var hash='#'+state.view+(state.activeId&&(state.view==='interview'||state.view==='review')?'/'+state.activeId:'');
+  try{history.replaceState(null,'',hash);}catch(e){/* file:// may disallow */}
+}
+function parseHash(){
+  var raw=location.hash.replace(/^#/,'');
+  var parts=raw.split('/');
+  var allowed=['home','goal','interview','review','history'];
+  if(allowed.indexOf(parts[0])>=0){
+    state.view=parts[0];
+    if(parts[1]&&sessionById(parts[1]))state.activeId=parts[1];
+  }
+}
+function renderContext(){
+  document.getElementById('ctx-goal').textContent=state.goal?state.goal.name:'尚未创建求职目标';
+  document.getElementById('ctx-goal-status').textContent=state.goal?'目标状态 · '+state.goal.status:'';
+  var progress=document.getElementById('ctx-progress');
+  var session=activeSession();
+  if(state.view==='interview'&&session){
+    var elapsed=Math.max(0,session.deadlineAt-Date.now());
+    var minutes=Math.floor(elapsed/60000),seconds=Math.floor((elapsed%60000)/1000);
+    var clock=(minutes<10?'0':'')+minutes+':'+(seconds<10?'0':'')+seconds;
+    progress.innerHTML='<span>第 '+Math.min(session.questionIndex+1,session.maxQuestions)+'/'+session.maxQuestions+' 题</span><span class="sep">·</span>'+
+      '<span id="countdown" aria-live="off">剩余 '+clock+'</span><span class="sep">·</span><span>'+esc(statusLabel(session.status))+'</span>'+
+      '<span class="sep">·</span><span>场次 '+esc(short(session.id))+'</span>';
+  }else if(state.view==='review'&&session){
+    progress.innerHTML='<span>复盘 · 场次 '+esc(short(session.id))+'</span>';
+  }else{
+    progress.innerHTML='<span>'+({home:'工作台',goal:'创建求职目标',history:'历史场次'}[state.view]||'工作台')+'</span>';
+  }
+  var home=document.getElementById('nav-home'),interview=document.getElementById('nav-interview');
+  var onInterview=['interview','review','history'].indexOf(state.view)>=0;
+  if(onInterview){interview.setAttribute('aria-current','page');home.removeAttribute('aria-current');}
+  else{home.setAttribute('aria-current','page');interview.removeAttribute('aria-current');}
+  document.getElementById('demo-state').value=state.demo;
+}
+function renderHome(){
+  var session=activeSession();
+  var canContinue=!!session&&['WAITING_FOR_USER','PENDING','RUNNING','FAILED'].indexOf(session.status)>=0;
+  var primaryLabel=!state.goal?'创建求职目标':canContinue?(session.status==='FAILED'?'查看失败场次':['PENDING','RUNNING'].indexOf(session.status)>=0?'查看进度':'继续面试'):'开始面试';
+  var stateHint='';
+  if(session&&session.status==='RUNNING')stateHint='<p class="notice wait" role="status">后台正在出题或处理上一答，页面会自动回读状态；现在不需要你输入。</p>';
+  else if(session&&session.status==='PENDING')stateHint='<p class="notice wait" role="status">等待后台出题，请稍候。</p>';
+  else if(session&&session.status==='FAILED')stateHint='<p class="notice bad" role="status">本场失败：后台任务未完成。已保存的记录仍可回读，不需要重新作答。</p>';
+  else if(session&&session.status==='WAITING_FOR_USER')stateHint='<p class="notice" role="status">有一场面试等你接手：第 '+(session.questionIndex+1)+'/'+session.maxQuestions+' 题还没答，点「继续面试」回到原场次。</p>';
+  var sessions=state.sessions.slice(0,4).map(function(item){
+    return '<button class="session-item" type="button" data-open="'+esc(item.id)+'"><span><span class="id">场次 '+esc(short(item.id))+'</span>'+
+      '<span class="meta">'+esc(item.bank)+' · v'+item.bankVersion+' · '+esc(item.created)+'</span></span>'+
+      '<span class="tag '+statusClass(item.status)+'">'+esc(statusLabel(item.status))+'</span></button>';
+  }).join('');
+  var goalHtml=state.goal?
+    '<div class="home-hero"><div><div class="goal-name">'+esc(state.goal.name)+'</div>'+
+    '<div class="goal-meta">'+esc(state.goal.direction)+' · 目标状态：'+esc(state.goal.status)+'</div></div>'+
+    '<span class="tag '+statusClass(session?session.status:'COMPLETED')+'">'+(session?esc(statusLabel(session.status)):'暂无进行中场次')+'</span></div>':
+    '<div class="home-hero"><div><div class="goal-name">还没有求职目标</div><div class="goal-meta">先写一句求职意向，方向不清楚也可以开始；简历不是前置条件。</div></div></div>';
+  return '<div class="page-head"><h1>继续你的求职任务</h1><p>当前目标、下一步操作和本目标的近期记录都在这里。</p></div>'+
+    '<section class="panel" aria-label="当前求职目标"><div class="panel-title"><h2>当前求职目标</h2><small>合成原型状态</small></div>'+
+    goalHtml+stateHint+
+    '<div class="home-actions"><button class="primary" id="primary-action" type="button">'+esc(primaryLabel)+'</button>'+
+    '<button class="secondary" id="open-history" type="button">查看历史场次</button></div>'+
+    '<p class="fine" style="margin-top:10px">主操作由真实状态字段决定：无目标 → 创建求职目标；有可继续场次 → 继续面试；否则 → 开始面试。</p></section>'+
+    '<div class="section-label">当前目标的近期会话</div><div class="session-list">'+sessions+'</div>'+
+    '<div class="section-label">本目标的其它区域</div><div class="region-row">'+
+    '<button type="button" data-region="求职目标">求职目标</button><button type="button" data-region="岗位研究">岗位研究</button>'+
+    '<button type="button" data-region="单题练习">单题练习</button></div>'+
+    '<p class="fine" style="margin-top:8px">这些区域沿用现有页面；本原型只保留入口。</p>'+
+    footerNote('首页只放一个主操作。通用聊天框留待跨任务对话入口存在后再设计。');
+}
+function footerNote(text){
+  return '<div class="footer-note">'+esc(text)+'<br>合成原型 · 数据不来自后端 · 不调用模型、不产生费用。</div>';
+}
+function renderGoal(){
+  return '<div class="page-head"><h1>创建求职目标</h1><p>沿用现有目标表单；方向不清楚也可以开始，简历不是前置条件。</p></div>'+
+    '<section class="panel"><form id="goal-form" novalidate>'+
+    '<label for="goal-intent">求职意向或补充说明<textarea id="goal-intent" name="intent" aria-label="求职意向或补充说明" maxlength="2000" placeholder="例如：研二，想在上海找 AI 应用实习，方向还不确定…"></textarea></label>'+
+    '<div class="field-row"><label for="goal-direction">确认方向（可选）<input id="goal-direction" name="direction" autocomplete="off" placeholder="例如：AI 应用 / Agent 开发"></label>'+
+    '<label for="goal-city">确认城市（可选）<input id="goal-city" name="city" autocomplete="off" placeholder="例如：上海"></label></div>'+
+    '<div class="field-row"><label for="goal-policy">城市要求<select id="goal-policy" name="policy"><option value="unknown">尚未确定</option><option value="preferred">优先考虑</option><option value="required">必须满足</option></select></label></div>'+
+    '<p class="inline-error hidden" id="goal-error" role="alert"></p>'+
+    '<div class="home-actions"><button class="primary" type="submit" id="goal-submit">保存求职目标</button>'+
+    '<button class="secondary" type="button" id="goal-cancel">返回工作台</button></div></form></section>'+
+    footerNote('原型保存只改本地合成状态，不发请求。');
+}
+function renderInterview(){
+  var session=activeSession();
+  if(!session)return renderHome();
+  var index=Math.min(session.questionIndex,QUESTIONS.length-1);
+  var question=QUESTIONS[index];
+  var previous='';
+  if(index>0){
+    previous='<details><summary>前序问答（'+index+'）</summary>'+QUESTIONS.slice(0,index).map(function(q,i){
+      return '<p><strong>第 '+(i+1)+' 题：</strong>'+esc(q.text)+'</p><blockquote><span class="citation">你的回答</span>'+esc(session.answers[q.id]||'（合成记录）')+'</blockquote>';
+    }).join('')+'</details>';
+  }
+  var processing=['PENDING','RUNNING'].indexOf(session.status)>=0;
+  var failed=session.status==='FAILED';
+  var canAnswer=session.status==='WAITING_FOR_USER';
+  var statusNotice=processing?'<p class="notice wait" role="status">正在出题或处理上一答，页面会自动回读状态；暂时不需要输入。</p>':
+    failed?'<p class="notice bad" role="status">本场失败：后台任务未完成。已保存的记录仍可回读，不需要重新作答。</p>':'';
+  var answerBlock=canAnswer?
+    '<section class="answer-block" aria-label="回答本题"><label for="answer-input">回答本题</label>'+
+    '<p class="hint">Enter 换行；中文输入法组词期间按 Enter 不会提交，请点击「提交这一答 →」。</p>'+
+    '<textarea id="answer-input" aria-label="回答本题" maxlength="1500" autocomplete="off" placeholder="写下你的判断、依据，以及会怎样处理…"></textarea>'+
+    '<div class="answer-toolbar"><span class="counter" id="answer-count">0/1500</span>'+
+    '<button class="primary" id="submit-answer" type="button">提交这一答 →</button></div>'+
+    '<p class="inline-error hidden" id="answer-error" role="alert"></p></section>':'';
+  // Progress, countdown, status and session id live in the context bar only; the panel
+  // keeps the question and a single bank-version line so no number is shown twice.
+  return '<div class="page-head"><h1>整场面试 · 专注作答</h1>'+
+    '<p>当前题最醒目；前序问答可展开回看，考中反馈与参考内容在终态前不出现。</p></div>'+
+    '<section class="panel panel-interview"><div class="question-scroll">'+
+    '<div class="panel-top"><p class="question-meta">'+esc(session.bank)+' · 题库 v'+session.bankVersion+'</p>'+
+    '<button class="text-button" id="back-history" type="button">返回历史</button></div>'+
+    statusNotice+
+    '<div class="question-block"><div class="question-index">当前题</div>'+
+    '<h2 class="question-text" id="current-question" translate="no">'+esc(question.text)+'</h2></div>'+
+    previous+'</div>'+answerBlock+'</section>'+
+    footerNote('观察与参考内容只在终态复盘展示。');
+}
+function excerpt(text,max){text=String(text);return text.length>max?text.slice(0,max)+'…':text;}
+function renderReview(){
+  var session=activeSession();
+  if(!session)return renderHistory();
+  var items=QUESTIONS.map(function(q,i){
+    var answer=session.answers[q.id]||'（本场未记录回答）';
+    return '<article class="review-item panel"><div class="panel-title"><h2>第 '+(i+1)+' 题</h2><small>'+esc(q.title)+'</small></div>'+
+      '<div class="question-text" translate="no">'+esc(q.text)+'</div>'+
+      '<div class="review-answer"><span class="label">你的回答</span>'+esc(answer)+'</div>'+
+      '<details><summary>展开观察与依据</summary><div class="observation">'+
+      '<span class="label">答题观察 · 未完成判断（inconclusive）</span>'+
+      '<p>脚本流程只记录本题回答与参考内容的关联，不判断正确与否，也不作能力评价。</p>'+
+      '<blockquote><span class="citation">你的回答原文</span>'+esc(excerpt(answer,120))+'</blockquote>'+
+      '<blockquote translate="no"><span class="citation">参考来源摘录 · '+esc(q.title)+'</span>'+esc(excerpt(q.reference,160))+
+      '<br><a href="'+esc(q.url)+'" target="_blank" rel="noopener noreferrer" translate="no">'+esc(q.url)+' ↗</a></blockquote>'+
+      '<p class="fine">题库版本：'+esc(session.bank)+' v'+session.bankVersion+'</p>'+
+      '</div></details></article>';
+  }).join('');
+  return '<div class="page-head"><h1>本场复盘</h1><p>按题浏览题目、回答、可见观察和来源；脚本结果标为流程演示。</p></div>'+
+    '<section class="panel" aria-label="结果摘要"><div class="panel-title"><h2>结果</h2><small>合成原型</small></div>'+
+    '<div class="review-summary"><span class="tag '+statusClass(session.status)+'">'+esc(statusLabel(session.status))+'</span>'+
+    '<span class="metric">题目 <strong>'+QUESTIONS.length+'</strong></span>'+
+    '<span class="metric">回答 <strong>'+Object.keys(session.answers).length+'</strong></span>'+
+    '<span class="metric">答题观察 <strong>'+session.observations+'</strong></span>'+
+    '<span class="metric">结束原因 <strong>'+esc(session.stopReason)+'</strong></span></div>'+
+    '<p class="notice wait" role="status" style="margin-top:12px">确定性脚本流程演示：观察只用于核对关联与展示，不代表真实模型评价效果；不作评分，不显示模拟分数或能力评判。</p>'+
+    '<div class="home-actions"><button class="secondary" id="back-history" type="button">返回历史</button>'+
+    '<button class="secondary" id="start-another" type="button">另开一场</button></div>'+
+    '<details class="diagnostics"><summary>诊断信息</summary>'+
+    '<p class="fine">stop_reason='+esc(session.status==='COMPLETED'?'question_limit':'failed')+' · protocol=scripted_protocol · 场次 '+esc(session.id)+' · 题库版本 v'+session.bankVersion+'</p>'+
+    '</details></section>'+
+    '<div class="section-label">按题复盘</div>'+items+
+    footerNote('观察与来源都能回到对应题目、回答与依据。考中反馈由服务端隐藏，仅在终态展示。');
+}
+function renderHistory(){
+  var rows=state.sessions.map(function(item,index){
+    return '<button class="session-item" type="button" data-open="'+esc(item.id)+'"><span><span class="id">场次 '+
+      (state.sessions.length-index)+' · '+esc(short(item.id))+'</span><span class="meta">'+esc(item.bank)+' · v'+item.bankVersion+
+      ' · '+esc(item.created)+' · '+Object.keys(item.answers).length+' 答</span></span>'+
+      '<span class="tag '+statusClass(item.status)+'">'+esc(statusLabel(item.status))+'</span></button>';
+  }).join('');
+  return '<div class="page-head"><h1>历史场次</h1><p>当前目标的记录；点击任一场次回到同一 ID 的作答或复盘。</p></div>'+
+    '<section class="panel"><div class="panel-title"><h2>场次列表</h2><small>合成状态</small></div>'+
+    '<div class="session-list">'+rows+'</div>'+
+    '<div class="home-actions"><button class="secondary" id="back-home" type="button">返回工作台</button></div></section>'+
+    footerNote('原型不读取服务端历史；记录与场次详情沿用现有结构。');
+}
+function render(){
+  shell.dataset.view=state.view;
+  renderContext();applyNav();syncHash();
+  var html=state.view==='home'?renderHome():state.view==='goal'?renderGoal():state.view==='interview'?renderInterview():
+    state.view==='review'?renderReview():renderHistory();
+  inner.innerHTML=html;
+  bindContent();
+  startCountdown();
+}
+function bindContent(){
+  var primary=document.getElementById('primary-action');
+  if(primary)primary.addEventListener('click',function(){
+    if(!state.goal){state.view='goal';render();return;}
+    var session=activeSession();
+    if(session){state.view=session.status==='COMPLETED'?'review':'interview';}
+    else{startNewSession();}
+    render();
+  });
+  var openHistory=document.getElementById('open-history');
+  if(openHistory)openHistory.addEventListener('click',function(){state.view='history';render();});
+  Array.prototype.forEach.call(document.querySelectorAll('[data-open]'),function(button){
+    button.addEventListener('click',function(){openSession(button.getAttribute('data-open'));});
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-region]'),function(button){
+    button.addEventListener('click',function(){showToast('「'+button.getAttribute('data-region')+'」沿用现有页面，本原型只保留入口。');});
+  });
+  var backHistory=document.getElementById('back-history');
+  if(backHistory)backHistory.addEventListener('click',function(){state.view='history';render();});
+  var backHome=document.getElementById('back-home');
+  if(backHome)backHome.addEventListener('click',function(){state.view='home';render();});
+  var startAnother=document.getElementById('start-another');
+  if(startAnother)startAnother.addEventListener('click',function(){
+    state.activeId=null;state.demo='no-active';state.view='home';render();
+    showToast('已回到开场：题库沿用 v1，主操作变为「开始面试」。');
+  });
+  var goalForm=document.getElementById('goal-form');
+  if(goalForm)goalForm.addEventListener('submit',function(event){
+    event.preventDefault();
+    var intent=document.getElementById('goal-intent').value.trim();
+    var error=document.getElementById('goal-error');
+    if(!intent){error.textContent='请先写一句求职意向再保存。';error.classList.remove('hidden');document.getElementById('goal-intent').focus();return;}
+    error.classList.add('hidden');
+    state.goal={id:'goal-synthetic-02',name:'AI 应用 / Agent 开发实习',
+      direction:(document.getElementById('goal-direction').value.trim()||'方向待确认')+' · '+(document.getElementById('goal-city').value.trim()||'城市待确认'),
+      status:'进行中'};
+    state.demo='no-active';state.view='home';render();
+    showToast('目标已保存在合成状态；主操作变为「开始面试」。');
+  });
+  var goalCancel=document.getElementById('goal-cancel');
+  if(goalCancel)goalCancel.addEventListener('click',function(){state.view='home';render();});
+  var answer=document.getElementById('answer-input');
+  if(answer){
+    var session=activeSession(),question=QUESTIONS[Math.min(session.questionIndex,QUESTIONS.length-1)];
+    answer.value=state.drafts[question.id]||'';
+    updateCounter(answer);
+    answer.addEventListener('compositionstart',function(){composing=true;});
+    answer.addEventListener('compositionend',function(){composing=false;});
+    answer.addEventListener('input',function(){state.drafts[question.id]=answer.value;updateCounter(answer);});
+    answer.addEventListener('keydown',function(event){
+      if(event.key==='Enter'&&(composing||event.isComposing||event.keyCode===229)){
+        event.preventDefault();return;
+      }
+      // Enter never submits: submission is an explicit button action.
+    });
+    document.getElementById('submit-answer').addEventListener('click',function(){submitAnswer(answer);});
+  }
+}
+function updateCounter(answer){var c=document.getElementById('answer-count');if(c)c.textContent=answer.value.length+'/1500';}
+function submitAnswer(answer){
+  var session=activeSession();
+  if(!session||session.status!=='WAITING_FOR_USER')return;
+  var error=document.getElementById('answer-error');
+  var text=answer.value.trim();
+  if(composing){error.textContent='输入法组词尚未结束，请完成后再提交。';error.classList.remove('hidden');answer.focus();return;}
+  if(!text){error.textContent='请先写下回答再提交。';error.classList.remove('hidden');answer.focus();return;}
+  error.classList.add('hidden');
+  var question=QUESTIONS[Math.min(session.questionIndex,QUESTIONS.length-1)];
+  session.answers[question.id]=text;
+  state.drafts[question.id]='';
+  if(session.questionIndex<QUESTIONS.length-1){
+    session.questionIndex++;
+    render();
+    var next=document.getElementById('answer-input');
+    if(next)next.scrollIntoView({block:'nearest'});
+    showToast('已记录第 '+session.questionIndex+' 答，下一题已出现；前序问答可展开回看。');
+  }else{
+    session.status='COMPLETED';session.stopReason=STOP_REASON;session.deadlineAt=Date.now()-1000;
+    state.view='review';render();
+    document.getElementById('content').scrollTop=0;
+    showToast('两题已完成，进入按题复盘。');
+  }
+}
+var newSessionCount=0;
+function startNewSession(){
+  newSessionCount++;
+  var fresh=makeSession('c4b2e915-0000-4000-8000-'+String(100000000000+newSessionCount).slice(-12),'WAITING_FOR_USER');
+  state.sessions.unshift(fresh);state.activeId=fresh.id;state.demo='in-progress';state.view='interview';
+  showToast('已创建新的合成场次 '+short(fresh.id)+'。');
+}
+function openSession(id){
+  var session=sessionById(id);
+  if(!session)return;
+  state.activeId=id;
+  state.view=session.status==='COMPLETED'||session.status==='FAILED'?'review':'interview';
+  render();
+  document.getElementById('content').scrollTop=0;
+  showToast('已打开原场次 '+short(id)+'（同一 ID）。');
+}
+function startCountdown(){
+  clearInterval(countdownTimer);
+  countdownTimer=setInterval(function(){
+    var session=activeSession();
+    if(!session||state.view!=='interview')return;
+    var elapsed=Math.max(0,session.deadlineAt-Date.now());
+    var minutes=Math.floor(elapsed/60000),seconds=Math.floor((elapsed%60000)/1000);
+    var clock='剩余 '+(minutes<10?'0':'')+minutes+':'+(seconds<10?'0':'')+seconds;
+    var a=document.getElementById('countdown');
+    if(a)a.textContent=elapsed<=0?'已到期':clock;
+  },1000);
+}
+function setDemo(value){
+  state.demo=value;state.view='home';state.manualNav=false;
+  if(value==='no-goal'){
+    state.goal=null;state.sessions=[COMPLETED];state.activeId=null;
+  }else{
+    state.goal=GOAL;
+    if(value==='in-progress'){
+      ACTIVE.status='WAITING_FOR_USER';ACTIVE.questionIndex=0;ACTIVE.answers={};ACTIVE.deadlineAt=Date.now()+59*60*1000+42*1000;
+      state.sessions=[ACTIVE,COMPLETED];state.activeId=ACTIVE.id;
+    }else if(value==='no-active'){
+      state.sessions=[COMPLETED];state.activeId=null;
+    }else if(value==='processing'){
+      ACTIVE.status='RUNNING';ACTIVE.questionIndex=0;ACTIVE.answers={};
+      state.sessions=[ACTIVE,COMPLETED];state.activeId=ACTIVE.id;
+    }else if(value==='failed'){
+      ACTIVE.status='FAILED';ACTIVE.questionIndex=0;
+      ACTIVE.answers={};ACTIVE.answers[QUESTIONS[0].id]=SYNTH_ANSWER_1;
+      ACTIVE.stopReason='后台任务未完成（失败）';
+      state.sessions=[ACTIVE,COMPLETED];state.activeId=ACTIVE.id;
+    }
+  }
+  state.drafts={};autoNav();render();
+}
+document.getElementById('demo-state').addEventListener('change',function(event){setDemo(event.target.value);});
+document.getElementById('nav-home').addEventListener('click',function(){state.view='home';render();});
+document.getElementById('nav-interview').addEventListener('click',function(){
+  var session=activeSession();
+  if(!session){startNewSession();}else{state.view=session.status==='COMPLETED'?'review':'interview';}
+  render();
+});
+document.getElementById('nav-toggle').addEventListener('click',function(){
+  state.manualNav=true;
+  state.nav=state.nav==='full'?'compact':state.nav==='compact'?'bar':'full';
+  applyNav();
+});
+window.addEventListener('resize',function(){state.manualNav=false;autoNav();applyNav();});
+window.addEventListener('hashchange',function(){parseHash();render();});
+parseHash();autoNav();render();
+})();
+</script>
+</body>
+</html>

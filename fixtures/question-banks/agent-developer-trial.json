@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "name": "Agent开发岗位试运行（无简历）",
+  "items": [
+    {
+      "item_id": "thread-memory",
+      "kind": "knowledge",
+      "roles": [
+        "ai-application"
+      ],
+      "title": "LangGraph会话状态与长期记忆",
+      "question": "你用Python和LangGraph实现一个可多轮交互的Agent。同一个用户可能有多个独立会话：你会怎样区分图内state、checkpointer和store的职责？thread_id应如何使用？进程重启后希望继续会话，需要满足什么条件？",
+      "reference": "图state描述当前线程的执行状态。Checkpointer按thread_id保存该线程的检查点，支持会话连续性和恢复；Store存放应用定义的跨线程信息，可用于偏好等长期记忆。同一用户的不同独立会话应使用不同thread_id。内存型保存器无法跨进程重启持久保存，需持久化实现和相应存储。",
+      "source_url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "source_note": "依据2026-11-05官方文档自拟问题并释义，非官方题库。",
+      "tags": [
+        "Python",
+        "LangGraph",
+        "memory"
+      ]
+    },
+    {
+      "item_id": "interrupt-side-effects",
+      "kind": "knowledge",
+      "roles": [
+        "ai-application"
+      ],
+      "title": "人工确认与工具副作用",
+      "question": "Agent准备调用一个有写入副作用的Python工具，你希望用户确认后才执行。怎样使用LangGraph的interrupt和Command(resume=...)组织流程？恢复时哪些代码可能再次执行？你会把写入放在哪里，并如何避免重复写入？",
+      "reference": "interrupt使用持久化检查点和thread_id暂停等待外部输入，同一thread_id以Command(resume=...)恢复。恢复会从包含interrupt的节点开头重新执行，interrupt之前的副作用应幂等或移到单独节点；不要假定只从暂停的那一行继续。写入应在明确批准后执行，并用业务幂等键等机制应对重试/恢复；审批不替代工具参数和业务权限检查。",
+      "source_url": "https://docs.langchain.com/oss/python/langgraph/interrupts",
+      "source_note": "依据官方interrupt恢复/副作用说明自拟；业务幂等与权限检查为本项目工程考点。",
+      "tags": [
+        "LangGraph",
+        "tools",
+        "harness"
+      ]
+    }
+  ]
+}

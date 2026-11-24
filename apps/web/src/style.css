@@ -1,0 +1,98 @@
+:root{font-family:Inter,"Microsoft YaHei","PingFang SC",system-ui,sans-serif;color:#23352f;background:#f5f6f2;font-synthesis:none;line-height:1.65;font-weight:400}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}button:focus-visible,a:focus-visible{outline:3px solid #91c6ae;outline-offset:4px}button{transition:background .15s,transform .15s}a{color:#237756}h1,h2,h3,p{margin-top:0}h1{line-height:1.25;font-weight:650;letter-spacing:-1.5px}h2{font-size:21px;font-weight:600}h3{font-size:16px;font-weight:600}.site-header{max-width:1320px;margin:auto;padding:24px 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e0e5dd}.brand{display:flex;gap:12px;align-items:center;background:none;border:0;padding:0;text-align:left;color:#254b3b;font-size:23px;font-weight:650}.brand small{display:block;font-size:9px;letter-spacing:1.7px;color:#748176;font-weight:500}.brand-mark{width:42px;height:42px;background:#e4eee5;border-radius:13px;display:grid;place-items:center;font-size:25px}.header-note,.muted{color:#758177;font-size:14px}.account{display:flex;gap:22px;align-items:center;font-size:14px}main{max-width:1224px;margin:auto;padding:34px 36px 64px;min-height:calc(100vh - 170px)}.auth-layout{display:grid;grid-template-columns:1.15fr 1fr;gap:90px;align-items:center;min-height:650px}.intro h1{font-size:58px;margin:22px 0}.intro>p{font-size:18px;color:#69776b;line-height:1.9}.eyebrow{font-size:11px;font-weight:650;letter-spacing:1.8px;color:#768a79}.intro-notes{display:flex;gap:18px;font-size:13px;color:#4f6b58;margin:34px 0}.card{background:#fff;border:1px solid #e2e7df;border-radius:19px;padding:34px;box-shadow:0 8px 25px #273c2b04}.auth-card{max-width:430px;width:100%;justify-self:end;padding:38px}.auth-card h2{font-size:28px;margin:12px 0 7px}.auth-card form{margin-top:27px}label{font-size:13px;color:#495e50;display:block;margin:18px 0 7px;font-weight:550}input,select,textarea{width:100%;background:#fbfcf9;border:1px solid #dce3d8;border-radius:9px;padding:12px 13px;color:#23352f;outline:none}input:focus,select:focus,textarea:focus{border-color:#5e9a7a;box-shadow:0 0 0 3px #76ac8b13}textarea{resize:vertical;min-height:200px;line-height:1.85}.primary{background:#287a57;color:white;border:1px solid #287a57;border-radius:9px;padding:12px 22px;font-size:14px;font-weight:600;box-shadow:0 4px 9px #287a5710}.primary:hover:enabled{background:#1f6547}.secondary{background:#f3f7f0;border:1px solid #d5e1d1;color:#3b654b;padding:9px 16px;border-radius:8px;font-size:13px}.text-button{color:#577663;background:transparent;border:0;padding:7px 0;font-size:13px}.wide{width:100%;margin:24px 0 13px}.fine-print{color:#869084;font-size:12px;margin:20px 0 0}.error{color:#a13b32;background:#fff4f1;border:1px solid #f0d8d1;border-radius:8px;padding:10px 13px;font-size:13px}.notice{border:1px solid #dee6d6;border-radius:8px;padding:9px 15px;font-size:12px;background:#edf2e7;color:#657859;margin-bottom:30px}.workspace{display:grid;grid-template-columns:260px 1fr;gap:40px}.workspace aside{padding:18px 0}.workspace aside>h2{margin:9px 0 23px}.role-tile{padding:22px 20px;background:#e9eee4;border:1px solid #dbe4d3;border-radius:13px}.role-tile strong{display:block;font-size:15px;margin:12px 0 5px}.role-tile p{font-size:12px;color:#6e7e67}.role-icon{display:grid;place-items:center;width:33px;height:33px;color:#37734b;border:1px solid #cad8c3;border-radius:9px;font-size:22px;background:#f4f7f0}.tag{display:inline-block;font-size:11px;letter-spacing:.2px;border:1px solid #dce6d5;border-radius:5px;color:#657b5b;background:#f4f7ee;padding:3px 9px}.recent{margin-top:32px}.recent h3{font-size:12px;color:#7c8777;font-weight:500}.history-item{display:block;text-align:left;width:100%;background:none;border:0;border-bottom:1px solid #e3e8df;padding:13px 2px;color:#4f6353}.history-item>span{display:block;font-size:12px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.history-item small{font-size:10px;color:#8a9484}.setup-card{padding:42px 45px}.setup-card h1{font-size:39px;margin:15px 0}.lead{color:#798674;font-size:15px;line-height:1.95}.setup-divider{height:1px;background:#e7ebe3;margin:28px 0}.question-preview{background:#f6f8f2;border-left:3px solid #aac29a;padding:18px;margin:20px 0 25px;color:#52694b;font-size:14px;line-height:1.85}.expectations{display:flex;gap:20px;border-top:1px solid #e7ebe3;margin-top:35px;padding-top:19px;color:#88917f;font-size:11px}.room{max-width:960px;margin:auto;display:grid;gap:22px}.question-card{padding:32px 38px}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px}.section-heading h2{margin-bottom:0}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 16px}.phase{font-size:11px;color:#7d8a72;align-self:center;margin-left:auto}.question-title{font-size:29px;line-height:1.65;letter-spacing:-.6px;margin-bottom:15px}.answer-toolbar{display:flex;align-items:center;justify-content:space-between;margin-top:16px;gap:12px}.answer-toolbar .muted{font-size:11px}.status-card{display:flex;gap:18px;align-items:center;padding:24px 30px}.status-card h2{font-size:16px;margin-bottom:4px}.status-card p{margin:0;font-size:12px}.status-card>.secondary{margin-left:auto;flex-shrink:0}.pulse{width:10px;height:10px;background:#78a161;border-radius:50%;flex-shrink:0;box-shadow:0 0 0 6px #edf4e7}.saved-answer{background:#f7f9f3;padding:22px;border-radius:10px;margin-top:24px}.saved-answer p{white-space:pre-wrap;overflow-wrap:anywhere;margin:14px 0 0;font-size:14px;color:#5a6c51}.feedback h3{margin:26px 0 11px}.feedback-text{white-space:pre-wrap;overflow-wrap:anywhere;color:#56684d;font-size:15px;line-height:1.9}.citations{display:grid;gap:13px}blockquote{margin:0;border-left:2px solid #cadabf;background:#f8faf5;padding:16px 20px}.citation-label{color:#859477;font-size:11px}blockquote p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;color:#617355;margin:9px 0}blockquote a{font-size:12px}.loading{text-align:center;padding:160px 0;color:#829078}footer{text-align:center;color:#9aa18e;font-size:11px;padding:18px 15px 25px}@media(max-width:800px){.site-header{padding:20px 24px}.header-note{display:none}main{padding:24px 20px 40px}.auth-layout{grid-template-columns:1fr;gap:24px;min-height:auto}.intro{padding:22px 5px}.intro h1{font-size:40px}.intro>p{font-size:15px}.intro-notes{margin:22px 0}.auth-card{max-width:none;justify-self:stretch}.workspace{grid-template-columns:1fr;gap:15px}.workspace aside{padding:0}.role-tile{padding:16px}.role-icon,.workspace aside>.eyebrow{display:none}.recent{margin-top:20px}.setup-card{padding:27px}.setup-card h1{font-size:30px}.question-card{padding:23px}.question-title{font-size:23px}.answer-toolbar{align-items:stretch;flex-direction:column}.status-card{flex-wrap:wrap;padding:22px}.status-card>.secondary{margin-left:0}.card{border-radius:13px}.account{gap:12px}.expectations{gap:12px;flex-wrap:wrap}}
+.career-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;max-width:1160px;margin:28px auto}
+.career-main{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;min-width:0}.career-main>.card{padding:30px;min-width:0}.career-main h1{font-size:30px;margin:10px 0 16px}.career-main textarea{display:block;width:100%;min-height:110px;box-sizing:border-box;padding:12px;border:1px solid #d9ddd7;border-radius:10px;font:inherit;resize:vertical}.career-main input,.career-main select{max-width:100%;box-sizing:border-box}.career-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.goal-card{padding:18px;margin:16px 0;background:#f4f6f1;border-radius:12px;overflow-wrap:anywhere}.career-action{font-weight:600;white-space:pre-wrap}.career-message{padding:12px 0;border-bottom:1px solid #e6e9e2;overflow-wrap:anywhere}.career-history .history-item{width:100%}
+@media(max-width:720px){.career-layout{grid-template-columns:1fr;margin:16px}.career-main>.card{padding:20px}.career-fields{grid-template-columns:1fr}.career-history{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.career-history h2{width:100%}.career-history .history-item{width:auto}}
+.goal-card .text-button{margin-right:12px}
+.job-research button{margin-right:.65rem;margin-bottom:.65rem}.job-card{border-top:1px solid #dce2db;padding:1rem 0}.job-text{white-space:pre-wrap;overflow-wrap:anywhere}.research-status{margin:1rem 0;padding:1rem;background:#f1f5ee;border-radius:12px}.job-research input,.job-research select{max-width:100%}.job-card a{color:#275c45}.job-research details{margin-top:.8rem}.job-research summary{cursor:pointer}
+.interview-workspace{scroll-margin-top:20px}.interview-notice{margin:14px 0}.interview-setup{max-width:560px}.interview-setup .primary{margin-top:16px}.interview-retry{margin:16px 0;padding:14px 16px;background:#f7f9f3;border:1px solid #e2e9dc;border-radius:10px}.interview-retry p{margin:0 0 10px}.interview-session{margin-top:18px}.interview-question{font-size:22px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;margin:10px 0 18px}.interview-history{margin-top:26px;border-top:1px solid #e6ebe2;padding-top:8px}.interview-history .history-item{width:100%}
+.interview-answer textarea{min-height:170px}.interview-report{margin-top:26px;border-top:1px solid #e6ebe2;padding-top:18px}.interview-report-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0 18px}.interview-report-grid span{background:#f4f7f0;border:1px solid #e2e9dc;border-radius:9px;padding:10px 13px;font-size:13px;color:#657859}.interview-report-grid strong{color:#2c5c42;font-size:17px;margin-left:4px}.interview-summary{white-space:pre-wrap;overflow-wrap:anywhere;background:#f7f9f3;border-radius:10px;padding:16px;color:#56684d;font-size:14px}.interview-observation{border-top:1px solid #e6ebe2;padding:18px 0}.interview-observation>p{white-space:pre-wrap;overflow-wrap:anywhere;color:#4f6353}.interview-observation blockquote{margin-top:10px}.interview-answers{margin:18px 0}.interview-answers summary{cursor:pointer;color:#577663;font-size:13px}.interview-answers blockquote{margin-top:12px}
+.auth-error{max-width:1160px;margin:0 auto 18px}
+@media(max-width:720px){.interview-report-grid{grid-template-columns:1fr 1fr}}
+.check-label{display:flex;align-items:center;gap:.6rem;margin:1rem 0}.check-label input[type=checkbox]{width:auto;min-width:16px;flex:0 0 auto}.match-scroll{overflow-x:auto;max-width:100%}.job-match table{border-collapse:collapse;font-size:.85rem;width:100%;min-width:490px}.job-match th,.job-match td{border-bottom:1px solid #dce2db;text-align:left;padding:.65rem;vertical-align:top}.job-match td small{display:block;color:#617569;margin-top:.3rem;min-width:130px;max-width:310px}.job-match{margin-top:1rem}
+
+
+/* F07Z-67: one 面试 entry - the mode switch lives on the setup card in both layouts. */
+.setup-label{display:block;font-size:13px;color:#495e50;margin:18px 0 7px;font-weight:550}
+.mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mode-switch button{text-align:left;background:#fbfcf9;border:1px solid #dce3d8;border-radius:9px;padding:10px 12px;color:#23352f;font-size:13px;font-weight:600}
+.mode-switch button small{display:block;margin-top:2px;font-size:11px;font-weight:400;color:#758177}
+.mode-switch button[aria-pressed="true"]{border-color:#5e9a7a;box-shadow:0 0 0 2px #76ac8b33;background:#eef5ef}
+.mode-switch button:disabled{opacity:.6}
+@media(max-width:720px){.mode-switch{grid-template-columns:1fr}}
+
+/* F07Z-75: same placeholder fix for the web entry. */
+input::placeholder,textarea::placeholder{color:#6a6a70;opacity:1}
+/* F07Z-143: the review component is shared with the practice shell, so it carries its own
+   layered layout there too (web palette; the desktop shell has token-based overrides). */
+.d-review{margin-top:22px}
+.d-review-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;border-bottom:1px solid #e6ebe2;padding-bottom:12px}
+.d-review-title h2{font-size:20px;margin:4px 0;line-height:1.35;letter-spacing:-.01em}
+.d-review-meta{margin:0;font-size:13.5px;color:#57695c}
+.d-review-meta strong{color:#23352f}
+.d-review-badges{display:flex;gap:6px;flex-wrap:wrap}
+.d-review-modenote{margin:8px 0 0}
+.d-review-block{padding:16px 0;border-bottom:1px solid #eef1ea}
+.d-review-block h3{font-size:15px;margin:0 0 8px}
+.d-review-answer{padding:12px 0;border-top:1px solid #eef1ea}
+.d-review-answer:first-of-type{border-top:0;padding-top:0}
+.d-review-question{margin:4px 0 10px;font-size:15px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.d-review-answer-label{margin-top:2px}
+.d-review-answer-text{margin:4px 0 0;font-size:14px;line-height:1.65;color:#4f6353;
+  white-space:pre-wrap;overflow-wrap:anywhere;padding-left:10px;border-left:2px solid #e2e9dc}
+.d-review-next{padding-top:16px}
+.d-review-next p{margin:4px 0 10px;color:#57695c;font-size:13.5px;max-width:60ch}
+.review-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.d-pane-goal{margin:.2rem 0 .5rem;font-size:13px;color:#2c5c42;font-weight:600}
+@media(max-width:560px){
+ .d-review-head{display:block}
+ .d-review-badges{margin-top:8px}
+ .review-actions{flex-direction:column;align-items:stretch}
+}
+
+/* F07Z-146: shared error disclosure and long-answer fold (web shell palette). */
+.d-error-block{display:flex;flex-direction:column;gap:.35rem}
+.d-error-details{font-size:.82rem;color:#617569}
+.d-error-details>summary{cursor:pointer;color:#577663}
+.d-error-details pre{margin:.3rem 0 0;padding:.55rem .7rem;background:#f4f7f0;border:1px solid #e2e9dc;
+  border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere}
+.d-position-next{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .9rem}
+.d-position-next p{margin:0;flex:1 1 260px}
+.d-app-guard{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .9rem}
+.d-app-guard p{margin:0;flex:1 1 260px}
+.d-clamp{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.d-answer-toggle{align-self:flex-start;margin-top:.3rem}
+.d-progress-hint{margin:-.2rem 0 .8rem;color:#617569}
+
+button.primary:disabled,button.secondary:disabled{opacity:.55;cursor:not-allowed}
+
+.d-route-missing{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .9rem;margin:1rem 0;
+  padding:.8rem .9rem;border:1px solid #e2e9dc;border-radius:10px;background:#f7f9f3}
+.d-route-missing p{margin:0;flex:1 1 260px;color:#57695c}
+
+/* F07Z-151: the brief in the practice-shell styling. */
+.d-brief{margin:1rem 0;padding:1rem;border:1px solid #e2e9dc;border-radius:12px;background:#fbfcf9}
+.d-brief-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.6rem;flex-wrap:wrap}
+.d-brief-head h3{font-size:1.05rem;margin:.15rem 0 .5rem}
+.d-brief-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.4rem .9rem;margin-bottom:.3rem}
+.d-brief-facts span{font-size:.82rem;color:#57695c;overflow-wrap:anywhere}
+.d-brief-facts b{color:#657859;margin-right:.35rem}
+.d-brief-section{padding-top:.6rem;margin-top:.6rem;border-top:1px solid #e6ebe2}
+.d-brief-section h4{font-size:.85rem;margin:0 0 .4rem}
+.d-brief-section ul{margin:.2rem 0 .5rem;padding-left:1.1rem;font-size:.85rem;line-height:1.6;color:#4f6353}
+.d-brief-section q{display:block;font-size:.78rem;color:#657859}
+.d-brief-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin:.25rem 0}
+.d-brief-section dl{display:grid;grid-template-columns:max-content 1fr;gap:.25rem .8rem;font-size:.8rem}
+.d-brief-section dt{color:#657859}
+.d-brief-section dd{margin:0;color:#4f6353;overflow-wrap:anywhere}
+.d-brief-raw summary{cursor:pointer;font-size:.8rem;color:#577663;margin-top:.4rem}
+.d-brief-raw p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.82rem;color:#4f6353;max-height:240px;overflow:auto}
+.d-job-points{margin:.2rem 0 .6rem;color:#57695c}
+
+/* F07Z-151: goal route loading / error surface (practice-shell styling). */
+.d-goal-route-state h2{font-size:1.15rem;margin:0 0 .4rem}
+.d-goal-route-state .d-form-foot{margin-top:.6rem}
+
+/* 收尾 01: retest suggestion in the web review view. */
+.d-review-retest{margin-top:.7rem;padding:.6rem .75rem;border:1px solid #d8ded6;border-radius:.5rem;background:#fbfdfa}
+.d-review-retest-question{margin:.25rem 0 .4rem;font-weight:600;line-height:1.55}
+.d-review-retest a{font-size:.8rem}

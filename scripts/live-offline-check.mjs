@@ -1,0 +1,15 @@
+import { spawnSync } from 'node:child_process';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, resolve, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { randomUUID } from 'node:crypto';
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const output = join(root, '.private/pm006/offline', randomUUID());
+mkdirSync(output, { recursive: true });
+const child = spawnSync(process.execPath, ['--import', './scripts/no-network.mjs', '--test', 'packages/runtime-pi/tests/live-offline.test.ts'], { cwd: root, encoding: 'utf8', timeout: 30000, env:{...process.env, PI_PM003_AUDIT_PATH:join(output,'network.json')} });
+const log = (child.stdout ?? '') + (child.stderr ?? '');
+writeFileSync(join(output, 'tests.log'), log);
+console.log(log);
+const passed = child.status === 0 && !child.error;
+writeFileSync(join(output, 'receipt.json'), JSON.stringify({step:'PM0-06 / PI-06 offline', status:passed?'passed':'failed', exitCode:child.status, error:child.error?.code??null, node:process.version, completedAt:new Date().toISOString(), scope:'real Pi serializer/parser/runtime, synthetic HTTP SSE; no live credentials loaded'},null,2)+'\n');
+console.log(JSON.stringify({status:passed?'passed':'failed',receipt:join(output,'receipt.json')}));process.exitCode=passed?0:1;

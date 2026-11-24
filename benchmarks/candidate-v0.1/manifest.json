@@ -1,0 +1,21 @@
+{
+  "suite": "candidate-simulation",
+  "version": "candidate-v0.1",
+  "case_ids": [
+    "IS01",
+    "IS02",
+    "IS03",
+    "IS04",
+    "IS05",
+    "IS06",
+    "IS07",
+    "IS08",
+    "IS09",
+    "IS10"
+  ],
+  "notes": "Profiles for the frozen interview-session cases IS01/IS02/IS03. Answer texts are verbatim copies of the inline rules, so the scripted interviewer is unchanged.",
+  "sha256": {
+    "profiles.jsonl": "80d8b22189fa8424c5583f8108384f8911c1d8ac99ecad09365aa5dc96f9fec7"
+  },
+  "inline_case_ids": []
+}

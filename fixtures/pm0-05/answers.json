@@ -1,0 +1,153 @@
+[
+  {
+    "id": "answer-01",
+    "candidate_id": "candidate-a",
+    "prompt_ref": {
+      "kind": "question",
+      "id": "q-tool-use-1"
+    },
+    "resume_id": null,
+    "jd_id": null,
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "Schema检查参数结构和约束，不能证明当前用户有权限。",
+      "工具应使用服务端身份核对资源所属用户及会话允许范围，不能信任模型给出的user_id。"
+    ],
+    "hints": [],
+    "independent": true,
+    "version": "v1"
+  },
+  {
+    "id": "answer-02",
+    "candidate_id": "candidate-a",
+    "prompt_ref": {
+      "kind": "question",
+      "id": "q-tool-use-1"
+    },
+    "resume_id": null,
+    "jd_id": null,
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "我会先校验参数Schema，再限制工具白名单。"
+    ],
+    "hints": [],
+    "independent": true,
+    "version": "v1"
+  },
+  {
+    "id": "answer-03",
+    "candidate_id": "candidate-a",
+    "prompt_ref": {
+      "kind": "question",
+      "id": "q-tool-use-1"
+    },
+    "resume_id": null,
+    "jd_id": null,
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "只要Schema通过，就证明读取任何文档都有权限。"
+    ],
+    "hints": [],
+    "independent": true,
+    "version": "v1"
+  },
+  {
+    "id": "answer-04",
+    "candidate_id": "candidate-a",
+    "prompt_ref": {
+      "kind": "question",
+      "id": "q-tool-use-1"
+    },
+    "resume_id": null,
+    "jd_id": null,
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "我把格式检查和能否访问分开：先校验输入，再拿登录会话的身份核对文档所属者，不让模型指定身份。"
+    ],
+    "hints": [],
+    "independent": true,
+    "version": "v1"
+  },
+  {
+    "id": "answer-05",
+    "candidate_id": "candidate-a",
+    "prompt_ref": {
+      "kind": "question",
+      "id": "q-tool-use-1"
+    },
+    "resume_id": null,
+    "jd_id": null,
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "这点我不清楚，希望先解释参数校验与权限的区别。"
+    ],
+    "hints": [],
+    "independent": true,
+    "version": "v1"
+  },
+  {
+    "id": "answer-06",
+    "candidate_id": "candidate-a",
+    "prompt_ref": {
+      "kind": "question",
+      "id": "q-tool-use-1"
+    },
+    "resume_id": null,
+    "jd_id": null,
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "提示后我理解了：格式正确不等于有权访问，还需按当前用户检查文档权限。"
+    ],
+    "hints": [
+      {
+        "text": "参数形式正确是否意味着资料属于当前用户？",
+        "before_answer": true
+      }
+    ],
+    "independent": false,
+    "version": "v1"
+  },
+  {
+    "id": "answer-07",
+    "candidate_id": "candidate-c",
+    "prompt_ref": {
+      "kind": "experience",
+      "id": "experience-c"
+    },
+    "resume_id": "resume-c",
+    "jd_id": null,
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "我只实现了重排接口，并没有负责整套平台。",
+      "80%是同学汇总的演示数字，我还不能提供一致的基线和测量数据。"
+    ],
+    "hints": [],
+    "independent": true,
+    "version": "v1"
+  },
+  {
+    "id": "answer-08",
+    "candidate_id": "candidate-a",
+    "prompt_ref": {
+      "kind": "question",
+      "id": "q-tool-use-1"
+    },
+    "resume_id": null,
+    "jd_id": null,
+    "split": "development",
+    "origin": "synthetic",
+    "lines": [
+      "我用过一个Agent平台，但没有看过它的Schema或用户权限实现。"
+    ],
+    "hints": [],
+    "independent": true,
+    "version": "v1"
+  }
+]

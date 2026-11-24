@@ -1,0 +1,105 @@
+{
+  "stage": "PY-MIG-01",
+  "checked_on": "2026-10-23",
+  "index": "https://pypi.org/simple",
+  "packages": [
+    {
+      "name": "uv",
+      "version": "0.13.5",
+      "requires_python": ">=3.8",
+      "metadata_url": "https://pypi.org/pypi/uv/0.13.5/json",
+      "windows_wheel": {
+        "url": "https://files.pythonhosted.org/packages/32/ea/771744a784b16aa21d195cb5d5d5a2878d72fa00fc26f11ea3f9646994fe/uv-0.13.5-py3-none-win_amd64.whl",
+        "filename": "uv-0.13.5-py3-none-win_amd64.whl",
+        "sha256": "1fb29fc46ba12033e2ef95a95ac79d649e71bbb1358419bbbcbd19d86026ef2f"
+      }
+    },
+    {
+      "name": "fastapi",
+      "version": "0.161.1",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/fastapi/0.161.1/json"
+    },
+    {
+      "name": "uvicorn",
+      "version": "0.54.0",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/uvicorn/0.54.0/json"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.14.1",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/pydantic/2.14.1/json"
+    },
+    {
+      "name": "langgraph",
+      "version": "1.2.16",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/langgraph/1.2.16/json"
+    },
+    {
+      "name": "langchain-deepseek",
+      "version": "1.1.1",
+      "requires_python": "<4.0.0,>=3.10.0",
+      "metadata_url": "https://pypi.org/pypi/langchain-deepseek/1.1.1/json"
+    },
+    {
+      "name": "psycopg",
+      "version": "3.3.6",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/psycopg/3.3.6/json"
+    },
+    {
+      "name": "psycopg-pool",
+      "version": "3.3.3",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/psycopg-pool/3.3.3/json"
+    },
+    {
+      "name": "redis",
+      "version": "8.1.0",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/redis/8.1.0/json"
+    },
+    {
+      "name": "pwdlib",
+      "version": "0.3.1",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/pwdlib/0.3.1/json"
+    },
+    {
+      "name": "pytest",
+      "version": "9.1.1",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/pytest/9.1.1/json"
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "requires_python": ">=3.8",
+      "metadata_url": "https://pypi.org/pypi/httpx/0.28.1/json"
+    },
+    {
+      "name": "hatchling",
+      "version": "1.32.4",
+      "requires_python": ">=3.10",
+      "metadata_url": "https://pypi.org/pypi/hatchling/1.32.4/json"
+    }
+  ],
+  "uv_executable_sha256": "f45d1cb9d9140ca6d3f4005fdfc0ebeccf849fd04d1dc85804155cb923f1597b",
+  "documentation": [
+    "https://docs.astral.sh/uv/getting-started/installation/",
+    "https://docs.astral.sh/uv/concepts/projects/sync/",
+    "https://fastapi.tiangolo.com/tutorial/first-steps/"
+  ],
+  "python": {
+    "implementation": "CPython",
+    "version": "3.13.17",
+    "distributor": "Astral python-build-standalone (uv managed; not the PSF Windows installer)",
+    "key": "cpython-3.13.17-windows-x86_64-none",
+    "download_url": "https://releases.astral.sh/github/python-build-standalone/releases/download/20261021/cpython-3.13.17%2B20261021-x86_64-pc-windows-msvc-install_only_stripped.tar.gz",
+    "install_scope": ".bootstrap/python; --no-bin --no-registry",
+    "documentation": "https://docs.astral.sh/uv/concepts/python-versions/"
+  }
+}

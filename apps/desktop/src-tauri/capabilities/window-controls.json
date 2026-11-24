@@ -1,0 +1,24 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "desktop-window-controls",
+  "description": "Permissions for this app's own windows. The workbench is served by the local API on http://127.0.0.1:3100, so that origin needs the window controls to move, minimise, maximise and close the app's own window. The startup page runs on the app's own origin and uses the same commands. No plugin permission and no file, shell or network access is granted here. 5174 is the Vite preview origin: it only exists in development builds (the packaged app never loads it, and the main window's navigation guard only allows 3100 in the product), so it is listed only so preview can exercise the same commands.",
+  "windows": ["main"],
+  "remote": {
+    "urls": ["http://127.0.0.1:3100", "http://127.0.0.1:5174"]
+  },
+  "permissions": [
+    "allow-prepare-desktop",
+    "allow-quit-app",
+    "allow-run-probe",
+    "allow-finish-probe",
+    "allow-window-control",
+    "allow-window-state",
+    "allow-open-practice-window",
+    "allow-open-external",
+    "allow-local-data",
+    "allow-open-data-folder",
+    "allow-local-identity-secret-set",
+    "allow-local-identity-secret-get",
+    "allow-local-identity-secret-clear"
+  ]
+}

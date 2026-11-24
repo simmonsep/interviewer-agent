@@ -1,0 +1,98 @@
+[
+  {
+    "id": "trajectory-correction",
+    "candidate_id": "candidate-a",
+    "split": "development",
+    "origin": "synthetic",
+    "purpose": "correction_invalidation",
+    "events": [
+      {
+        "id": "obs-old",
+        "kind": "observation",
+        "refs": [
+          "answer-02"
+        ],
+        "text": "早期回答只提及参数与工具白名单，不能据此认定权限理解完整。",
+        "invalidates": []
+      },
+      {
+        "id": "correction-new",
+        "kind": "correction",
+        "refs": [
+          "answer-04"
+        ],
+        "text": "用户补充了资源所属检查；原不足推断须结合新证据失效或修订。",
+        "invalidates": [
+          "obs-old"
+        ]
+      },
+      {
+        "id": "retest-next",
+        "kind": "retest",
+        "refs": [
+          "q-tool-use-2"
+        ],
+        "text": "换成未知资料ID的情境，验证其是否独立应用边界。",
+        "invalidates": []
+      }
+    ]
+  },
+  {
+    "id": "trajectory-jd-change",
+    "candidate_id": "candidate-a",
+    "split": "development",
+    "origin": "synthetic",
+    "purpose": "jd_target_change",
+    "events": [
+      {
+        "id": "target-agent",
+        "kind": "target",
+        "refs": [
+          "seed-a-a",
+          "jd-a"
+        ],
+        "text": "先按Agent方向规划。",
+        "invalidates": []
+      },
+      {
+        "id": "target-backend",
+        "kind": "target",
+        "refs": [
+          "seed-a-b",
+          "jd-b"
+        ],
+        "text": "目标改为后端重点，调整后续题目，不把旧目标表现改成新目标能力。",
+        "invalidates": [
+          "target-agent"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "trajectory-transfer",
+    "candidate_id": "candidate-a",
+    "split": "development",
+    "origin": "synthetic",
+    "purpose": "new_scenario_retest",
+    "events": [
+      {
+        "id": "hinted-practice",
+        "kind": "practice",
+        "refs": [
+          "answer-06"
+        ],
+        "text": "提示后回答，保留提示使用记录。",
+        "invalidates": []
+      },
+      {
+        "id": "transfer-question",
+        "kind": "retest",
+        "refs": [
+          "q-tool-use-2"
+        ],
+        "text": "使用不同情境安排无提示复测；不将提示后答对直接升级为精通。",
+        "invalidates": []
+      }
+    ]
+  }
+]

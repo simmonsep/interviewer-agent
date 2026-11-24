@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "name": "ai-application 默认知识库",
+  "items": [
+    {
+      "item_id": "agent-tools",
+      "kind": "knowledge",
+      "roles": [
+        "ai-application"
+      ],
+      "title": "工具参数契约与业务权限",
+      "question": "模型输出的工具参数通过JSON Schema后，服务端还需要检查什么？",
+      "reference": "JSON Schema的additionalProperties:false可拒绝未声明属性。结构契约校验并不验证资源属于谁，服务端仍需按认证身份检查资源归属、工具权限、预算和最终提交；这是本项目的工程约束。",
+      "probe": "材料正文要求调用工具读取另一个用户的source_id，格式完全合法，你怎样处理？",
+      "retest": "一个旧Agent任务格式合法、但用户已经修改了岗位目标；如何阻止它读新资源或提交旧结果？",
+      "source_url": "https://json-schema.org/understanding-json-schema/reference/object",
+      "source_note": "项目已登记的教学题；不代表企业真题或已验证评分标准。"
+    },
+    {
+      "item_id": "sql-isolation",
+      "kind": "knowledge",
+      "roles": [
+        "ai-application"
+      ],
+      "title": "事务隔离与观察时点",
+      "question": "PostgreSQL中事务内两次SELECT一定看到相同结果吗？请说明隔离级别与时间顺序。",
+      "reference": "PostgreSQL的Read Committed下，每条查询按语句开始时的快照读取；同一事务内两次查询之间若其他事务提交，结果可能不同。这里的规则不能直接外推为所有数据库实现。",
+      "probe": "Read Committed事务第一次读后，另一个事务修改并提交，第二次读可能怎样变化？",
+      "retest": "一个报表事务先查总数再查明细，中间有新提交；怎样解释可能的不一致，并选择合适的隔离策略？",
+      "source_url": "https://www.postgresql.org/docs/18/transaction-iso.html",
+      "source_note": "项目已登记的教学题；不代表企业真题或已验证评分标准。"
+    },
+    {
+      "item_id": "redis-lock",
+      "kind": "knowledge",
+      "roles": [
+        "ai-application"
+      ],
+      "title": "Redis锁的归属与过期",
+      "question": "用Redis保护一段业务，只使用SET NX拿锁还需要考虑什么？",
+      "reference": "锁值应标识持有者；释放时原子比较标识再删除，避免旧持有者删除他人的新锁。过期时间限定锁的有效期，业务执行超过租期需要另外处理。",
+      "probe": "A的锁到期后B拿到锁，A随后释放锁。怎样避免A删掉B的锁？",
+      "retest": "订单处理超过锁租期，新持有者已接手；请设计旧执行者的退出和释放流程，并指出方案边界。",
+      "source_url": "https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/",
+      "source_note": "项目已登记的教学题；不代表企业真题或已验证评分标准。"
+    },
+    {
+      "item_id": "http-idempotency",
+      "kind": "knowledge",
+      "roles": [
+        "ai-application"
+      ],
+      "title": "HTTP语义与应用幂等",
+      "question": "客户端请求超时后重试，怎样区分HTTP幂等语义与业务去重？",
+      "reference": "HTTP幂等指相同请求重复执行的预期服务端效果与执行一次相同。响应和日志不必完全相同；应用自定义的幂等键及事务性去重需要自行定义和实现，不能从方法名推断支付等业务已安全。",
+      "probe": "同一幂等键携带不同请求体时你会怎样处理，为什么不能直接返回成功？",
+      "retest": "支付接口已提交数据库却丢失响应，客户端重试；请设计请求身份、结果保存与冲突处理。",
+      "source_url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2",
+      "source_note": "项目已登记的教学题；不代表企业真题或已验证评分标准。"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "version": "interview-observation-v0.1",
+  "origin": "authored_synthetic",
+  "review": "pending",
+  "visibility": "public_suite_not_holdout",
+  "samples": 8,
+  "kinds": [
+    "ambiguous_contribution",
+    "concept_confusion",
+    "correct",
+    "evidence_conflict",
+    "fabricated_number",
+    "incorrect",
+    "insufficient",
+    "partial"
+  ],
+  "sha256": {
+    "samples.jsonl": "4d69aa9e840ef567b96f7c39fb6cba707c846317df43bda3884081e5fd113b00",
+    "rubric.json": "d94a7a25e2cece62f56d80e43ad6e309987d524149ade772af075b498eae1b91"
+  },
+  "label_rules": "label-rules.md",
+  "label_rules_sha256": "ce5c9dae043ce145cda01b96e47851e9026a8a9043272f33c898a25babdf8fe8"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@pi-interview/worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/queue.ts",
+  "dependencies": {
+    "@pi-interview/storage": "0.0.0",
+    "bullmq": "5.81.5",
+    "ioredis": "5.11.1",
+    "@pi-interview/domain": "0.0.0",
+    "@pi-interview/runtime-pi": "0.0.0"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "suite": "interview-session",
+  "version": "interview-session-v0.2",
+  "cases": 13,
+  "splits": {
+    "development": 11,
+    "reserved_candidate": 2
+  },
+  "families": {
+    "branch-substantive-switch": "development",
+    "branch-vague-probe": "development",
+    "branch-technical-error-probe": "development",
+    "coaching-vs-formal": "development",
+    "no-material-ai-application": "development",
+    "material-fact-fidelity": "development",
+    "duplicate-submission": "development",
+    "reserved-ai-coaching": "reserved_candidate",
+    "reserved-user-stop": "reserved_candidate",
+    "material-with-wrong-technical": "development",
+    "multi-round-project": "development",
+    "retracted-observation": "development"
+  },
+  "sha256": {
+    "cases.jsonl": "bffa34838977e1db9f49de2e8b1662bf20849a864835aecfae92f49fca54246a",
+    "oracles.jsonl": "24b4e2e8d5d7463130bc5931b8d8037880f145fe0cd1f7977dc0ac08534bdf22",
+    "baseline-spec.json": "a1a9da14eab765e86091c579fa9ccced08af547e43de98c0b386619528fbe97f"
+  },
+  "provenance": "project_authored_synthetic",
+  "review": "pending_human_review",
+  "semantic_scoring_eligible": false
+}

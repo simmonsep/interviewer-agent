@@ -1,0 +1,11 @@
+{
+  "version": "wiki-replay-holdout-v0.1",
+  "cases": 12,
+  "split": "holdout",
+  "provenance": "project_authored_synthetic",
+  "semantic_review": "pending",
+  "sha256": {
+    "cases.jsonl": "5ad571cd4e40d7295dee2daafe34642733892ccb0f95100bd253c396259ffcb6",
+    "oracles.jsonl": "721410ab98568180ef94df8eda2c980984dee21f56282f22e49fa6b48faa3987"
+  }
+}

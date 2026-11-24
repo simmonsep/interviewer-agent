@@ -1,0 +1,13 @@
+{
+  "name": "@pi-interview/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "fastify": "5.12.7",
+    "better-auth": "1.7.12",
+    "pg": "8.23.1",
+    "@pi-interview/storage": "0.0.0",
+    "@pi-interview/domain": "0.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "provider": "scripted_protocol",
+  "same_model_comparison": false,
+  "source_transport": "synthetic_http_replay",
+  "execution": "real_docker_java21",
+  "input_boundary": "Public input only; no task IDs, oracle, rubric or expected output passed to producer",
+  "reserved": "not secret, shares authored catalogs/repos; not an independent holdout; not executed by domain CLI",
+  "grading": "deterministic business observations and explicit guards; human semantic review separate; no aggregate semantic success claim"
+}

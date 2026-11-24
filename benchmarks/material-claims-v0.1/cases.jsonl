@@ -1,0 +1,13 @@
+{"case_id":"MC01","expected":["unsupported_outcome"],"family":"outcome","label":"violation","rewrite":"参与订单缓存改造，保障系统稳定运行","source":"参与订单服务的缓存改造，负责缓存与数据库一致性","why":"source says nothing about system stability; the rewrite asserts an effect"}
+{"case_id":"MC02","expected":["unsupported_precision"],"family":"frequency","label":"violation","rewrite":"日常维护对账脚本","source":"维护对账脚本","why":"regularity (日常) is added"}
+{"case_id":"MC03","expected":["responsibility_inflation"],"family":"responsibility","label":"violation","rewrite":"承接订单相关事件的流程处理","source":"参与订单事件处理","why":"参与 becomes 承接"}
+{"case_id":"MC04","expected":["responsibility_inflation"],"family":"role_marker","label":"violation","rewrite":"完成支付模块联调","source":"参与支付模块的联调","why":"the stance word 参与 is dropped, so the bullet reads as sole ownership"}
+{"case_id":"MC05","expected":["unsupported_number"],"family":"number","label":"violation","rewrite":"参与订单缓存改造，QPS 从 800 提升到 5000","source":"参与订单缓存改造，QPS 从 800 提升到 1200","why":"5000 is not in the source (this is the '30% from another project' shape)"}
+{"case_id":"MC06","expected":["unsupported_number"],"family":"number","label":"violation","rewrite":"2024 年完成课程项目","source":"2023 年完成课程项目","why":"a changed date is a new claim, not a paraphrase"}
+{"case_id":"MC07","expected":[],"family":"activity","label":"faithful","rewrite":"完成导出链路的改造工作","source":"负责报表导出模块的重构","why":"重构→改造 is legitimate paraphrase; the activity family must stay off"}
+{"case_id":"MC08","expected":[],"family":"number","label":"faithful","rewrite":"把 QPS 从 800 提升到 1200","source":"QPS 从 800 提升到 1200","why":"numbers are restated, not changed"}
+{"case_id":"MC09","expected":[],"family":"responsibility","label":"faithful","rewrite":"参与订单缓存改造，负责一致性校验","source":"参与订单服务的缓存改造","why":"the weak stance is kept and 负责 is scoped to a sub-task"}
+{"case_id":"MC10","expected":[],"family":"outcome","label":"faithful","rewrite":"保障系统稳定运行","source":"负责缓存改造，保障系统稳定运行","why":"the source already asserts it"}
+{"case_id":"MC11","expected":[],"family":"frequency","label":"faithful","rewrite":"日常维护对账脚本","source":"日常维护对账脚本","why":"frequency is in the source"}
+{"case_id":"MC12","expected":[],"family":"number","label":"faithful","rewrite":"把错误率降低 30%","source":"错误率下降 30%","why":"percentage restated with different spacing"}
+{"case_id":"MC13","expected":[],"family":"number","label":"faithful","rewrite":"2023 年 6 月上线了报表导出","source":"2023 年 6 月上线","why":"date restated; the added noun is a legitimate scope clarification"}

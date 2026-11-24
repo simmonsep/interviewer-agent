@@ -1,0 +1,12 @@
+{
+  "name": "@pi-interview/domain",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/practice.ts",
+  "dependencies": {
+    "@pi-interview/contracts": "0.0.0",
+    "@pi-interview/runtime-pi": "0.0.0",
+    "typebox": "1.3.27"
+  }
+}

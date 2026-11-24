@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "name": "项目工程笔试示例",
+  "items": [
+    {
+      "item_id": "missing-reference",
+      "kind": "single_choice",
+      "roles": ["java-backend", "ai-application"],
+      "title": "参考缺失时的边界",
+      "question": "按本项目的训练政策，题目未提供参考时应如何处理？",
+      "options": [{"option_id":"A","text":"模型自行补答案并判定用户答错"},{"option_id":"B","text":"保留原回答，不作正确性判断"},{"option_id":"C","text":"把题干当成标准答案"}],
+      "correct_option_ids": ["B"],
+      "reference": "这是本项目的政策示例：缺参考时只记录回答，不生成可靠性结论。",
+      "source_note": "项目原创示例；答案键由维护者声明，不是企业真题。"
+    },
+    {
+      "item_id": "bank-admission",
+      "kind": "multiple_choice",
+      "roles": ["java-backend", "ai-application"],
+      "title": "新会话选库准入",
+      "question": "按本项目已实现的权限规则，下列哪些选库请求应被拒绝？",
+      "options": [{"option_id":"A","text":"选择另一个用户的私有库"},{"option_id":"B","text":"明确选择仍启用库的已保存旧版本"},{"option_id":"C","text":"选择已停用的私有库"},{"option_id":"D","text":"导出默认库并另存为自己的私有库"}],
+      "correct_option_ids": ["A", "C"],
+      "reference": "他人私有库不可访问；停用阻止新会话选用。历史版本和复制默认库按原规则允许。",
+      "source_note": "针对本项目接口行为的原创练习。"
+    },
+    {
+      "item_id": "idempotency-design",
+      "kind": "short_answer",
+      "roles": ["java-backend", "ai-application"],
+      "title": "幂等设计说明",
+      "question": "请说明业务幂等键、请求内容冲突和结果保存之间的关系，并给出一个验证场景。",
+      "reference": "可围绕请求身份、相同键不同内容、事务保存结果和响应丢失重试展开。本题不自动进行语义评分。",
+      "source_note": "项目原创文本练习；参考是评阅提示，不是自动判题器。"
+    }
+  ]
+}
