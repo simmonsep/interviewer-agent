@@ -1,4 +1,4 @@
-"""Evaluate public experience search for frozen synthetic interview cases."""
+"""Compare public sources for frozen synthetic interview cases."""
 import argparse
 import asyncio
 from collections import Counter
@@ -24,6 +24,7 @@ from interview_agent.career.repository import digest
 from interview_agent.connectors.experience_providers import ENDPOINTS, SearchService
 from interview_agent.connectors.experience_settings import credential
 from interview_agent.connectors.interview_experiences import MAX_PAGE_BYTES, PAGE_LIMIT, ExperienceLookup, post_url, search_target
+from interview_agent.connectors.public_reference import CATALOG, PreparationReference, explicit_topic
 from interview_agent.contracts.operations import QueueMessage
 from interview_agent.desktop import key_vault
 from interview_agent.evaluation.__main__ import provenance, write
@@ -56,6 +57,11 @@ X01_BASE_QUERY = 'AI Agent 评测 面经'
 X01_FOCUSED_QUERY = 'AI Agent 离线评测 失败归因 面经'
 ARCHIVED_VERSION = 'f07z185-archived-experience-blind-v1'
 ARCHIVED_CASES = {'X01a': 'baseline-02', 'X01b': 'focused-01'}
+REFERENCE_VERSION = 'official-reference-pairs-v1'
+REFERENCE_CASES = (
+    ('R01', 'ai-application', '负责 LangGraph Store 的跨线程记忆与用户命名空间隔离。'),
+    ('R02', 'ai-application', '负责 LangChain 结构化输出以及厂商不支持原生结构化时的兼容与校验。'),
+)
 
 
 class FocusedEvaluationSearch(SearchService):
@@ -114,6 +120,9 @@ def mock_planner(request, mode):
         generated.update(question='如果同一个任务工具已选对但执行仍报错，你怎样定位失败发生的阶段？',
                          target_quote=experiences['target_quote'], experience_id=sources[0]['id'],
                          experience_quote=sources[0]['excerpt'][:200])
+    reference = scope.get('official_reference', {}).get('source')
+    if reference:
+        generated.update(source_id=reference['id'], source_quote=reference['excerpt'][:240])
     return mock_completion({'content': json.dumps({'generated_questions': [generated]}, ensure_ascii=False)})
 
 
@@ -150,7 +159,7 @@ def archived_search(service, page, request):
 
 
 def write_review(path, mode, pairs):
-    lines = ['# 面经搜索对照盲审表', '',
+    lines = ['# 首题对照盲评表', '',
              '同一问题的两侧分别展示实际发布的首题。' if mode == 'live' else '本表来自免费 SDK 模拟。', '',
              '判断贴合考点、可展开的深度、难度以及虚构前提。选 X、Y、平或无效，并记录理由。', '']
     for case_id, jd, question_x, question_y in pairs:
@@ -232,17 +241,24 @@ async def execute(args):
         return await probe_search(out, service, case=args.case, compare_evaluation_query=args.compare_evaluation_query,
                                   keep_public_pages=args.keep_public_pages)
     archived = args.archived_experiences is not None
+    official = args.official_references
     pages = {}
     if archived:
         directory = args.archived_experiences.resolve()
         if not directory.is_relative_to(profile):
             raise ValueError('only_local_private_archives_allowed')
         pages = load_archived_pages(directory)
-    cases = tuple((case, CASES[0][1], CASES[0][2]) for case in ARCHIVED_CASES) if archived else CASES
-    version = ARCHIVED_VERSION if archived else VERSION
-    caps = dict.fromkeys(CAPS, 300_000_000) if archived else CAPS
-    limits = {'preparation': 6 * len(cases), 'interview': 10 * len(cases)} if archived else HTTP_LIMITS
-    search_key = credential(service) if live and not archived else 'synthetic-search-key'
+    if official:
+        cases, version = REFERENCE_CASES, REFERENCE_VERSION
+    elif archived:
+        cases = tuple((case, CASES[0][1], CASES[0][2]) for case in ARCHIVED_CASES)
+        version = ARCHIVED_VERSION
+    else:
+        cases, version = CASES, VERSION
+    bounded_replay = archived or official
+    caps = dict.fromkeys(CAPS, 300_000_000) if bounded_replay else CAPS
+    limits = {'preparation': 6 * len(cases), 'interview': 10 * len(cases)} if bounded_replay else HTTP_LIMITS
+    search_key = credential(service) if live and not bounded_replay else 'synthetic-search-key'
     if live and (not search_key or not key_vault.load()):
         raise ValueError('both_provider_credentials_required')
     api = Settings.load(profile / 'postgres/test.json')
@@ -261,13 +277,14 @@ async def execute(args):
     if not live:
         credentials.write_text('DEEPSEEK_API_KEY=offline-not-real\n', encoding='utf-8')
     layout = review_layout(version, [case[0] for case in cases])
-    write(out / 'plan.json', {'mode': args.mode, 'search_provider': service.provider,
+    write(out / 'plan.json', {'mode': args.mode, 'search_provider': None if official else service.provider,
           'cases': cases, 'cases_sha256': digest(cases), 'archived_pages': {
               case: sha256(page[1]).hexdigest() for case, page in pages.items()},
           'controller_sha256': sha256(Path(__file__).read_bytes()).hexdigest(), 'authorization_ids': ids,
           'policies': {stage: policy.digest for stage, policy in policies.items()}, 'max_nano': caps,
-          'max_model_http': limits, 'max_search_http': 0 if archived else 4,
-          'max_post_http': 0 if archived else 8, 'run': provenance(ROOT)})
+          'max_model_http': limits, 'max_search_http': 0 if bounded_replay else 4,
+          'max_post_http': 0 if bounded_replay else 8,
+          'max_official_http': len(cases) if official else 0, 'run': provenance(ROOT)})
     pairs = []
     review = []
     counts = Counter()
@@ -324,7 +341,21 @@ async def execute(args):
                         item.update(goal_id=goal['id'], preparation_id=prep_id)
                         prep_path = root + '/interview-preparations/' + prep_id
                         lookup = None
-                        if archived or arm == 'C':
+                        reference = None
+                        if official:
+                            topic = explicit_topic(jd)
+                            if topic not in CATALOG:
+                                raise RuntimeError('fixture_missing_official_topic')
+                            source = CATALOG[topic]
+
+                            def mock_reference(request):
+                                if str(request.url) != source.url or request.method != 'GET' or request.content:
+                                    raise RuntimeError('unexpected_reference_request')
+                                return httpx.Response(200, text=f'# Documentation\n\n{source.locator} for this synthetic test.')
+
+                            reference = PreparationReference(lambda: arm == 'C', transport=(
+                                None if live else httpx.MockTransport(mock_reference)))
+                        elif archived or arm == 'C':
                             if archived:
                                 transport = httpx.MockTransport(lambda request: archived_search(service, pages[case_id], request))
                             else:
@@ -337,7 +368,7 @@ async def execute(args):
 
                         def planner(claim):
                             return LivePlanner(pool, prep_repo, claim, policies['preparation'], ids['preparation'],
-                                credentials, experience_lookup=lookup,
+                                credentials, experience_lookup=lookup, reference_lookup=reference,
                                 inner_factory=None if live else
                                 lambda: httpx.MockTransport(lambda request: mock_planner(request, args.mode)))
 
@@ -359,7 +390,17 @@ async def execute(args):
                                 'SELECT frozen FROM app.career_interview_preparations WHERE id=%s', (prep_id,))).fetchone()
                         frozen = row['frozen']
                         item['preparation_input_sha256'] = digest(frozen)
-                        if search_target(frozen) is None:
+                        if reference is not None:
+                            item['reference_attribution'] = {
+                                'status': reference.status,
+                                'source_id': reference.source['id'] if reference.source else None,
+                                'content_sha256': reference.source['content_sha256'] if reference.source else None,
+                                'prepared_citations': prepared['plan'].get('public_reference_count', 0),
+                            }
+                            expected = 'retrieved' if arm == 'C' else 'disabled'
+                            if reference.status != expected:
+                                raise RuntimeError('reference_' + reference.status)
+                        elif search_target(frozen) is None:
                             raise RuntimeError('fixture_missing_search_gap')
                         if lookup and lookup.status not in ('retrieved', 'no_passage'):
                             raise RuntimeError('search_' + lookup.status)
@@ -409,6 +450,9 @@ async def execute(args):
                         if lookup is not None:
                             item['experience_attribution']['first_question_cited'] = bool(
                                 ended['report'].get('experience_references'))
+                        if reference is not None:
+                            item['reference_attribution']['first_question_cited'] = bool(
+                                ended['report'].get('public_references'))
                     if len({item['preparation_input_sha256'] for item in pair['arms'].values()}) != 1:
                         raise RuntimeError('pair_preparation_input_mismatch')
                     x, y = layout[case_id]
@@ -439,7 +483,9 @@ def main():
     parser.add_argument('--case', choices=[row[0] for row in CASES], help='select one fixed probe-search case')
     parser.add_argument('--compare-evaluation-query', action='store_true', help='compare two fixed X01 queries')
     parser.add_argument('--keep-public-pages', action='store_true', help='save read public pages in the probe directory')
-    parser.add_argument('--archived-experiences', type=Path, help='compare old and new extraction with fixed local HTML')
+    comparison = parser.add_mutually_exclusive_group()
+    comparison.add_argument('--archived-experiences', type=Path, help='compare old and new extraction with fixed local HTML')
+    comparison.add_argument('--official-references', action='store_true', help='compare a fixed official lookup with lookup disabled')
     parser.add_argument('--execute-live', action='store_true')
     args = parser.parse_args()
     if (args.mode in ('live', 'probe-search')) != args.execute_live:
@@ -452,6 +498,8 @@ def main():
         parser.error('public_page_capture_requires_probe_search_mode')
     if args.archived_experiences and (args.mode == 'probe-search' or args.search_provider != 'baidu'):
         parser.error('archived_experiences_requires_paired_mode_and_baidu_format')
+    if args.official_references and args.mode == 'probe-search':
+        parser.error('official_references_requires_paired_mode')
     return asyncio.run(execute(args), loop_factory=selector_loop)
 
 
