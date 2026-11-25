@@ -1,6 +1,6 @@
 """Judgement benchmark v0.2: schema, deterministic graders, harness.
 
-Contract: `evals/BENCHMARK_DESIGN.md` + `evals/GRADER_CONTRACT.md`.
+Contract: `evals/GRADER_CONTRACT.md`.
 Dataset: `benchmarks/judgement-v0.2/` (cases) and `grader-fixtures/` (canned outputs).
 
 Design decisions that matter (second external review):

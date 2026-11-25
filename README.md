@@ -63,6 +63,6 @@ pnpm --dir apps/web dev
 pnpm --dir apps/web typecheck
 ```
 
-[评测记录](docs/EVALUATION.md)说明真实模型与模拟结果的区别。[后续路线](docs/ROADMAP.md)按实习投递中的真实反馈维护。公开版本的首发交付形式为源码。免配置的桌面安装和更新、生产托管和跨平台安装属于独立验收。部分历史 Windows 桌面打包脚本依赖开发机工具链路径，使用前需按本机环境调整。
+项目以源码形式发布。免配置的桌面安装和更新、生产托管和跨平台安装属于独立验收。部分历史 Windows 桌面打包脚本依赖开发机工具链路径，使用前需按本机环境调整。[后续路线](docs/ROADMAP.md)
 
 本项目原创部分使用 MIT 许可证。第三方依赖和资料适用各自条款。[许可证](LICENSE) · [第三方声明](docs/third-party/NOTICE.md)

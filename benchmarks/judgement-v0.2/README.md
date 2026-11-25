@@ -1,8 +1,5 @@
-# judgement-v0.2（32 条，待签字）
+# judgement-v0.2 · 判据级回归样本
 
-> 状态：**32 条已起草，`review: pending`**，等你逐条签字后冻结为 `0.3.0`。
-> 评审包：`docs/records/desktop-handoff/F07X-03-gold评审包.md`。
-> 设计：`evals/BENCHMARK_DESIGN.md`；错误分类：`evals/ERROR_TAXONOMY.md`。
 
 ## 这是什么
 

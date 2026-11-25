@@ -24,18 +24,6 @@ $env:PYTHONPATH='backend/src;backend/tests'
 
 不需要 PG / Redis / 模型。
 
-## 结果（2026-11-17 实测）
-
-| 指标 | A：旧裁剪视图 | B：结构化编译 |
-| --- | --- | --- |
-| 早期 6 个问题 id 在载荷里可追溯 | **0/6** | **6/6** |
-| 早期主题 `java-concurrency` 可见 | 否 | 是（`working_state.asked_topics`） |
-| 当前回答逐字保留 | 是 | 是 |
-| 已确认事实逐字保留 | 是 | 是 |
-| 载荷字节（同一快照） | 4,621 | 6,690 |
-| 裁剪记录含 `question_history.latest_6_only` | 是 | 是 |
-| 载荷自带 `context_version` / `mode` | 否 | 是 |
-
 ## 说明与边界
 
 - 旧视图**不是错的**：它按 32 KiB 预算裁剪，只是**没有回指**；S02A 补的正是"回指"。

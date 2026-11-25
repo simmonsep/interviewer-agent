@@ -19,5 +19,3 @@ run需真实测试PG/Redis、已有迁移，只支持test环境；复用FastAPI 
 默认两个适配器各跑一次开发任务，共24次尝试。system_scripted是原系统配ScriptedCoordinator；fixed_rules是读相同目标/申请工具、遵守相同SQL Gate/计数上限的确定性流程，不是LLM。二者结果不能归因为模型、多Agent或记忆优劣。--repeats 1/2/3可指定次数，当前首轮只跑1次，不能据此估计随机模型稳定性。预留候选执行还需显式--include-reserved，本步没有运行。
 
 输出在.private/ja-09-01/benchmark/<新UUID>：run.json记录代码/数据版本，attempts.jsonl逐次保留SQL产物/引用/检查与失败，report.json给出分母和逐任务配对。SQL提交成功不等于业务结果正确；machine_pass只覆盖确定性检查，人工审核和domain_success保持pending/null。基础设施失败不被悄悄丢弃；报告同时给有效尝试和全部尝试分母，缺少守卫验证也不能当作已安全。
-
-首轮两个版本各11/12：G04中system_scripted忽略明确结束；M01中fixed_rules把“面试已结束，请复测”误当停止请求。保留失败，不更改任务/脚本来追求本轮通过率。岗位研究准确性、材料/面试语义、笔试/Coding和用户收益未覆盖；40～60个经审核领域场景仍是后续目标。详细记录见docs/records/JA-09-评测与开源复现实现方案.md。
