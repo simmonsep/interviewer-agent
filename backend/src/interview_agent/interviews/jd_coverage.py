@@ -1,6 +1,7 @@
 """Bound the job requirements and link frozen candidates to what was actually asked."""
 import re
 
+from interview_agent.connectors.interview_experiences import experience_wiki_topic
 from interview_agent.connectors.public_reference import explicit_topic
 from interview_agent.question_banks.ranking import GENERIC, keywords
 
@@ -40,7 +41,8 @@ def include_generated(rows, questions, target_kind):
     result = [{**row, 'candidates': dict(row['candidates'])} for row in rows]
     for topic_id, topic in question_topics(questions, target_kind).items():
         if wiki := topic.get('wiki'):
-            matches = [row for row in result if explicit_topic(row['quote']) == wiki['topic_key']]
+            topic_key_for = experience_wiki_topic if topic.get('experience_reference') else explicit_topic
+            matches = [row for row in result if topic_key_for(row['quote']) == wiki['topic_key']]
             source = 'wiki'
         else:
             anchor = topic['generated']['target_quote']

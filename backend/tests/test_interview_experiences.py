@@ -6,10 +6,10 @@ import pytest
 
 from interview_agent.connectors.interview_experiences import ExperienceLookup, MAX_PAGE_BYTES, SEARCH_URL
 from interview_agent.connectors.experience_providers import BAIDU_URL, SearchService
-from test_interview_prep_planning import run_mock_plan
+from test_interview_prep_planning import FakePlanner, plan_of, run_mock_plan
 from test_interview_prep_repository import checkpoints, context, post
 from test_interview_repository import question
-from test_interview_wiki import goal_for, start
+from test_interview_wiki import goal_for, items, prepare, review, start
 from test_postgres import pg_settings, query
 from test_worker import worker_settings
 
@@ -407,3 +407,84 @@ def test_same_jd_search_changes_mocked_question_and_report_cites_only_actual_use
             assert source['url'] == POST and source['quote'] == NARRATIVE
         else:
             assert 'experience_references' not in report
+
+
+@pytest.mark.postgres
+@pytest.mark.redis
+def test_used_experience_becomes_reviewed_wiki_and_is_reused_in_a_new_goal(
+        context, worker_settings, pg_settings, tmp_path):
+    client, _, _user = context
+    first_requirement = '负责 Agent 离线评测与失败阶段归因'
+    first_question = '工具已经选对但离线评测仍报错，怎样区分参数生成与外部执行的问题？'
+    rewritten = '离线评测失败时，怎样根据日志定位参数层或执行层？'
+    requests = []
+    service = SearchService('baidu', BAIDU_URL)
+
+    def search(request):
+        requests.append(str(request.url).split('?')[0])
+        if requests[-1] == BAIDU_URL:
+            return httpx.Response(200, json={'references': [{'title': '合成 Agent 面经', 'url': POST}]})
+        return httpx.Response(200, text=f'<article><p>{NARRATIVE}</p></article>', headers={'Content-Type': 'text/html'})
+
+    def sourced_plan(goal, wording):
+        def model(model_requests):
+            messages = model_requests[-1]['messages']
+            value = next(json.loads(message['content']) for message in messages if message['role'] == 'tool')
+            sources = value['interview_experiences']
+            [selected] = sources['sources']
+            return json.dumps({'generated_questions': [{
+                'title': '分阶段定位评测失败', 'question': wording, 'target_quote': sources['target_quote'],
+                'experience_id': selected['id'], 'experience_quote': selected['excerpt'],
+            }]}, ensure_ascii=False)
+
+        return run_mock_plan(worker_settings, pg_settings[1], client, goal, tmp_path, model, requests=[],
+                             experience_lookup=ExperienceLookup(lambda: True, 'mock-key',
+                                 service=service, transport=httpx.MockTransport(search), semantic_passages=True),
+                             role='ai-application', profile='full', use_resume=False)
+
+    first_goal = goal_for(client, first_requirement + '。')
+    plan = sourced_plan(first_goal, first_question)
+    assert plan['status'] == 'WAITING_FOR_USER', plan.get('error_code')
+    assert plan['plan']['experience_question_count'] == 1
+    assert items(client) == []
+    first = start(client, worker_settings, first_goal, plan)
+    event = question(first)
+    [draft] = items(client)
+    assert draft['status'] == 'pending' and draft['source_event_id'] == event['id']
+    assert event['payload']['text'] == first_question
+    assert draft['document']['experience_reference']['quote'] == NARRATIVE
+    assert 'public_reference' not in draft['document'] and 'target_quote' not in draft['document']
+
+    second_goal = goal_for(client, first_requirement + '。')
+    duplicate = sourced_plan(second_goal, rewritten)
+    assert duplicate['status'] == 'WAITING_FOR_USER', duplicate.get('error_code')
+    assert 'wiki_question_count' not in duplicate['plan']
+    assert question(start(client, worker_settings, second_goal, duplicate))['payload']['text'] == rewritten
+    assert [item['id'] for item in items(client)] == [draft['id']]
+    experience_requests = [BAIDU_URL, POST] * 2
+    assert requests == experience_requests
+
+    assert review(client, draft, 'publish').json()['status'] == 'active'
+    full = goal_for(client, '负责 Agent 评测并定位故障阶段。')
+    planner = FakePlanner(result=plan_of())
+    ready = prepare(client, worker_settings, full, planner)
+    assert planner.calls == 0 and ready['plan']['planner'] == 'wiki-reuse'
+    assert ready['plan']['jd_coverage'][0]['planned_sources'] == ['wiki']
+    session = start(client, worker_settings, full, ready)
+    selected = question(session)['payload']
+    assert selected['source'] == 'wiki_reused' and selected['wiki']['id'] == draft['id']
+    assert selected['text'] == first_question and selected['has_reference'] is False
+    ended = post(client, f"/api/career-goals/{full['id']}/interviews/{session['id']}/stop",
+                 {'expected_version': session['version']})
+    assert ended.status_code == 200, ended.text
+    report = ended.json()['report']
+    assert report['wiki_questions'] == 1
+    [source] = report['experience_references']
+    assert source['url'] == POST and source['quote'] == NARRATIVE
+    assert 'public_references' not in report and requests == experience_requests
+    assert [item['id'] for item in items(client)] == [draft['id']]
+
+    unrelated = goal_for(client, '负责 Agent 评测指标设计。')
+    fallback = FakePlanner(result=plan_of())
+    assert 'wiki_question_count' not in prepare(client, worker_settings, unrelated, fallback)['plan']
+    assert fallback.calls == 1

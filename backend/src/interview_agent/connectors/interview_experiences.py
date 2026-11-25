@@ -55,6 +55,14 @@ def contains(text, alias):
     return alias in text
 
 
+def experience_wiki_topic(text):
+    """Reuse the pilot topic only when a single requirement names evaluation and failure attribution."""
+    if (any(contains(text, term) for term in ('评测', 'benchmark', 'evaluation'))
+            and any(term in text for term in ('归因', '定位失败阶段', '定位故障阶段'))):
+        return 'experience-agent-evaluation-attribution'
+    return None
+
+
 def search_target(scope):
     role = ROLE_TERMS.get(scope.get('role'))
     if not role:

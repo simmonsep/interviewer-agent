@@ -3,10 +3,11 @@ import {ApiError,api,post} from './api.ts';
 
 type WikiStatus='pending'|'active'|'archived'|'withdrawn';
 type WikiAction='publish'|'restore'|'withdraw';
+type WikiSource={title:string;url:string;quote:string};
 type Entry={
  id:string;topic_key:string;version:number;status:WikiStatus;
  document:{title:string;question:string;probe:string;
-  public_reference:{title:string;url:string;quote:string}};
+  public_reference?:WikiSource;experience_reference?:WikiSource};
 };
 
 const path='/api/runtime/interview-wiki';
@@ -46,20 +47,25 @@ export function InterviewWikiSection(){
  return <details className="d-set-group" data-testid="interview-wiki"
   onToggle={event=>{if(event.currentTarget.open)void open();}}>
   <summary>面试 Wiki</summary>
-  <p className="hint">已问过且带官方资料的题会自动保存。你发布后，相似岗位的完整模拟可以复用。</p>
+  <p className="hint">已问过且有可核对来源的部分题目会自动保存。发布后，相似岗位的完整模拟可以复用。</p>
   {busy&&entries===null&&<p role="status">正在读取 Wiki…</p>}
   {error&&<p className="error" role="alert">{error}</p>}
   {entries?.length===0&&<p className="hint">还没有可审核的题目。</p>}
-  {entries?.map(entry=><article className="d-card" key={entry.id} data-testid={`wiki-entry-${entry.status}`}>
+  {entries?.map(entry=>{
+   const experience=entry.document.experience_reference;
+   const source=experience??entry.document.public_reference;
+   return <article className="d-card" key={entry.id} data-testid={`wiki-entry-${entry.status}`}>
    <div className="d-card-head">
     <h3>{entry.document.title}</h3><span className="tag">v{entry.version} · {statusText[entry.status]}</span>
    </div>
    <p>{entry.document.question}</p>
    {entry.document.probe&&<p className="fine-print">追问 · {entry.document.probe}</p>}
-   <blockquote>{entry.document.public_reference.quote}</blockquote>
-   <a href={entry.document.public_reference.url} target="_blank" rel="noopener noreferrer">
-    {entry.document.public_reference.title}
-   </a>
+   {source&&<>
+    <blockquote>{source.quote}</blockquote>
+    <a href={source.url} target="_blank" rel="noopener noreferrer">
+     {experience?'公开面经':'官方资料'} · {source.title}
+    </a>
+   </>}
    {entry.status!=='withdrawn'&&<div className="d-set-actions">
     {entry.status==='pending'&&<button className="secondary" type="button" disabled={busy}
      onClick={()=>void review(entry,'publish')}>发布供下次练习</button>}
@@ -68,6 +74,7 @@ export function InterviewWikiSection(){
     <button className="text-button" type="button" disabled={busy}
      onClick={()=>void review(entry,'withdraw')}>撤回此版本</button>
    </div>}
-  </article>)}
+   </article>;
+  })}
  </details>;
 }

@@ -441,6 +441,7 @@ class PreparationRepository:
         """Read the goal and material state, including the private planner's question basis."""
         from interview_agent.materials.repository import MaterialRepository as Materials
         from interview_agent.career.repository import digest
+        from interview_agent.connectors.interview_experiences import experience_wiki_topic
         from interview_agent.connectors.public_reference import explicit_topic
         from interview_agent.interview_wiki.repository import active_question
         from interview_agent.interviews.jd_coverage import include_generated, requirements
@@ -455,15 +456,20 @@ class PreparationRepository:
             goal = await (await conn.execute(
                 'SELECT * FROM app.career_goals WHERE id=%s', (row['goal_id'],))).fetchone()
             target = await Materials(self.pool)._target(conn, goal)
-            target_text = (target.get('requirements') or target.get('text') or target.get('direction') or '').strip()
+            target_text = (target.get('requirements') or target.get('text') or target.get('direction') or '').strip()[:2500]
             if bank_refs:
                 selected_pack, _ = await BankRepository(self.pool).resolve(conn, row['user_id'], row['role'], bank_refs)
                 topics = {**selected_pack['topics'], **topics}
+            coverage = requirements(target_text, topics) if row.get('profile') == 'full' else []
             wiki = None
             if row.get('profile') == 'full' and row['role'] == 'ai-application' and not row['draft_id']:
-                wiki_topic = explicit_topic(target_text[:2500])
+                wiki_topic = explicit_topic(target_text)
                 if wiki_topic:
                     wiki = await active_question(conn, row['user_id'], wiki_topic)
+                if wiki is None:
+                    experience_topics = [key for item in coverage if (key := experience_wiki_topic(item['quote']))]
+                    if len(experience_topics) == 1:
+                        wiki = await active_question(conn, row['user_id'], experience_topics[0])
             draft = None
             if row['draft_id']:
                 draft_row = await (await conn.execute(
@@ -475,8 +481,6 @@ class PreparationRepository:
             selection=await (await conn.execute('''SELECT snapshot_id,carried_from_version
                 FROM app.career_job_selections WHERE goal_id=%s AND goal_version=%s''',
                 (row['goal_id'],row['goal_version']))).fetchone()
-        target_text = target_text[:2500]
-        coverage = requirements(target_text, topics) if row.get('profile') == 'full' else []
         if wiki:
             coverage = include_generated(coverage, [wiki], target['kind'])
         # Keep private question excerpts bounded in the model view. The full selection stays local.

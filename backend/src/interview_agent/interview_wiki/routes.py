@@ -24,7 +24,8 @@ class WikiDocumentView(Contract):
     probe: str
     kind: Literal['knowledge', 'scenario']
     difficulty: Literal['foundation', 'intermediate', 'advanced']
-    public_reference: WikiSourceView
+    public_reference: WikiSourceView | None = None
+    experience_reference: WikiSourceView | None = None
 
 
 class WikiVersionView(Contract):
@@ -48,11 +49,12 @@ class WikiReview(Contract):
 def routes():
     router = APIRouter(prefix='/api/runtime/interview-wiki')
 
-    @router.get('', response_model=WikiListView, responses=errors(401))
+    @router.get('', response_model=WikiListView, response_model_exclude_none=True, responses=errors(401))
     async def listing(request: Request, user: PrincipalDep):
         return await WikiRepository(request.app.state.pool).listing(user)
 
-    @router.post('/{version_id}/review', response_model=WikiVersionView, responses=errors(400, 401, 404, 409))
+    @router.post('/{version_id}/review', response_model=WikiVersionView, response_model_exclude_none=True,
+                 responses=errors(400, 401, 404, 409))
     async def review(version_id: UuidString, value: WikiReview, request: Request, user: PrincipalDep):
         return await WikiRepository(request.app.state.pool).review(user, version_id, value)
 

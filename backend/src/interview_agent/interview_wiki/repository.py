@@ -2,6 +2,7 @@
 from psycopg.types.json import Jsonb
 
 from interview_agent.career.repository import digest
+from interview_agent.connectors.interview_experiences import experience_wiki_topic, post_url
 from interview_agent.connectors.public_reference import CATALOG
 from interview_agent.storage.auth import require_session
 from interview_agent.storage.errors import ApiError
@@ -21,21 +22,32 @@ async def _lock_owner(conn, user_id):
 
 
 async def record_used_question(conn, user_id, event_id, item):
-    source = item.get('public_reference')
-    if not source or item.get('wiki') or item.get('experience_reference'):
+    if item.get('wiki'):
         return
-    topic_key = source['id']
-    configured = CATALOG.get(topic_key)
-    if not configured or configured.url != source['url']:
+    if experience := item.get('experience_reference'):
+        topic_key = experience_wiki_topic(item['generated']['target_quote'])
+        if not topic_key or post_url(experience['url']) != experience['url']:
+            return
+        source_field, source = 'experience_reference', experience
+    elif official := item.get('public_reference'):
+        topic_key = official['id']
+        configured = CATALOG.get(topic_key)
+        if not configured or configured.url != official['url']:
+            return
+        source_field, source = 'public_reference', official
+    else:
         return
     question = {
         'title': item['title'], 'question': item['base'], 'probe': item['probe'],
         'kind': item['generated']['kind'], 'difficulty': item['generated']['difficulty'],
-        'public_reference': source,
+        source_field: source,
     }
-    # Capture time alone is not a new version. Keep it in the provenance of the first capture.
-    fingerprint = digest({**question, 'public_reference': {
-        key: value for key, value in source.items() if key != 'fetched_at'}})
+    if source_field == 'experience_reference':
+        # The same passage can inspire different wording. Keep its first capture.
+        fingerprint = digest({'url': source['url'], 'quote': source['quote']})
+    else:
+        fingerprint = digest({**question, source_field: {
+            key: value for key, value in source.items() if key != 'fetched_at'}})
     await _lock_owner(conn, user_id)
     await conn.execute('''
         INSERT INTO app.interview_wiki_versions
