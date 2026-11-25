@@ -3,6 +3,7 @@ import asyncio
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from hashlib import sha256
+import re
 
 import httpx
 
@@ -28,18 +29,33 @@ CATALOG = {
         'https://docs.langchain.com/oss/python/langgraph/interrupts.md',
         'node restarts from the beginning',
     ),
+    'langgraph-stores': Source(
+        'LangGraph · Stores',
+        'https://docs.langchain.com/oss/python/langgraph/stores.md',
+        'Compile the graph with both the checkpointer and the store',
+    ),
+    'langchain-structured-output': Source(
+        'LangChain · Structured output',
+        'https://docs.langchain.com/oss/python/langchain/structured-output.md',
+        "For models that don't support native structured output",
+    ),
 }
 
 
 def explicit_topic(target):
     """Map clear requests to the catalog. Leave ambiguous requests to the Planner."""
     text = target.casefold()
-    if 'langgraph' not in text:
-        return None
-    if any(term in text for term in ('interrupt', '中断', '人工确认')):
-        return 'langgraph-interrupts'
-    if any(term in text for term in ('checkpoint', '检查点', '持久化', '会话恢复')):
-        return 'langgraph-checkpoints'
+    if 'langgraph' in text:
+        if any(term in text for term in ('interrupt', '中断', '人工确认')):
+            return 'langgraph-interrupts'
+        if (re.search(r'(?a)\b(?:stores?|postgresstore|inmemorystore)\b', text)
+                or any(term in text for term in ('跨线程记忆', '长期记忆', 'long-term memory'))):
+            return 'langgraph-stores'
+        if any(term in text for term in ('checkpoint', '检查点', '持久化', '会话恢复')):
+            return 'langgraph-checkpoints'
+    if 'langchain' in text and any(term in text for term in (
+            'structured output', '结构化输出', 'toolstrategy', 'providerstrategy')):
+        return 'langchain-structured-output'
     return None
 
 

@@ -17,6 +17,19 @@ def test_an_explicit_langgraph_requirement_routes_to_the_official_topic():
     assert explicit_topic('熟悉 LangGraph 与 Python') is None
 
 
+@pytest.mark.parametrize('requested,selected', [
+    ('LangGraph 的 checkpointer 和 Store 有什么区别', 'langgraph-stores'),
+    ('LangGraph的Store与长期记忆', 'langgraph-stores'),
+    ('LangGraph 通过 PostgresStore 实现偏好持久化', 'langgraph-stores'),
+    ('LangChain 的结构化输出与工具策略', 'langchain-structured-output'),
+    ('采用 LangChain ToolStrategy 处理模型输出', 'langchain-structured-output'),
+    ('有项目长期记忆和结构化输出经验', None),
+    ('LangGraph 中读取 datastore 里的指标', None),
+])
+def test_new_official_topics_require_specific_framework_and_concept(requested, selected):
+    assert explicit_topic(requested) == selected
+
+
 def test_catalog_lookup_is_one_fixed_get_with_replayable_source():
     calls = []
 

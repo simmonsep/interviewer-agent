@@ -388,34 +388,45 @@ def test_full_preparation_tracks_user_direction_without_inventing_a_jd(context, 
     assert first["generated"]["target_kind"] == "direction"
 
 
-@pytest.mark.parametrize('has_passage,automatic', [(True, False), (True, True), (False, True)])
+@pytest.mark.parametrize('has_passage,automatic,case', [
+    (True, False, 'interrupts'), (True, True, 'interrupts'), (False, True, 'interrupts'),
+    (True, True, 'stores'), (True, True, 'structured-output'),
+])
 def test_preparation_public_reference_is_attached_only_after_exact_read(
-        context, worker_settings, pg_settings, tmp_path, has_passage, automatic):
+        context, worker_settings, pg_settings, tmp_path, has_passage, automatic, case):
     from interview_agent.connectors.public_reference import CATALOG, PreparationReference
     from test_interview_prep_repository import post
     from test_interview_repository import process, question, view as session_view
-    from test_preparation_reference import MARKDOWN, PASSAGE, TOPIC
+    from test_preparation_reference import PASSAGE, TOPIC
 
     client, _, _uid = context
-    jd = ('负责 LangGraph ' if automatic else '负责 Agent ') + '中断恢复与 SECRET-JD-PLACEHOLDER。'
+    cases = {
+        'interrupts': (TOPIC, 'LangGraph' if automatic else 'Agent', '中断恢复', PASSAGE),
+        'stores': ('langgraph-stores', 'LangGraph', '跨线程记忆',
+                   'Compile the graph with both the checkpointer and the store to share preferences.'),
+        'structured-output': ('langchain-structured-output', 'LangChain', '结构化输出',
+                              "For models that don't support native structured output, use a tool-backed schema."),
+    }
+    topic, framework, anchor, passage = cases[case]
+    jd = f'负责 {framework} {anchor}与 SECRET-JD-PLACEHOLDER。'
     goal = post(client, '/api/career-goals/', {'message': '做 JD 训练', 'jd_text': jd}).json()
     doc_requests = []
 
     def fetch(request):
         doc_requests.append(request)
-        return httpx.Response(200, text=MARKDOWN if has_passage else '# No usable passage')
+        return httpx.Response(200, text=f'# Documentation\n\n{passage}' if has_passage else '# No usable passage')
 
     lookup = PreparationReference(lambda: True, transport=httpx.MockTransport(fetch))
     questions = [
-        {'title': '恢复后副作用', 'target_quote': '中断恢复', 'question': '恢复中断前已经写盘，应怎样设计？',
-         'source_id': TOPIC, 'source_quote': PASSAGE, 'url': 'https://fabricated.invalid/'},
-        {'title': '识别来源', 'target_quote': '中断恢复', 'question': '怎样识别一个恢复事件的来源？',
-         'source_id': TOPIC, 'source_quote': 'Fabricated evidence from the model output.'},
+        {'title': '设计取舍', 'target_quote': anchor, 'question': f'面对{anchor}的要求，你会怎样验证自己的设计？',
+         'source_id': topic, 'source_quote': passage, 'url': 'https://fabricated.invalid/'},
+        {'title': '识别来源', 'target_quote': anchor, 'question': f'哪些信号可以说明{anchor}的设计没有生效？',
+         'source_id': topic, 'source_quote': 'Fabricated evidence from the model output.'},
     ]
     model_requests = []
     prep = run_mock_plan(worker_settings, pg_settings[1], client, goal, tmp_path,
                          json.dumps({'generated_questions': questions}), requests=model_requests,
-                         reference_lookup=lookup, lookup_topic=None if automatic else TOPIC,
+                         reference_lookup=lookup, lookup_topic=None if automatic else topic,
                          role='ai-application', profile='full', use_resume=False)
     assert prep['status'] == 'WAITING_FOR_USER', prep['error_code']
     assert len(model_requests) == (2 if automatic else 3)
@@ -425,10 +436,10 @@ def test_preparation_public_reference_is_attached_only_after_exact_read(
         assert delivered[0]['official_reference']['status'] == ('retrieved' if has_passage else 'no_passage')
     else:
         assert not model_requests[-1].get('tools')
-    assert [(str(req.url), req.content) for req in doc_requests] == [(CATALOG[TOPIC].url, b'')]
+    assert [(str(req.url), req.content) for req in doc_requests] == [(CATALOG[topic].url, b'')]
     assert prep['plan']['public_reference_status'] == ('retrieved' if has_passage else 'no_passage')
     assert prep['plan']['public_reference_count'] == int(has_passage)
-    assert PASSAGE not in str(prep)
+    assert passage not in str(prep)
     assert confirm(client, goal, prep).status_code == 200
     assert arun(once(worker_settings))
     session_id = view(client, goal, prep['id'])['session_id']
@@ -436,13 +447,13 @@ def test_preparation_public_reference_is_attached_only_after_exact_read(
     session = session_view(client, goal, {'id': session_id})
     assert question(session)['payload']['source'] == 'jd_generated'
     assert question(session)['payload']['has_reference'] is False
-    assert PASSAGE not in str(session) and session['report'] is None
+    assert passage not in str(session) and session['report'] is None
     ended = post(client, base(goal) + f'/interviews/{session_id}/stop',
                  {'expected_version': session['version']}).json()
     if has_passage:
         [selected] = ended['report']['public_references']
-        assert selected['question_title'] == questions[0]['title'] and selected['quote'] == PASSAGE
-        assert selected['url'] == CATALOG[TOPIC].url
+        assert selected['question_title'] == questions[0]['title'] and selected['quote'] == passage
+        assert selected['url'] == CATALOG[topic].url
     else:
         assert 'public_references' not in ended['report']
     assert 'Fabricated evidence' not in str(ended) and 'fabricated.invalid' not in str(ended)
