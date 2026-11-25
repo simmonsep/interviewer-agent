@@ -109,9 +109,11 @@ def mock_planner(request, mode):
     target = scope['jd_or_direction'].rstrip('。')
     generated = {'title': '岗位场景', 'question': f'针对「{target}」，怎样用一个可重复的实验验证处理结果？',
                  'target_quote': target}
-    if sources := scope.get('interview_experiences', {}).get('sources'):
+    experiences = scope.get('interview_experiences', {})
+    if sources := experiences.get('sources'):
         generated.update(question='如果同一个任务工具已选对但执行仍报错，你怎样定位失败发生的阶段？',
-                         experience_id=sources[0]['id'], experience_quote=sources[0]['excerpt'][:200])
+                         target_quote=experiences['target_quote'], experience_id=sources[0]['id'],
+                         experience_quote=sources[0]['excerpt'][:200])
     return mock_completion({'content': json.dumps({'generated_questions': [generated]}, ensure_ascii=False)})
 
 
@@ -343,6 +345,13 @@ async def execute(args):
                         prepared = request(prep_path)
                         cost = await prep_ledger.summary(prep_id)
                         item.update(preparation=prepared, preparation_fee=cost)
+                        if lookup is not None:
+                            item['experience_attribution'] = {
+                                'lookup_status': lookup.status,
+                                'retrieved_passages': len(lookup.sources),
+                                'delivered_passages': len(lookup.delivered_source_ids),
+                                'citation_checks': dict(lookup.citation_checks),
+                            }
                         if cost['usage_status'] != 'known' or prepared['status'] != 'WAITING_FOR_USER':
                             raise RuntimeError('preparation_' + (prepared.get('error_code') or cost['usage_status']))
                         async with pool.connection() as conn:
@@ -397,6 +406,9 @@ async def execute(args):
                             raise RuntimeError('first_question_unavailable_or_unsettled')
                         ended = request(session_path + '/stop', {'expected_version': first['version']})
                         item.update(question=actual[0], report=ended['report'])
+                        if lookup is not None:
+                            item['experience_attribution']['first_question_cited'] = bool(
+                                ended['report'].get('experience_references'))
                     if len({item['preparation_input_sha256'] for item in pair['arms'].values()}) != 1:
                         raise RuntimeError('pair_preparation_input_mismatch')
                     x, y = layout[case_id]

@@ -1,5 +1,6 @@
 """Read bounded public interview question clues during full preparation."""
 import asyncio
+from collections import Counter
 from datetime import datetime, timezone
 from hashlib import sha256
 import json
@@ -243,6 +244,7 @@ class ExperienceLookup:
         self.delivered_source_ids = set()
         self.target_quote = ''
         self.diagnostics = [] if record_diagnostics else None
+        self.citation_checks = Counter() if record_diagnostics else None
         self.capture_page = capture_page
         self.semantic_passages = semantic_passages
 
@@ -250,11 +252,14 @@ class ExperienceLookup:
         if self.status == 'not_requested':
             await self._search(scope, admit)
         result = {'status': self.status, 'sources': list(self.sources.values())}
+        if result['sources']:
+            result['target_quote'] = self.target_quote
         if max_chars is not None:
             while result['sources'] and len(json.dumps(result, ensure_ascii=False)) > max_chars:
                 result['sources'].pop()
             if self.sources and not result['sources']:
                 result['status'] = 'context_limited'
+                result.pop('target_quote')
         self.delivered_source_ids.update(source['id'] for source in result['sources'])
         return result
 
@@ -348,9 +353,23 @@ class ExperienceLookup:
                                       'content_sha256': content_sha256, 'fetched_at': fetched_at}
 
     def citation(self, source_id, quote, target_quote):
-        if source_id not in self.delivered_source_ids:
-            return None
-        source = self.sources.get(source_id)
-        if (source and 16 <= len(quote) <= 240 and quote in source['excerpt'] and not review_flags(quote)
-                and target_quote and target_quote in self.target_quote):
+        outcome = self._citation_outcome(source_id, quote, target_quote)
+        if self.citation_checks is not None:
+            self.citation_checks[outcome] += 1
+        if outcome == 'verified':
+            source = self.sources[source_id]
             return {key: value for key, value in source.items() if key != 'excerpt'} | {'quote': quote}
+
+    def _citation_outcome(self, source_id, quote, target_quote):
+        if not source_id and not quote:
+            return 'no_citation_claim'
+        if not source_id or not quote:
+            return 'incomplete_claim'
+        if source_id not in self.delivered_source_ids:
+            return 'source_not_delivered'
+        if not target_quote or target_quote not in self.target_quote:
+            return 'different_target'
+        if (not 16 <= len(quote) <= 240 or quote not in self.sources[source_id]['excerpt']
+                or review_flags(quote)):
+            return 'invalid_quote'
+        return 'verified'

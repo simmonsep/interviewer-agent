@@ -57,6 +57,7 @@ def test_experience_lookup_restricts_request_and_citation_to_read_original_text(
         result = await lookup.lookup(scope(), admit)
         assert await lookup.lookup(scope(), admit) == result
         assert result['status'] == 'retrieved'
+        assert result['target_quote'] == scope()['jd_coverage'][0]['quote']
         [source] = result['sources']
         assert source['url'] == POST
         assert lookup.citation(source['id'], ANGLE, SEED)['quote'] == ANGLE
@@ -185,7 +186,7 @@ def test_optional_page_diagnostics_distinguish_discard_stages_without_changing_l
     assert all(row['fetch'][key] == value for key, value in details.items())
     assert not any(value in json.dumps(row, ensure_ascii=False)
                    for value in ('private-marker', 'mock-private-key', ANGLE, PII_MARKER))
-    assert set(result) == {'status', 'sources'}
+    assert ('target_quote' in result) == bool(result['sources'])
     assert result['status'] == ('retrieved' if expected == 'retrieved' else 'no_passage')
 
     regular = ExperienceLookup(lambda: True, 'mock-private-key', transport=httpx.MockTransport(provider))
@@ -282,7 +283,7 @@ def test_empty_captured_app_shell_is_distinct_from_a_page_with_article_text():
     assert [row['fetch']['result'] for row in lookup.diagnostics] == ['empty_app_shell', 'retrieved']
     assert captures[0] == (POST, shell.encode(), ['牛客网', '牛客网在线编程', '牛客网题解', '牛客企业服务'])
     assert captures[1][0] == second_post and captures[1][1] == with_article.encode()
-    assert set(result) == {'status', 'sources'}
+    assert set(result) == {'status', 'sources', 'target_quote'}
     assert [source['excerpt'] for source in result['sources']] == [ANGLE]
 
 
@@ -301,19 +302,31 @@ def test_semantic_passages_exclude_non_article_text_and_only_delivered_blocks_ca
 
     async def run():
         lookup = ExperienceLookup(lambda: True, 'mock-key', semantic_passages=True,
-                                  transport=httpx.MockTransport(provider))
-        first = await lookup.lookup(scope(), admit, max_chars=80)
+                                  transport=httpx.MockTransport(provider), record_diagnostics=True)
+        frozen = scope()
+        frozen['question_basis']['text'] += '；负责 Spring Boot 事务边界'
+        frozen['jd_coverage'].append({'id': 'r2', 'quote': '负责 Spring Boot 事务边界', 'candidates': {}})
+        first = await lookup.lookup(frozen, admit, max_chars=80)
         assert first == {'status': 'context_limited', 'sources': []}
         [identifier] = lookup.sources
         assert lookup.citation(identifier, NARRATIVE, SEED) is None
+        without_target = json.dumps({'status': 'retrieved', 'sources': list(lookup.sources.values())},
+                                    ensure_ascii=False)
+        assert await lookup.lookup(frozen, admit, max_chars=len(without_target)) == first
 
-        after = await lookup.lookup(scope(), admit, max_chars=600)
+        after = await lookup.lookup(frozen, admit, max_chars=600)
         [source] = after['sources']
         assert len(json.dumps(after, ensure_ascii=False)) <= 600
         assert source['excerpt'] == NARRATIVE
+        assert after['target_quote'] == frozen['jd_coverage'][0]['quote']
         assert private_marker not in json.dumps(after, ensure_ascii=False)
-        assert lookup.citation(identifier, NARRATIVE, SEED)['quote'] == NARRATIVE
+        assert lookup.citation(identifier, NARRATIVE, after['target_quote'])['quote'] == NARRATIVE
+        assert lookup.citation(identifier, NARRATIVE, frozen['jd_coverage'][1]['quote']) is None
         assert lookup.citation(identifier, private_marker, SEED) is None
+        assert lookup.citation('', NARRATIVE, SEED) is None
+        assert lookup.citation('', '', SEED) is None
+        assert lookup.citation_checks == {'source_not_delivered': 1, 'verified': 1, 'different_target': 1,
+                                          'invalid_quote': 1, 'incomplete_claim': 1, 'no_citation_claim': 1}
 
     asyncio.run(run())
 
@@ -332,13 +345,16 @@ def test_same_jd_search_changes_mocked_question_and_report_cites_only_actual_use
     def model(requests):
         messages = requests[-1]['messages']
         result = next(json.loads(message['content']) for message in messages if message['role'] == 'tool')
-        sources = result.get('interview_experiences', {}).get('sources', [])
+        experiences = result.get('interview_experiences', {})
+        sources = experiences.get('sources', [])
         item = {'title': '评测故障归因', 'target_quote': SEED,
                 'question': questions['search' if sources else 'baseline']}
         secondary = {**item, 'title': '另一个故障', 'question': '评测流水线如何记录一次恢复？'}
         if sources:
             assert sources[0]['excerpt'] == NARRATIVE
-            item.update(experience_id=sources[0]['id'], experience_quote=NARRATIVE)
+            assert experiences['target_quote'] == SEED
+            item.update(target_quote=experiences['target_quote'],
+                        experience_id=sources[0]['id'], experience_quote=NARRATIVE)
             # A purported quote outside what the tool delivered must be discarded.
             secondary.update(experience_id=sources[0]['id'],
                              experience_quote='这条所谓原文既不在页面里，也没有出现在返回给模型的摘录里。')
@@ -355,7 +371,7 @@ def test_same_jd_search_changes_mocked_question_and_report_cites_only_actual_use
         ('empty', ExperienceLookup(lambda: True, 'mock-key', service=baidu,
                                    transport=httpx.MockTransport(lambda request: httpx.Response(200, json={'references': []})))),
         ('search', ExperienceLookup(lambda: True, 'mock-key', service=baidu, semantic_passages=True,
-                                    transport=httpx.MockTransport(provider))),
+                                    transport=httpx.MockTransport(provider), record_diagnostics=True)),
     ):
         goal = goal_for(client, SEED + '。')
         model_requests = []
@@ -369,6 +385,7 @@ def test_same_jd_search_changes_mocked_question_and_report_cites_only_actual_use
         if arm == 'search':
             assert prepared['plan']['experience_question_count'] == 1
             assert prepared['plan']['experience_search_provider'] == 'baidu'
+            assert lookup.citation_checks == {'verified': 1, 'invalid_quote': 1}
             [stored] = query(owner, "SELECT experience_search_admitted_at,plan FROM app.career_interview_preparations WHERE id=%s",
                              (prepared['id'],))
             assert stored['experience_search_admitted_at'] is not None
